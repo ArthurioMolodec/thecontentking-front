@@ -7,15 +7,17 @@
                 :type="type"
                 variant="plain"
                 hide-details
+                v-model="value"
         ></v-text-field>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['label', "type"],
+        props: ['label', "type", "modelValue"],
         data() {
             return {
+                value: this.modelValue,
                 bgColor: 'red',
                 inputId: 'input-' + Math.random().toString(36).substr(2, 9),
                 placeholderStyle: {
@@ -23,6 +25,11 @@
                 }
             };
         },
+        watch: {
+            value(value) {
+                this.$emit('update:modelValue', value);
+            }
+        }
     };
 </script>
 

@@ -8,9 +8,9 @@
                     <h1 class="title">Login</h1>
                     <div class="login-content">
                         <v-form>
-                            <Input label="Email" type="email" class="input-placeholder"/>
-                            <Input label="Password" type="password" class="input-placeholder"/>
-                            <Button name="Login"  />
+                            <Input v-model="form.email" label="Email" type="email" class="input-placeholder"/>
+                            <Input v-model="form.password" label="Password" type="password" class="input-placeholder"/>
+                            <Button name="Login" @click="submitForm()" />
                             <p class="have-account">
                                 Already have an account?
                             </p>
@@ -30,6 +30,8 @@
     import Input from '../components/general/Input'
     import Button from '../components/auth/Button'
     import SignUpUsing from '../components/auth/SignUpUsing'
+    import store from '@/store';
+    
     export default {
         components: {
             Button,
@@ -38,6 +40,18 @@
             SignUpUsing,
             Footer,
         },
+        data() {
+            return {
+                form: {
+                    email: null, password: null,
+                }
+            }
+        },
+        methods: {
+            submitForm() {
+                store.dispatch('login', this.form);
+            }
+        }
     }
 </script>
 
