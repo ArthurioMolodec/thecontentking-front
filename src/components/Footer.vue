@@ -33,11 +33,10 @@
 <style scoped>
 
     footer {
-        background-color: #1E1E1E;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 90px;
+      background-color: #1E1E1E;
+      margin-top: 265px;
+      width: 100%;
+      height: 90px;
     }
 
     .item {
