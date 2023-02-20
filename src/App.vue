@@ -13,3 +13,9 @@
         name: 'App',
     });
 </script>
+
+<style scoped lang="scss">
+::v-deep .v-application__wrap {
+  position: unset;
+}
+</style>
