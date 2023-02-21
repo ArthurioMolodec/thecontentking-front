@@ -30,7 +30,7 @@
       top: 84px !important;
       background: #1b1b1b;
       color: white;
-      position: sticky;
+      position: fixed;
       max-height: 100vh;
       "
       v-model="drawer"
@@ -43,7 +43,7 @@
     >
       <v-list-item-group
       >
-        <v-list-item :to="item.path" v-for="(item, index) in items" :key="item.path">
+        <v-list-item @click="drawer = !drawer" :to="item.path" v-for="(item, index) in items" :key="item.path">
           <v-list-item-title @click="tab = index">{{ item.title }}</v-list-item-title>
         </v-list-item>
       </v-list-item-group>

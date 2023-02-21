@@ -11,9 +11,9 @@
               <Input v-model="form.email" label="Email" type="email" class="input-placeholder" :rules="emailRules"/>
               <Input v-model="form.password" label="Password" type="password" class="input-placeholder" :rules="passwordRules"/>
               <Button name="Login" @click="submitForm()" />
-              <p class="have-account">
+              <router-link to="/login" class="have-account">
                 Already have an account?
-              </p>
+              </router-link>
               <SignUpUsing />
             </v-form>
           </div>
@@ -149,9 +149,11 @@ main {
 }
 
 .have-account {
+  text-decoration: none;
   margin-top: 17px;
   text-align: center;
   color: #ffffff;
+  display: block;
   font-size: 16px;
   font-weight: 400;
 }

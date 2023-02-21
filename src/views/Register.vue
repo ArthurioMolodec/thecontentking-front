@@ -13,9 +13,9 @@
               <Input v-model="form.password" label="Password" type="password" class="input-placeholder" :rules="passwordRules" />
               <Input v-model="form.pass_confirmation" label="Confirm password" type="password" class="input-placeholder" :rules="confirmPasswordRules" />
               <Button name="Sign up" type="submit" @click="submitForm()" />
-              <p class="have-account">
+              <router-link to="/login" class="have-account">
                 Already have an account?
-              </p>
+              </router-link>
               <SignUpUsing />
             </v-form>
           </div>
@@ -108,9 +108,11 @@ main {
 }
 
 .have-account {
+  text-decoration: none;
   margin-top: 17px;
   text-align: center;
   color: #ffffff;
+  display: block;
   font-size: 16px;
   font-weight: 400;
 }
