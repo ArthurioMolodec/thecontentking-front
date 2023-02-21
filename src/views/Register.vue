@@ -7,12 +7,12 @@
         <v-container >
           <h1 class="title">Sign up</h1>
           <div class="login-content">
-            <v-form>
-              <Input v-model="form.first_name" label="Name" type="string" class="input-placeholder" />
-              <Input v-model="form.email" label="Email" type="email" class="input-placeholder" />
-              <Input v-model="form.password" label="Password" type="password" class="input-placeholder" />
-              <Input v-model="form.pass_confirmation" label="Conform password" type="password" class="input-placeholder" />
-              <Button name="Sign up"  @click="submitForm()"  />
+            <v-form ref="form">
+              <Input v-model="form.first_name" label="Name" type="string" class="input-placeholder" :rules="nameRules" />
+              <Input v-model="form.email" label="Email" type="email" class="input-placeholder" :rules="emailRules"  />
+              <Input v-model="form.password" label="Password" type="password" class="input-placeholder" :rules="passwordRules" />
+              <Input v-model="form.pass_confirmation" label="Confirm password" type="password" class="input-placeholder" :rules="confirmPasswordRules" />
+              <Button name="Sign up" type="submit" @click="submitForm()" />
               <p class="have-account">
                 Already have an account?
               </p>
@@ -47,13 +47,41 @@
             return {
                 form: {
                     email: null, password: null, pass_confirmation: null, first_name: null, last_name: null
-                }
+                },
+              valid: true,
+              nameRules: [
+                  value => {
+                    if (value) return true
+
+                    return 'Name is required'
+                  },
+                ],
+              emailRules: [
+                value => {
+                  if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
+
+                  return 'Must be a valid e-mail.'
+                },
+              ],
+              passwordRules: [
+                (value) => !!value || 'Please type password.',
+                (value) => (value && value.length >= 6) || 'minimum 6 characters',
+              ],
+              confirmPasswordRules: [
+                (value) => !!value || 'Please type confirm password.',
+                (value) =>
+                    value === this.form.password || 'The password confirmation does not match.',
+              ],
             }
         },
 
         methods: {
-            submitForm() {
-                store.dispatch('registration', this.form);
+            async submitForm() {
+              const { valid } = await this.$refs.form.validate()
+
+              if (valid) {
+                await store.dispatch('registration', this.form);
+              }
             }
         }
     }
@@ -67,7 +95,7 @@ main {
 .input-placeholder {
   color: #FFFFFF80;
   opacity: 1;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
 }
 
 .title {

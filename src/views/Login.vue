@@ -7,9 +7,9 @@
         <v-container>
           <h1 class="title">Login</h1>
           <div class="login-content">
-            <v-form>
-              <Input v-model="form.email" label="Email" type="email" class="input-placeholder"/>
-              <Input v-model="form.password" label="Password" type="password" class="input-placeholder"/>
+            <v-form ref="form">
+              <Input v-model="form.email" label="Email" type="email" class="input-placeholder" :rules="emailRules"/>
+              <Input v-model="form.password" label="Password" type="password" class="input-placeholder" :rules="passwordRules"/>
               <Button name="Login" @click="submitForm()" />
               <p class="have-account">
                 Already have an account?
@@ -44,12 +44,26 @@
             return {
                 form: {
                     email: null, password: null,
-                }
+                },
+                emailRules: [
+                  value => {
+                    if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
+
+                    return 'Must be a valid e-mail.'
+                  },
+                ],
+                passwordRules: [
+                  (value) => !!value || 'Please type password.',
+                ],
             }
         },
         methods: {
-            submitForm() {
-                store.dispatch('login', this.form);
+            async submitForm() {
+              const { valid } = await this.$refs.form.validate()
+
+              if (valid) {
+                await store.dispatch('login', this.form);
+              }
             }
         }
     }
@@ -93,7 +107,15 @@ main {
 .input-placeholder {
   color: #FFFFFF80;
   opacity: 1;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
+}
+
+.input-placeholder .v-input--error .v-input__control {
+  border: 1px solid red;
+}
+
+.v-input__details .v-messages__message {
+  color: red;
 }
 
 .full-content {

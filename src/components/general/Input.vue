@@ -6,15 +6,15 @@
                 :css="placeholderStyle"
                 :type="type"
                 variant="plain"
-                hide-details
                 v-model="value"
+                :rules="rules"
         ></v-text-field>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['label', "type", "modelValue"],
+        props: ['label', "type", 'rules', "modelValue"],
         data() {
             return {
                 value: this.modelValue,

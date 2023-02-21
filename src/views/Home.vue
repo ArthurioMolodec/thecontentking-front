@@ -15,7 +15,7 @@
               a variety of purposes such as creating articles, blog posts, product descriptions,
               social media updates, and more.
             </p>
-            <router-link to="#" rounded="xl" text v-text="'Get started'" class="get-started"></router-link>
+            <router-link to="/register" rounded="xl" text v-text="'Get started'" class="get-started"></router-link>
           </section>
           <section class="mb-16 v-col-12">
             <h2 class="main-title">

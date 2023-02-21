@@ -7,14 +7,39 @@
       By subscribing, you will receive updates, news, promotional offers,
       and other information from the organization on a regular basis.
     </p>
-    <div class="d-flex position-relative">
-      <v-text-field class="email-input" flat solo hide-details placeholder="Email" variant="outlined"
-      ></v-text-field>
-      <router-link to="#" rounded="xl" text v-text="'Subscribe'" class="subscribe-button"></router-link>
-    </div>
+      <v-form class="d-flex position-relative" ref="form">
+        <v-text-field class="email-input" placeholder="Email" variant="outlined" :rules="emailRules"
+        ></v-text-field>
+        <v-btn rounded="xl" text v-text="'Subscribe'" @click="subscribe" class="subscribe-button"></v-btn>
+      </v-form>
 
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      emailRules: [
+        value => {
+          if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
+
+          return 'Must be a valid e-mail.'
+        },
+      ],
+    }
+  },
+  methods: {
+    async subscribe() {
+      const { valid } = await this.$refs.form.validate()
+
+      if (valid) {
+        // Validated
+      }
+    }
+  }
+}
+</script>
 
 <style>
   .email-input .v-field__outline {
@@ -48,17 +73,17 @@
  }
 
  .subscribe-button {
-   position: absolute;
-   right: 3px;
-   top: 3px;
-   padding: 13px 23px 13px 23px;
+   position: absolute !important;
+   right: 5px;
+   top: 5px;
+   padding: 13px 23px 13px 23px !important;
    min-height: 45px;
-   background-color: #D1A658;
-   text-transform: none;
-   font-size: 16px;
-   color: #242424;
+   background-color: #D1A658 !important;
+   text-transform: none !important;
+   font-size: 16px !important;
+   color: #242424 !important;
    margin-left: 10px;
-   text-decoration: none;
-   border-radius: 71px;
+   text-decoration: none !important;
+   border-radius: 71px !important;
  }
 </style>

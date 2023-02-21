@@ -75,6 +75,6 @@
     .input-placeholder {
         color: #FFFFFF80;
         opacity: 1;
-        margin-bottom: 25px;
+        margin-bottom: 5px;
     }
 </style>
