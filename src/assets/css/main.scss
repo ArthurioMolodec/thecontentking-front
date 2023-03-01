@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+	--font: 'Inter', sans-serif;
+	--bg: #1E1E1E;
+	--colAkcent: #D1A658;
+}
+
+body {
+	font-family: var(--font);
+	color: #fff;
+}
+
+h3.title {
+	font-weight: 600;
+	font-size: 36px !important;
+	line-height: 1.2;
+	margin: 0;
+	text-align: left;
+}
+
+ul {list-style: none;}
+
+.bg {background: var(--bg);}
+.full-content {background: #1e1e1e !important;}
+
+/* FORM */
+.field {
+	display: block;
+
+	.text {
+		font-weight: 600;
+		font-size: 16px;
+		color: #fff;
+		margin-bottom: 12px;
+	}
+
+	input, select, textarea, .file {
+		background: #242424;
+		border: 1px solid #D1A658;
+		border-radius: 12px;
+		padding: 16px 17px;
+		font-size: 16px;
+		color: #fff;
+		font-family: var(--font);
+		display: block;
+		width: 100%;
+		outline: none;
+		resize: none;
+		transition: all 0.3s;
+    	outline: 1px solid var(--colAkcent);
+
+		&::placeholder {
+			font-size: 16px;
+			color: #fff;
+			font-family: var(--font);
+		}
+
+		&:focus {
+			outline-color: rgba(0,0,0,0);
+			outline-offset: 10px;
+		}
+	}
+
+	&.field-select {
+		select {
+			background: url(../icons/ic-arr.svg) no-repeat right 20px center;
+		}	
+	}
+
+	&.field-file {
+		input {display: none;}
+	}
+}
+
+.field + .field {margin-top: 24px;}
+
+.btn {
+	display: inline-block;
+	height: 45px;
+	background: #D1A658;
+	border-radius: 12px;
+	font-weight: 600;
+	font-size: 16px;
+	padding: 0 15px;
+    outline: 1px solid var(--colAkcent);
+    overflow: hidden;
+
+	&:hover {
+		background: #fff;
+		outline-color: rgba(0,0,0,0);
+		outline-offset: 10px;
+	}
+
+	&.preloader {
+		pointer-events: none;
+		background: #fff url(../icons/preloader.svg) no-repeat center;
+		text-indent: -500px;
+	}
+} 
+
+
+.tools {
+	display: grid;
+	grid-template-columns: 270px 1fr;
+	grid-gap: 0 46px;
+	margin-top: 100px;
+
+	@media (max-width: 768px) {
+		grid-template-columns: 1fr;
+	}
+}

@@ -30,13 +30,18 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
     footer {
       background-color: #1E1E1E;
       margin-top: 265px;
       width: 100%;
       height: 90px;
+
+      @media (max-width: 768px) {
+        height: auto;
+        margin-top: 100px;
+      }
     }
 
     .item {

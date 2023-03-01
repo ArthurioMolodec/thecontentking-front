@@ -59,7 +59,7 @@ export default {
       drawer: false,
       tab: null,
       items: [
-        {title: 'Tools', path: '/tools'},
+        {title: 'Tools', path: '/tools/generator'},
         {title: 'About us', path: '/about-us'},
         {title: 'Contact us', path: '/contact-us'},
         {title: 'Pricing', path: '/pricing'},
