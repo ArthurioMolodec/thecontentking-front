@@ -110,4 +110,20 @@
 			}
 		}
 	}
+
+	@media (max-width: 768px) {
+		.sidebar {display: none;}
+		nav .sidebar {
+			display: block;
+
+			.box {
+				padding-left: 0px;
+				padding-right: 0px;
+			}
+
+			h3.title {font-size: 30px !important;}
+
+			ul li a {padding: 10px;}
+		}
+	}
 </style>

@@ -47,13 +47,20 @@
           <v-list-item-title @click="tab = index">{{ item.title }}</v-list-item-title>
         </v-list-item>
       </v-list-item-group>
+
+      <Sidebar/>
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script>
+import Sidebar from '@/components/Sidebar';
+
 export default {
   name: "Header",
+  components: {
+    Sidebar
+  },
   data() {
     return {
       drawer: false,
