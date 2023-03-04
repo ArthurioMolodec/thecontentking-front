@@ -5,68 +5,74 @@
 		<ul>
 			<li>
 				<router-link active-class="active" to="/tools/generator">
-					<img src="../assets/icons/picture.svg" alt="">
+					<img src="@/assets/icons/picture.svg" alt="">
 					<span>Image Generator</span>
 				</router-link>
 			</li>
 			<li>
 				<router-link active-class="active" to="/tools/chat">
-					<img src="../assets/icons/chat.svg" alt="">
+					<img src="@/assets/icons/chat.svg" alt="">
 					<span>Chat</span>
 				</router-link>
 			</li>
 			<li>
 				<router-link active-class="active" to="/tools/writer">
-					<img src="../assets/icons/pen.svg" alt="">
+					<img src="@/assets/icons/pen.svg" alt="">
 					<span>Long from writer</span>
 				</router-link>
 			</li>
 			<li>
 				<router-link active-class="active" to="/tools/content">
-					<img src="../assets/icons/remover.svg" alt="">
+					<img src="@/assets/icons/remover.svg" alt="">
 					<span>Media Text Content</span>
 				</router-link>
 			</li>
 			<li>
 				<router-link active-class="active" to="/tools/writing">
-					<img src="../assets/icons/document.svg" alt="">
+					<img src="@/assets/icons/document.svg" alt="">
 					<span>Article writing</span>
 				</router-link>
 			</li>
 			<li>
 				<router-link active-class="active" to="/tools/biography">
-					<img src="../assets/icons/writer.svg" alt="">
+					<img src="@/assets/icons/writer.svg" alt="">
 					<span>Biography Writer</span>
 				</router-link>
 			</li>
 			<li>
 				<router-link active-class="active" to="/tools/rewriter">
-					<img src="../assets/icons/pencil.svg" alt="">
+					<img src="@/assets/icons/pencil.svg" alt="">
 					<span>Rewriter</span>
 				</router-link>
 			</li>
 			<li>
 				<router-link active-class="active" to="/tools/summarize">
-					<img src="../assets/icons/moleskine.svg" alt="">
+					<img src="@/assets/icons/moleskine.svg" alt="">
 					<span>Summarize</span>
 				</router-link>
 			</li>
 			<li>
 				<router-link active-class="active" to="/tools/text">
-					<img src="../assets/icons/note.svg" alt="">
+					<img src="@/assets/icons/note.svg" alt="">
 					<span>Improve text</span>
 				</router-link>
 			</li>
 			<li>
 				<router-link active-class="active" to="/tools/answers">
-					<img src="../assets/icons/faq.svg" alt="">
+					<img src="@/assets/icons/faq.svg" alt="">
 					<span>Answers</span>
 				</router-link>
 			</li>
 			<li>
 				<router-link active-class="active" to="/tools/nft">
-					<img src="../assets/icons/nft.svg" alt="">
+					<img src="@/assets/icons/nft.svg" alt="">
 					<span>NFT Minter</span>
+				</router-link>
+			</li>
+			<li>
+				<router-link active-class="active" to="/tools/history">
+					<img src="../assets/icons/ic-history.svg" alt="">
+					<span>History</span>
 				</router-link>
 			</li>
 		</ul>
@@ -109,6 +115,8 @@
 				border-color: #D1A658;
 			}
 		}
+
+		ul li:last-child {margin-top: 100px;}
 	}
 
 	@media (max-width: 768px) {
@@ -124,6 +132,7 @@
 			h3.title {font-size: 30px !important;}
 
 			ul li a {padding: 10px;}
+			ul li:last-child {margin-top: 50px;}
 		}
 	}
 </style>

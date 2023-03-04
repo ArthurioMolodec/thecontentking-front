@@ -10,39 +10,57 @@
 
 						<div class="pt-8 grid">
 							<div class="image-generate">
-								<h3 class="title box mb-3">Image Generator</h3>
+								<h3 class="title box mb-3">NFT Minter</h3>
 
-								<v-form action="#" method="GET" class="mt-7 form-generate" ref="form" @submit.prevent="sendForm">
+								<v-form action="#" method="GET" class="mt-7 form-generate">
 									<label class="field field-select">
-										<div class="text">Image Type</div>
-										<select v-model="form.type">
-											<option 
-												v-for="(option, index) in select" 
-												:key="index"
-												:value="option">{{ option }}</option>
+										<div class="text">Blockchain</div>
+										<select>
+											<option>ERC-20</option>
+											<option>TRC-20</option>
+											<option>ERC-2</option>
+											<option>Etherium</option>
 										</select>
 									</label>
 
-									<!-- <label class="field field-file">
-										<input type="file" placeholder="Generate from an uploaded photo" accept="image/png, image/jpeg">
-										<div class="file">
-											<span class="placeholder">Generate from an uploaded photo</span>
-										</div>
-									</label> -->
-
-									<label class="field mt-9">
-										<div class="text">What should AI draw?</div>
-										<textarea
-											placeholder="Bird, colorful, realistic, high detailed"
-											v-model="form.prompt"></textarea>
+									<label class="field field-select">
+										<div class="text">Dynamic QR Code?</div>
+										<select>
+											<option>ERC-20</option>
+											<option>TRC-20</option>
+											<option>ERC-2</option>
+											<option>Etherium</option>
+										</select>
 									</label>
 
-									<input type="submit" class="btn" value="Generate" ref="submit">
+									<input type="submit" class="btn" value="Mint">
+
+									<label class="field mt-9">
+										<div class="text">NFT URL</div>
+										<input type="text" placeholder="https://opensea.io/e3bf34bwg">
+									</label>
+
+									<label class="field">
+										<div class="text">NFT Contract</div>
+										<input type="text" placeholder="0x81Ae0bE3A8044772D04F32398bac1E1B4B215aa8">
+									</label>
 								</v-form>
 							</div>
 
 							<div class="image-results">
-								<h3 class="title box mb-3">Image Generator</h3>
+								<label class="field field-file">
+				                    <div class="text">File Upload</div>
+				                    <input type="file">
+				                    <div class="file">
+				                        <div class="button">
+				                            <img src="@/assets/icons/ic-download.svg" alt="">
+				                            <span>Upload</span>
+				                        </div>
+				                        <div class="name">Images only.<br> Video’s, 3D models, and files<br> coming soon.</div>
+				                    </div>
+				                </label>
+
+								<h3 class="title box mt-11">Result</h3>
 
 								<div class="row mt-10">
 									<div class="item">
@@ -70,32 +88,6 @@
 											</a>
 										</div>
 									</div>
-
-									<div class="item">
-										<div class="image">
-											<img src="@/assets/images/image-3.jpeg" alt="">
-										</div>
-										<div class="group">
-											<a href="#" class="link">Upscale</a>
-											<a href="#" class="link">Variations</a>
-											<a href="#" class="download">
-												<img src="@/assets/icons/download.svg" alt="">
-											</a>
-										</div>
-									</div>
-
-									<div class="item">
-										<div class="image">
-											<img src="@/assets/images/image-4.jpeg" alt="">
-										</div>
-										<div class="group">
-											<a href="#" class="link">Upscale</a>
-											<a href="#" class="link">Variations</a>
-											<a href="#" class="download">
-												<img src="@/assets/icons/download.svg" alt="">
-											</a>
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -112,43 +104,12 @@
 	import Header from '@/components/Header';
 	import Footer from '@/components/Footer';
 	import Sidebar from '@/components/Sidebar';
-	import axios from 'axios';
 
 	export default {
 		components: {
 			Header,
 			Footer,
 			Sidebar
-		},
-		data() {
-			return {
-				select: [
-					'Logo', 
-					'Flyers', 
-					'Instagram Post', 
-					'Video Thumbnails', 
-					'Pamphlets', 
-					'Proposals'
-				],
-				form: {
-					type: null,
-					prompt: null,
-				},
-			}
-		},
-		methods: {
-			async sendForm() {
-				this.$refs.submit.classList.add('preloader');
-
-				axios.get('https://api.thecontentking.app/premium', {
-					params: {
-						prompt: 'Adidas', 
-						image_types: 'Logo'
-					}
-				}).then(result => {
-					console.log(result);
-				});
-			}
 		}
 	}
 </script>
@@ -156,8 +117,8 @@
 <style lang="scss" scoped>
 	.grid {
 		display: grid;
-		grid-template-columns: 360px 380px;
-		grid-gap: 0 46px;
+		grid-template-columns: max(500px) max(430px);
+		grid-gap: 0 50px;
 
 		@media (max-width: 1279px) {
 			grid-template-columns: 1fr;
@@ -170,14 +131,12 @@
 			margin-top: 17px;
 			width: 100%;
 		}
-
-		textarea {min-height: 390px;}
 	}
 
 	.image-results {
 		.row {
 			display: grid;
-			grid-template-columns: repeat(2, 177px);
+			grid-template-columns: repeat(2, 1fr);
 			grid-gap: 40px 30px;
 			justify-content: flex-start;
 
