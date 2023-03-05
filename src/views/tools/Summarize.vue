@@ -9,7 +9,7 @@
 						<Sidebar/>
 
 						<section class="wrap">
-							<h3 class="title box">Rewriter</h3>
+							<h3 class="title">Summarize</h3>
 
 							<form action="#" class="form">
 								<div>
@@ -18,12 +18,12 @@
 										<textarea></textarea>
 									</label>
 
-									<input type="submit" class="btn" value="Rewrite">
+									<input type="submit" class="btn" value="Summarize">
 								</div>
 								
 								<div>
 									<label class="field mt-9">
-										<div class="text">Rewritten by AI</div>
+										<div class="text">Summarized by AI</div>
 										<textarea></textarea>
 									</label>
 

@@ -52,7 +52,7 @@
 				</router-link>
 			</li>
 			<li>
-				<router-link active-class="active" to="/tools/text">
+				<router-link active-class="active" to="/tools/improve-text">
 					<img src="@/assets/icons/note.svg" alt="">
 					<span>Improve text</span>
 				</router-link>

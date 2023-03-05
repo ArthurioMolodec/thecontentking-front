@@ -119,6 +119,24 @@ ul {list-style: none;}
 			.button {background: #fff;}
 		}
 	}
+
+	&.field-line {
+		.row {
+			position: relative;
+		}
+
+		input {padding-right: 140px;}
+
+		.btn {
+			position: absolute;
+			right: 6px;
+			top: 6px;
+			bottom: 6px;
+			height: inherit;
+			width: 110px;
+			border-radius: 10px;
+		}
+	}
 }
 
 .field + .field {margin-top: 24px;}
@@ -156,7 +174,6 @@ ul {list-style: none;}
 		img {margin-left: 5px;}
 	}
 } 
-
 
 .tools {
 	display: grid;

@@ -9,23 +9,26 @@
 						<Sidebar/>
 
 						<section class="wrap">
-							<h3 class="title box">Rewriter</h3>
+							<h3 class="title box mb-3">Answers</h3>
 
 							<form action="#" class="form">
-								<div>
-									<label class="field mt-9">
-										<div class="text">Copied Article</div>
-										<textarea></textarea>
-									</label>
-
-									<input type="submit" class="btn" value="Rewrite">
+								<div class="field field-line">
+									<div class="text">Questions</div>
+									<div class="row">
+										<input type="text" placeholder="Birds">
+										<button type="submit" class="btn">Generate</button>
+									</div>
 								</div>
+
+								<label class="field">
+									<textarea></textarea>
+								</label>
 								
-								<div>
-									<label class="field mt-9">
-										<div class="text">Rewritten by AI</div>
-										<textarea></textarea>
-									</label>
+								<div class="form-foot">
+									<button type="submit" class="btn">
+										<span>Expand</span>
+										<img src="@/assets/icons/ic-size.svg" alt="">
+									</button>
 
 									<button type="submit" class="btn">
 										<span>Save as .txt</span>
@@ -59,21 +62,24 @@
 
 <style lang="scss" scoped>
 	.form {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-gap: 20px;
-
 		textarea {min-height: 555px;}
 
-		.btn {
-			min-width: 225px;
+		.form-foot {
 			margin-top: 20px;
+			.btn {
+				min-width: 225px;
+				& + .btn {margin-left: 10px;}
+			}
 		}
 
 		@media (max-width: 1279px) {
-			grid-template-columns: 1fr;
 			textarea {min-height: 250px;}
-			.btn {width: 100%;}
+
+			.form-foot {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				.btn {min-width: inherit;}
+			}
 		}
 	}
 </style>

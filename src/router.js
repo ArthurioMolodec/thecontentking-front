@@ -10,6 +10,9 @@ import Nft from './views/tools/Nft.vue'
 import History from './views/tools/History.vue'
 import Rewriter from './views/tools/Rewriter.vue'
 import ArticleWriting from './views/tools/ArticleWriting.vue'
+import Answers from './views/tools/Answers.vue'
+import ImproveText from './views/tools/ImproveText.vue'
+import Summarize from './views/tools/Summarize.vue'
 
 const routes = [
     {
@@ -66,6 +69,21 @@ const routes = [
         path: '/tools/article-writing',
         name: 'article-writing',
         component: ArticleWriting
+    },
+    {
+        path: '/tools/answers',
+        name: 'answers',
+        component: Answers
+    },
+    {
+        path: '/tools/improve-text',
+        name: 'improve-text',
+        component: ImproveText
+    },
+    {
+        path: '/tools/summarize',
+        name: 'summarize',
+        component: Summarize
     }
 ];
 

@@ -9,7 +9,7 @@
 						<Sidebar/>
 
 						<section class="wrap">
-							<h3 class="title box">Rewriter</h3>
+							<h3 class="title">Improved Text</h3>
 
 							<form action="#" class="form">
 								<div>
@@ -18,7 +18,7 @@
 										<textarea></textarea>
 									</label>
 
-									<input type="submit" class="btn" value="Rewrite">
+									<input type="submit" class="btn" value="Improve">
 								</div>
 								
 								<div>
