@@ -8,6 +8,8 @@ import Generate from './views/tools/Generate.vue'
 import Chat from './views/tools/Chat.vue'
 import Nft from './views/tools/Nft.vue'
 import History from './views/tools/History.vue'
+import Rewriter from './views/tools/Rewriter.vue'
+import ArticleWriting from './views/tools/ArticleWriting.vue'
 
 const routes = [
     {
@@ -54,6 +56,16 @@ const routes = [
         path: '/tools/history',
         name: 'history',
         component: History
+    },
+    {
+        path: '/tools/rewriter',
+        name: 'rewriter',
+        component: Rewriter
+    },
+    {
+        path: '/tools/article-writing',
+        name: 'article-writing',
+        component: ArticleWriting
     }
 ];
 

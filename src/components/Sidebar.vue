@@ -28,7 +28,7 @@
 				</router-link>
 			</li>
 			<li>
-				<router-link active-class="active" to="/tools/writing">
+				<router-link active-class="active" to="/tools/article-writing">
 					<img src="@/assets/icons/document.svg" alt="">
 					<span>Article writing</span>
 				</router-link>

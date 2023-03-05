@@ -127,7 +127,7 @@ ul {list-style: none;}
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
-	height: 45px;
+	height: 50px;
 	background: #D1A658;
 	color: #242424;
 	text-decoration: none;
@@ -148,6 +148,12 @@ ul {list-style: none;}
 		pointer-events: none;
 		background: #fff url(../icons/preloader.svg) no-repeat center;
 		text-indent: -500px;
+	}
+
+	img {margin-left: 10px;}
+
+	@media (max-width: 750px) {
+		img {margin-left: 5px;}
 	}
 } 
 
