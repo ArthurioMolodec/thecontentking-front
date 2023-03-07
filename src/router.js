@@ -13,6 +13,11 @@ import ArticleWriting from './views/tools/ArticleWriting.vue'
 import Answers from './views/tools/Answers.vue'
 import ImproveText from './views/tools/ImproveText.vue'
 import Summarize from './views/tools/Summarize.vue'
+import LongFromWriter from './views/tools/LongFromWriter.vue'
+import MediaTextContent from './views/tools/MediaTextContent.vue'
+import BiographyWriter from './views/tools/BiographyWriter.vue'
+import AboutUs from './views/AboutUs.vue'
+import PrivacyPolicy from './views/PrivacyPolicy.vue'
 
 const routes = [
     {
@@ -39,6 +44,16 @@ const routes = [
         path: '/pricing',
         name: 'price',
         component: Price
+    },
+    {
+        path: '/about-us',
+        name: 'about-us',
+        component: AboutUs
+    },
+    {
+        path: '/privacy-policy',
+        name: 'privacy-policy',
+        component: PrivacyPolicy
     },
     {
         path: '/tools/generator',
@@ -84,6 +99,21 @@ const routes = [
         path: '/tools/summarize',
         name: 'summarize',
         component: Summarize
+    },
+    {
+        path: '/tools/long-from-writer',
+        name: 'long-from-writer',
+        component: LongFromWriter
+    },
+    {
+        path: '/tools/media-text-content',
+        name: 'media-text-content',
+        component: MediaTextContent
+    },
+    {
+        path: '/tools/biography-writer',
+        name: 'biography-writer',
+        component: BiographyWriter
     }
 ];
 

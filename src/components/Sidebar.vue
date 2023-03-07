@@ -16,13 +16,13 @@
 				</router-link>
 			</li>
 			<li>
-				<router-link active-class="active" to="/tools/writer">
+				<router-link active-class="active" to="/tools/long-from-writer">
 					<img src="@/assets/icons/pen.svg" alt="">
 					<span>Long from writer</span>
 				</router-link>
 			</li>
 			<li>
-				<router-link active-class="active" to="/tools/content">
+				<router-link active-class="active" to="/tools/media-text-content">
 					<img src="@/assets/icons/remover.svg" alt="">
 					<span>Media Text Content</span>
 				</router-link>
@@ -34,7 +34,7 @@
 				</router-link>
 			</li>
 			<li>
-				<router-link active-class="active" to="/tools/biography">
+				<router-link active-class="active" to="/tools/biography-writer">
 					<img src="@/assets/icons/writer.svg" alt="">
 					<span>Biography Writer</span>
 				</router-link>

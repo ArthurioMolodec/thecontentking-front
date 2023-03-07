@@ -31,7 +31,7 @@
                   a variety of purposes such as creating articles, blog posts, product descriptions,
                   social media updates, and more.
                 </p>
-                <router-link to="#" rounded="xl" text v-text="'Image Generator'" class="get-started"></router-link>
+                <router-link to="/tools/generator" rounded="xl" text v-text="'Image Generator'" class="get-started"></router-link>
               </div>
               <div class="v-col-12 v-col-md-6">
                 <div class="justify-lg-space-evenly v-row">
@@ -57,7 +57,7 @@
                   a variety of purposes such as creating articles, blog posts, product descriptions,
                   social media updates, and more.
                 </p>
-                <router-link to="#" rounded="xl" text v-text="'Chat Bot'" class="get-started"></router-link>
+                <router-link to="/tools/chat" rounded="xl" text v-text="'Chat Bot'" class="get-started"></router-link>
               </div>
             </div>
             <div class="align-center v-row mt-12">
@@ -70,7 +70,7 @@
                   a variety of purposes such as creating articles, blog posts, product descriptions,
                   social media updates, and more.
                 </p>
-                <router-link to="#" rounded="xl" text v-text="'Biography Writer'" class="get-started"></router-link>
+                <router-link to="/tools/biography-writer" rounded="xl" text v-text="'Biography Writer'" class="get-started"></router-link>
               </div>
               <div class="v-col-12 v-col-md-6">
                 <div class="border border-primary pb-16 rounded-12">
@@ -111,7 +111,7 @@
                     a variety of purposes such as creating articles, blog posts, product descriptions,
                     social media updates, and more.
                   </p>
-                  <router-link to="#" rounded="xl" text v-text="'Long From Writer'" class="get-started"></router-link>
+                  <router-link to="/tools/long-from-writer" rounded="xl" text v-text="'Long From Writer'" class="get-started"></router-link>
                 </div>
                 <div class="v-col-12 v-col-md-6">
                   <div class="justify-lg-space-evenly v-row">
@@ -134,7 +134,7 @@
                     a variety of purposes such as creating articles, blog posts, product descriptions,
                     social media updates, and more.
                   </p>
-                  <router-link to="#" rounded="xl" text v-text="'Media Text Content'" class="get-started"></router-link>
+                  <router-link to="/tools/media-text-content" rounded="xl" text v-text="'Media Text Content'" class="get-started"></router-link>
                 </div>
               </div>
 
@@ -148,7 +148,7 @@
                     a variety of purposes such as creating articles, blog posts, product descriptions,
                     social media updates, and more.
                   </p>
-                  <router-link to="#" rounded="xl" text v-text="'Article Writer'" class="get-started"></router-link>
+                  <router-link to="/tools/article-writing" rounded="xl" text v-text="'Article Writer'" class="get-started"></router-link>
                 </div>
                 <div class="v-col-12 v-col-md-6">
                   <div class="justify-lg-space-evenly v-row">
@@ -171,7 +171,7 @@
                     a variety of purposes such as creating articles, blog posts, product descriptions,
                     social media updates, and more.
                   </p>
-                  <router-link to="#" rounded="xl" text v-text="'Biography Writer'" class="get-started"></router-link>
+                  <router-link to="/tools/biography-writer" rounded="xl" text v-text="'Biography Writer'" class="get-started"></router-link>
                 </div>
               </div>
 
@@ -185,7 +185,7 @@
                     a variety of purposes such as creating articles, blog posts, product descriptions,
                     social media updates, and more.
                   </p>
-                  <router-link to="#" rounded="xl" text v-text="'Rewriter'" class="get-started"></router-link>
+                  <router-link to="/tools/rewriter" rounded="xl" text v-text="'Rewriter'" class="get-started"></router-link>
                 </div>
                 <div class="v-col-12 v-col-md-6">
                   <div class="justify-lg-space-evenly v-row">
@@ -208,7 +208,7 @@
                     a variety of purposes such as creating articles, blog posts, product descriptions,
                     social media updates, and more.
                   </p>
-                  <router-link to="#" rounded="xl" text v-text="'Improved Text'" class="get-started"></router-link>
+                  <router-link to="/tools/improve-text" rounded="xl" text v-text="'Improved Text'" class="get-started"></router-link>
                 </div>
               </div>
 
@@ -223,7 +223,7 @@
                     a variety of purposes such as creating articles, blog posts, product descriptions,
                     social media updates, and more.
                   </p>
-                  <router-link to="#" rounded="xl" text v-text="'Answers'" class="get-started"></router-link>
+                  <router-link to="/tools/answers" rounded="xl" text v-text="'Answers'" class="get-started"></router-link>
                 </div>
                 <div class="v-col-12 v-col-md-6">
                   <div class="justify-lg-space-evenly v-row">
@@ -246,7 +246,7 @@
                     a variety of purposes such as creating articles, blog posts, product descriptions,
                     social media updates, and more.
                   </p>
-                  <router-link to="#" rounded="xl" text v-text="'NFT Minter'" class="get-started"></router-link>
+                  <router-link to="/tools/nft" rounded="xl" text v-text="'NFT Minter'" class="get-started"></router-link>
                 </div>
               </div>
             </div>
