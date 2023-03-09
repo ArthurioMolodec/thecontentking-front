@@ -11,43 +11,51 @@
 						<section class="wrap">
 							<h3 class="title box mb-3">Article Writing</h3>
 
-							<form action="#" class="form">
+							<form ref="form" class="form" @submit.prevent="sendForm">
 								<div class="form-head">
 									<label class="field">
 										<div class="text">Topic</div>
-										<input type="text" placeholder="Birds">
+										<input type="text" required ref="topic" placeholder="Birds">
 									</label>
 
 									<label class="field field-select">
 										<div class="text">Language</div>
-										<select>
-											<option value="English">English</option>
-											<option value="Ukraine">Ukraine</option>
+										<select ref="language">
+											<option
+												v-for="(option, index) in form.language" 
+												:key="index"
+												:value="option">
+												{{ option }}
+											</option>
 										</select>
 									</label>
 
 									<label class="field field-select">
 										<div class="text">Tone of voice</div>
-										<select>
-											<option value="English">Default</option>
-											<option value="Ukraine">Ukraine</option>
+										<select ref="toneOfVoice">
+											<option
+												v-for="(option, index) in form.toneOfVoice" 
+												:key="index"
+												:value="option">
+												{{ option }}
+											</option>
 										</select>
 									</label>
 
-									<input type="submit" value="Generate" class="btn">
+									<input type="submit" value="Generate" ref="submit" class="btn">
 								</div>
 
 								<label class="field">
-									<textarea></textarea>
+									<textarea :value="form.text"></textarea>
 								</label>
 
 								<div class="form-foot">
-									<button type="submit" class="btn">
+									<button class="btn">
 										<span>Expand</span>
 										<img src="@/assets/icons/ic-size.svg" alt="">
 									</button>
 
-									<button type="submit" class="btn">
+									<button class="btn" :class="{disabled: !this.form.text}" @click="save">
 										<span>Save as .txt</span>
 										<img src="@/assets/icons/ic-download-2.svg" alt="">
 									</button>
@@ -67,12 +75,69 @@
 	import Header from '@/components/Header';
 	import Footer from '@/components/Footer';
 	import Sidebar from '@/components/Sidebar';
+	import axios from 'axios'
+	const FileSaver = require('file-saver');
 
 	export default {
 		components: {
 			Header,
 			Footer,
 			Sidebar
+		},
+		data() {
+			return {
+				form: {
+					language: [
+						'English',
+						'Spanish',
+						'Chinese',
+						'Russian',
+						'Korean',
+						'Swedish',
+						'Italian',
+						'German'
+					],
+					toneOfVoice: [
+						'Default',
+						'Informative',
+						'Convincing',
+						'Casual',
+						'Worried',
+						'Funny',
+						'Joyful',
+						'Formal',
+						'Inspirational'
+					],
+					text: ''
+				}
+			}
+		},
+		methods: {
+			async sendForm() {
+				this.$refs.submit.classList.add('preloader');
+				const url = 'https://api.thecontentking.app/articleapi';
+				let headers = {'Content-Type': 'application/json'}
+
+				let data = {
+					language: this.$refs.language.value,
+					toneOfVoice: this.$refs.toneOfVoice.value,
+					topic: this.$refs.topic.value,
+				}
+				
+				try {
+				    axios({ url: url, data: data, method: "POST", headers: headers })
+				    .then(result => {
+				    	this.form.text = result.data.content;
+				    	this.$refs.submit.classList.remove('preloader');
+				    });
+				} catch (error) {
+				    console.log(error);
+				}
+			},
+			save() {
+				var blob = new Blob([this.form.text], {type: "text/plain;charset=utf-8"});
+				FileSaver.saveAs(blob, "form.txt");
+			}
 		}
 	}
 </script>

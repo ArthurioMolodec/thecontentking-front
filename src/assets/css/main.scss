@@ -166,7 +166,13 @@ ul {list-style: none;}
 	&.preloader {
 		pointer-events: none;
 		background: #fff url(../icons/preloader.svg) no-repeat center;
-		text-indent: -500px;
+		text-indent: -1000px;
+		img {display: none;}
+	}
+
+	&.disabled {
+		pointer-events: none;
+		opacity: 0.4;
 	}
 
 	img {margin-left: 10px;}

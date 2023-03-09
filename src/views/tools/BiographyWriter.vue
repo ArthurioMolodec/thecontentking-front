@@ -11,17 +11,17 @@
 						<section class="wrap">
 							<h3 class="title box mb-3">Biography writer</h3>
 
-							<form action="#" class="form">
+							<form action="#" ref="form" class="form" @submit.prevent="sendForm">
 								<div class="field field-line">
 									<div class="text">Personality</div>
 									<div class="row">
-										<input type="text" placeholder="Stephen hawking">
-										<button type="submit" class="btn">Generate</button>
+										<input type="text" ref="topic" required placeholder="Stephen hawking">
+										<button type="submit" ref="submit" class="btn">Generate</button>
 									</div>
 								</div>
 
 								<label class="field">
-									<textarea></textarea>
+									<textarea :value="form.text"></textarea>
 								</label>
 								
 								<div class="form-foot">
@@ -30,7 +30,7 @@
 										<img src="@/assets/icons/ic-size.svg" alt="">
 									</button>
 
-									<button type="submit" class="btn">
+									<button class="btn" :class="{disabled: !this.form.text}" @click="save">
 										<span>Save as .txt</span>
 										<img src="@/assets/icons/ic-download-2.svg" alt="">
 									</button>
@@ -50,12 +50,46 @@
 	import Header from '@/components/Header';
 	import Footer from '@/components/Footer';
 	import Sidebar from '@/components/Sidebar';
+	import axios from 'axios'
+	const FileSaver = require('file-saver');
 
 	export default {
 		components: {
 			Header,
 			Footer,
 			Sidebar
+		},
+		data() {
+			return {
+				form: {
+					text: ''
+				}
+			}
+		},
+		methods: {
+			async sendForm() {
+				this.$refs.submit.classList.add('preloader');
+				const url = 'https://api.thecontentking.app/biographyapi';
+				let headers = {'Content-Type': 'application/json'}
+
+				let data = {
+					topic: this.$refs.topic.value
+				}
+				
+				try {
+				    axios({ url: url, data: data, method: "POST", headers: headers })
+				    .then(result => {
+				    	this.form.text = result.data.content;
+				    	this.$refs.submit.classList.remove('preloader');
+				    });
+				} catch (error) {
+				    console.log(error);
+				}
+			},
+			save() {
+				var blob = new Blob([this.form.text], {type: "text/plain;charset=utf-8"});
+				FileSaver.saveAs(blob, "form.txt");
+			}
 		}
 	}
 </script>

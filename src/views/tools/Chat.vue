@@ -70,20 +70,24 @@
 				this.questions.push(question);
 				this.$refs.submit.classList.add('preloader');
 
-				axios.get('https://api.thecontentking.app/apichat', {
-					params: {
-						prompt: this.form.text
-					}
-				}).then(result => {
-					let question = {
-						type: 'answer',
-						text: result.data.answer
-					}
+				try {
+					axios.get('https://api.thecontentking.app/apichat', {
+						params: {
+							prompt: this.form.text
+						}
+					}).then(result => {
+						let question = {
+							type: 'answer',
+							text: result.data.answer
+						}
 
-					this.questions.push(question);
-					this.form.text = '';
-					this.$refs.submit.classList.remove('preloader');
-				});
+						this.questions.push(question);
+						this.form.text = '';
+						this.$refs.submit.classList.remove('preloader');
+					});
+				} catch (error) {
+					console.log(error);
+				}
 			}
 		}
 	}
