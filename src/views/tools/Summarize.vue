@@ -18,7 +18,7 @@
 										<textarea ref="para" required></textarea>
 									</label>
 
-									<input type="submit" ref="submit" class="btn" value="Rewrite">
+									<input type="submit" ref="submit" class="btn" value="Summarize">
 								</div>
 								
 								<div>
@@ -76,6 +76,7 @@
 				try {
 				    axios({ url: url, data: data, method: "POST", headers: headers })
 				    .then(result => {
+				    	console.log(result);
 				    	this.form.text = result.data.content;
 				    	this.$refs.submit.classList.remove('preloader');
 				    });

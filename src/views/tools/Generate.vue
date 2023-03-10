@@ -41,7 +41,7 @@
 								</v-form>
 							</div>
 
-							<div class="image-results">
+							<div class="image-results" v-if="generate">
 								<h3 class="title box mb-3">Image Generator</h3>
 
 								<div class="row mt-10">
@@ -134,6 +134,7 @@
 					type: null,
 					prompt: null,
 				},
+				generate: false
 			}
 		},
 		methods: {
