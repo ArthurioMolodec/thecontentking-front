@@ -17,20 +17,24 @@ export const account = {
     },
     actions: {
         login(context, { email, password }) {
-            axios({ url: 'https://api.thecontentking.app/authapi', data: { email, pass: password, action: 'login' }, method: "POST" }).then(result => {
+            return axios({ url: 'https://api.thecontentking.app/authapi', data: { email, pass: password, action: 'login' }, method: "POST" }).then(result => {
                 if (!result.data || !result.data.status) {
                     return;
                 }
 
                 storage.setToken(result.data.result.id_token);
                 context.dispatch('setIsLoggedIn', true);
+
+                return true;
             });
         },
         registration(context, { email, password, pass_confirmation, first_name, last_name }) {
-            axios({ url: 'authapi', data: { email, pass: password, pass_confirmation, first_name, last_name, action: 'registration' }, method: "POST" }).then(result => {
+            return axios({ url: 'authapi', data: { email, pass: password, pass_confirmation, first_name, last_name, action: 'registration' }, method: "POST" }).then(result => {
                 if (!result.data || !result.data.status) {
                     return;
                 }
+
+                return true;
             });
         },
         setIsLoggedIn(context) {

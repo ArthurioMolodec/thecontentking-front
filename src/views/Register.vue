@@ -7,12 +7,12 @@
         <v-container >
           <h1 class="title">Sign up</h1>
           <div class="login-content">
-            <v-form ref="form">
+            <v-form ref="form" @submit.prevent="() => submitForm()">
               <Input v-model="form.first_name" label="Name" type="string" class="input-placeholder" :rules="nameRules" />
               <Input v-model="form.email" label="Email" type="email" class="input-placeholder" :rules="emailRules"  />
               <Input v-model="form.password" label="Password" type="password" class="input-placeholder" :rules="passwordRules" />
               <Input v-model="form.pass_confirmation" label="Confirm password" type="password" class="input-placeholder" :rules="confirmPasswordRules" />
-              <Button name="Sign up" type="submit" @click="submitForm()" />
+              <Button name="Sign up" type="submit" />
               <router-link to="/login" class="have-account">
                 Already have an account?
               </router-link>
@@ -81,7 +81,12 @@
               const { valid } = await this.$refs.form.validate()
 
               if (valid) {
-                await store.dispatch('registration', this.form);
+                await store.dispatch('registration', this.form)
+                  .then(result => {
+                    if (!result) return;
+
+                    this.$router.push({name: 'login'});
+                  });
               }
             }
         }
