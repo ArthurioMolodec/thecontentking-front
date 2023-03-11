@@ -141,10 +141,10 @@
 			async sendForm() {
 				this.$refs.submit.classList.add('preloader');
 
-				axios.get('https://api.thecontentking.app/premium', {
+				axios.get('https://api.thecontentking.app/imagegeneratorapi', {
 					params: {
-						prompt: 'Adidas', 
-						image_types: 'Logo'
+						prompt: this.form.prompt, 
+						image_types: this.form.type,
 					}
 				}).then(result => {
 					console.log(result);
