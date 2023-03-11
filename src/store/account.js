@@ -3,7 +3,7 @@ import axios from '../api';
 
 export const account = {
     state: {
-        isLoggedIn: false,
+        isLoggedIn: storage.isLoggedIn(),
     },
     getters: {
         isLoggedIn(state) {

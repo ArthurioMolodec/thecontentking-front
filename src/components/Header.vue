@@ -22,8 +22,10 @@
     >
       {{ item.title }}
     </router-link>
-    <router-link to="/register" rounded="xl" text v-text="'Sign In'" class="sign-up navbar-item"></router-link>
-    <router-link to="/login" rounded="xl" text v-text="'Login'" class="login navbar-item"></router-link>
+    <div v-if="!store.getters.isLoggedIn">
+      <router-link to="/register" rounded="xl" text v-text="'Sign In'" class="sign-up navbar-item"></router-link>
+      <router-link to="/login" rounded="xl" text v-text="'Login'" class="login navbar-item"></router-link>
+    </div>
   </v-app-bar>
   <v-navigation-drawer
       style="
@@ -55,6 +57,7 @@
 
 <script>
 import Sidebar from '@/components/Sidebar';
+import store from '@/store';
 
 export default {
   name: "Header",
@@ -64,6 +67,7 @@ export default {
   data() {
     return {
       drawer: false,
+      store,
       tab: null,
       items: [
         {title: 'Tools', path: '/tools/generator'},
