@@ -21,6 +21,16 @@
             store.dispatch('updateLimits');
             this.limitsTimer = setInterval(() => store.dispatch('updateLimits'), 5000);
         },
+        computed: {
+            isLoggedIn() {
+                return store.getters.isLoggedIn;
+            }
+        },
+        watch: {
+            isLoggedIn() {
+                store.dispatch('updateLimits');
+            }
+        },
         beforeUnmount() {
             if (this.limitsTimer) {
                 clearInterval(this.limitsTimer);
