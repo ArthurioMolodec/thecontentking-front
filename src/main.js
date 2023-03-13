@@ -14,4 +14,8 @@ const vuetify = createVuetify({
     directives,
 });
 
-createApp(App).use(router).use(vuetify).mount('#app');
+const app = createApp(App);
+
+app.config.globalProperties.API_URL = process.env.VUE_APP_API_PATH;
+
+app.use(router).use(vuetify).mount('#app');

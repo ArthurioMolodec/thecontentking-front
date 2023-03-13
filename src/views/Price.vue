@@ -43,7 +43,7 @@
 								</ul>
 							</div>
 
-							<a href="#" class="btn">Get Started</a>
+							<a href="#" @click.prevent="resolveTariff(1)" class="btn">Get Started</a>
 						</div>
 
 						<div class="item">
@@ -62,7 +62,7 @@
 								</ul>
 							</div>
 
-							<a href="#" class="btn">Get Started</a>
+							<a href="#" @click.prevent="resolveTariff(2)" class="btn">Get Started</a>
 						</div>
 					</div>
 				</v-container>
@@ -76,11 +76,18 @@
 <script>
 	import Header from '@/components/Header';
 	import Footer from '@/components/Footer';
+import { storage } from '@/api';
 
 	export default {
 		components: {
 			Header,
 			Footer
+		},
+		methods: {
+			resolveTariff(type) {
+				window.open(this.API_URL + '/premium?type=' + type + "&id_token=" + encodeURIComponent(storage.getToken()), '_blank');
+				return;
+			}
 		}
 	}
 </script>
