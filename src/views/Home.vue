@@ -31,7 +31,7 @@
                   a variety of purposes such as creating articles, blog posts, product descriptions,
                   social media updates, and more.
                 </p>
-                <router-link to="/tools/generator" rounded="xl" text v-text="'Image Generator'" class="get-started"></router-link>
+                <router-link to="/image-generator" rounded="xl" text v-text="'Image Generator'" class="get-started"></router-link>
               </div>
               <div class="v-col-12 v-col-md-6">
                 <div class="justify-lg-space-evenly v-row">

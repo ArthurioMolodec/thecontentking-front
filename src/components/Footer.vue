@@ -36,7 +36,7 @@
                 },
                 {
                     title: 'Tools',
-                    path: '/tools/generator'
+                    path: '/image-generator'
                 },
                 {
                     title: 'Privacy Policy',

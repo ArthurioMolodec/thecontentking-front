@@ -70,7 +70,7 @@ export default {
       store,
       tab: null,
       items: [
-        {title: 'Tools', path: '/tools/generator'},
+        {title: 'Tools', path: '/image-generator'},
         {title: 'About us', path: '/about-us'},
         {title: 'Contact us', path: '/contact-us'},
         {title: 'Pricing', path: '/pricing'},

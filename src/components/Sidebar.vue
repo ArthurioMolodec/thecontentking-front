@@ -4,7 +4,7 @@
 
 		<ul>
 			<li>
-				<router-link active-class="active" to="/tools/generator">
+				<router-link active-class="active" to="/image-generator">
 					<img src="@/assets/icons/picture.svg" alt="">
 					<span>Image Generator</span>
 				</router-link>
