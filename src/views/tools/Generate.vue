@@ -14,13 +14,13 @@
 
 								<v-form action="#" method="GET" class="mt-7 form-generate" ref="form"
 									@submit.prevent="sendForm">
-									<label class="field field-select">
+									<!-- <label class="field field-select">
 										<div class="text">Image Type</div>
 										<select v-model="form.type">
 											<option v-for="(option, index) in select" :key="index" :value="option">{{ option
 											}}</option>
 										</select>
-									</label>
+									</label> -->
 
 									<!-- <label class="field field-file">
 										<input type="file" placeholder="Generate from an uploaded photo" accept="image/png, image/jpeg">
