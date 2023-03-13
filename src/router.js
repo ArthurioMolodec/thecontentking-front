@@ -56,7 +56,7 @@ const routes = [
         component: PrivacyPolicy
     },
     {
-        path: '/tools/generator',
+        path: '/image-generator',
         name: 'generate',
         component: Generate
     },
