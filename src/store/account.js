@@ -4,15 +4,20 @@ import axios from '../api';
 export const account = {
     state: {
         isLoggedIn: storage.isLoggedIn(),
+        limits: {},
     },
     getters: {
         isLoggedIn(state) {
             return state.isLoggedIn;
         },
+        getAccountLimit: state => module => state.limits[module],
     },
     mutations: {
         UPDATE_IS_LOGGED_IN(state, val) {
             state.isLoggedIn = val;
+        },
+        UPDATE_LIMITS(state, val) {
+            state.limits = { ...val };
         },
     },
     actions: {
@@ -27,6 +32,17 @@ export const account = {
 
                 return true;
             });
+        },
+        updateLimits(context) {
+            return axios({ url: 'account-info-api' })
+                .then(result => {
+                    if (!result.data) {
+                        return;
+                    }
+
+                    context.commit('UPDATE_LIMITS', result.data.limits);
+                    return true;
+                });
         },
         registration(context, { email, password, pass_confirmation, first_name, last_name }) {
             return axios({ url: 'authapi', data: { email, pass: password, pass_confirmation, first_name, last_name, action: 'registration' }, method: "POST" }).then(result => {

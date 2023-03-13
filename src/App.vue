@@ -8,9 +8,26 @@
 
 <script>
     import { defineComponent } from 'vue';
+    import store from '@/store';
 
     export default defineComponent({
         name: 'App',
+        data() {
+            return {
+                limitsTimer: null,
+            };
+        },
+        created() {
+            store.dispatch('updateLimits');
+            this.limitsTimer = setInterval(() => store.dispatch('updateLimits'), 5000);
+        },
+        beforeUnmount() {
+            if (this.limitsTimer) {
+                clearInterval(this.limitsTimer);
+            }
+
+            this.limitsTimer = null;
+        }
     });
 </script>
 

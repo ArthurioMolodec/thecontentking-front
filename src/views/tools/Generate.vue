@@ -35,7 +35,7 @@
 											v-model="form.prompt"></textarea>
 									</label>
 
-									<p v-if="left_count === 0" class="left-images-text mt-2">Images left: {{ left_count }}
+									<p v-if="limits.totalCount !== null && left_count !== null" class="left-images-text mt-2">{{ left_count }} of {{ limits.totalCount }} remaining
 									</p>
 
 									<input type="submit" class="btn" value="Generate" ref="submit">
@@ -114,6 +114,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Sidebar from '@/components/Sidebar';
 import axios from 'axios';
+import store from '@/store';
 
 export default {
 	components: {
@@ -138,6 +139,14 @@ export default {
 				prompt: null,
 			},
 			generate: false
+		}
+	},
+	computed: {
+		limits() {
+			const limits = store.getters.getAccountLimit('ai-images') || {};
+			console.log(limits);
+			this.left_count = limits.leftCount ?? null;
+			return limits;
 		}
 	},
 	methods: {
