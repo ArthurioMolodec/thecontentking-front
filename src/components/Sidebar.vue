@@ -63,7 +63,7 @@
 					<span>Answers</span>
 				</router-link>
 			</li>
-			<li>
+			<!-- <li>
 				<router-link active-class="active" to="/tools/nft">
 					<img src="@/assets/icons/nft.svg" alt="">
 					<span>NFT Minter</span>
@@ -74,7 +74,7 @@
 					<img src="../assets/icons/ic-history.svg" alt="">
 					<span>History</span>
 				</router-link>
-			</li>
+			</li> -->
 		</ul>
 	</div>
 </template>

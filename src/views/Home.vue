@@ -270,7 +270,7 @@
                   </div>
                 </div>
               </div>
-              <div class="align-center v-row mt-12">
+              <!-- <div class="align-center v-row mt-12">
                 <div class="v-col-12 v-col-md-6">
                   <div class="justify-lg-space-evenly v-row">
                     <img
@@ -290,7 +290,7 @@
                   </p>
                   <router-link to="/tools/nft" rounded="xl" text v-text="'NFT Minter'" class="get-started"></router-link>
                 </div>
-              </div>
+              </div> -->
             </div>
           </section>
           <div class="show-more" @click="show(!showMore)">
