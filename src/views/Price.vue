@@ -18,9 +18,6 @@
                                     <li>15 Images per month</li>
                                     <li>5 Articles per month</li>
                                     <li>3 Biography per month</li>
-                                    <li>15 Images per month</li>
-                                    <li>5 Article per month</li>
-                                    <li>3 Biography per month</li>
 								</ul>
 							</div>
 
@@ -37,9 +34,6 @@
 									<li>30 Images per month</li>
 									<li>500 Article per month</li>
 									<li>3 Biography per month</li>
-									<li>15 Images per month</li>
-									<li>5 Article per month</li>
-									<li>3 Biography per month</li>
 								</ul>
 							</div>
 
@@ -53,12 +47,7 @@
 								<h3>$49 <span>per month</span></h3>
 								<strong>Includes:</strong>
 								<ul>
-									<li>15 Images per month</li>
-									<li>5 Article per month</li>
-									<li>3 Biography per month</li>
-									<li>15 Images per month</li>
-									<li>5 Article per month</li>
-									<li>3 Biography per month</li>
+									<li>Unlimited Everything</li>
 								</ul>
 							</div>
 
