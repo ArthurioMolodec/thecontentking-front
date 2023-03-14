@@ -63,6 +63,7 @@
 					<span>Answers</span>
 				</router-link>
 			</li>
+			<li></li>
 			<!-- <li>
 				<router-link active-class="active" to="/tools/nft">
 					<img src="@/assets/icons/nft.svg" alt="">
