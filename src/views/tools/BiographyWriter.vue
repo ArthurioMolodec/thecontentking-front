@@ -77,7 +77,7 @@
 				}
 				
 				try {
-				    axios({ url: url, data: data, method: "POST", headers: headers })
+				    axios.post(url, data, { headers: headers })
 				    .then(result => {
 				    	this.form.text = result.data.content;
 				    	this.$refs.submit.classList.remove('preloader');

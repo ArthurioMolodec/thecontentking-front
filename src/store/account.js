@@ -41,8 +41,22 @@ export const account = {
                     }
 
                     context.commit('UPDATE_LIMITS', result.data.limits);
+                    context.commit('UPDATE_IS_LOGGED_IN', result.data.auth);
                     return true;
                 });
+        },
+        apiRequestDone(context, { route, type = 'success', action = null }) {
+            context.dispatch('updateLimits').then(() => {
+                const limits = context.getters.getAccountLimit(route.name + 'Api');
+                if (limits) {
+                    let text = `${limits.leftCount} of ${limits.totalCount} left`;
+                    if (limits.leftCount === 0) {
+                        text += '<br/><b>Upgrade Account</b>';
+                        action = 'price';
+                    }
+                    window.postMessage({ type: "Toast", data: { type: type, text: text, action } })
+                }    
+            });
         },
         registration(context, { email, password, pass_confirmation, first_name, last_name }) {
             return axios({ url: 'authapi', data: { email, pass: password, pass_confirmation, first_name, last_name, action: 'registration' }, method: "POST" }).then(result => {

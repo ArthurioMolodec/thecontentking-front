@@ -34,10 +34,6 @@
 										<textarea placeholder="Bird, colorful, realistic, high detailed"
 											v-model="form.prompt"></textarea>
 									</label>
-
-									<p v-if="limits.totalCount !== null && left_count !== null" class="left-images-text mt-2">{{ left_count }} of {{ limits.totalCount }} remaining
-									</p>
-
 									<input type="submit" class="btn" value="Generate" ref="submit">
 								</v-form>
 							</div>
@@ -172,18 +168,6 @@ export default {
 					});
 
 					this.generate = true;
-					return;
-				}
-
-				if (result.data.error === 'needauth') {
-					const routeData = this.$router.resolve({name: 'login'});
-					window.open(routeData.href, '_blank');
-					return;
-				}
-
-				if (result.data.error === 'unpayed') {
-					const routeData = this.$router.resolve({name: 'price'});
-					window.open(routeData.href, '_blank');
 					return;
 				}
 			});

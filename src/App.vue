@@ -17,7 +17,18 @@
                 limitsTimer: null,
             };
         },
+        methods: {
+            processQueryToast() {
+                const params = new Proxy(new URLSearchParams(window.location.search), {
+                    get: (searchParams, prop) => searchParams.get(prop),
+                });
+                const toastmodule = params.toastmodule;
+                if (!toastmodule) return;
+                store.dispatch('apiRequestDone', { route: { name: toastmodule }, type: 'error' })
+            }
+        },
         created() {
+            this.processQueryToast();
             store.dispatch('updateLimits');
             this.limitsTimer = setInterval(() => store.dispatch('updateLimits'), 5000);
         },

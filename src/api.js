@@ -1,5 +1,6 @@
 import axios from 'axios';
 import store from './store/index';
+import router from './router';
 
 const tkN = 'tk';
 
@@ -25,10 +26,34 @@ export const storage = {
 export const isLoggedIn = () => storage.isLoggedIn();
 export const logOut = () => { storage.removeToken(); abort.abort(); };
 
+const NotTools = ['login', 'registration', 'account-info-api'];
+
 function onFullfilled(response) {
     const authorization = response.data.token;
     if (authorization) {
         storage.setToken(authorization);
+    }
+
+    if (response && response.data && response.data.error) {
+        const error = response.data.error;
+        if (error === 'needauth') {
+            store.dispatch('apiRequestDone', { route: router.currentRoute.value, type: 'error' });
+
+            // const routeData = router.resolve({ name: 'login' });
+            // window.open(routeData.href + '?toastmodule=' + router.currentRoute.value.name, '_blank');
+            throw new Error(error);
+        }
+
+        if (error === 'unpayed') {
+            store.dispatch('apiRequestDone', { route: router.currentRoute.value, type: 'error' });
+
+            // const routeData = router.resolve({ name: 'price' });
+            // window.open(routeData.href + '?toastmodule=' + router.currentRoute.value.name, '_blank');
+            throw new Error(error);
+        }
+    }
+    if (!NotTools.includes(response.config.url)) {
+        store.dispatch('apiRequestDone', { route: router.currentRoute.value });
     }
     return response;
 }
@@ -76,7 +101,7 @@ const configure = (axios) => {
 
         const bodyFormData = new FormData();
 
-        for(const [k, v] of Object.entries(config.data)) {
+        for (const [k, v] of Object.entries(config.data)) {
             bodyFormData.append(k, v);
         }
 

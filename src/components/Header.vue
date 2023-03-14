@@ -1,4 +1,5 @@
 <template>
+  {{ $route.moduleName }} 123
   <v-app-bar dense
              flat
              color="#242424" app>

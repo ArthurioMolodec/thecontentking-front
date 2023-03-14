@@ -22,100 +22,104 @@ import PrivacyPolicy from './views/PrivacyPolicy.vue'
 const routes = [
     {
         path: '/',
-        name: 'home',
-        component: Home
-    },
-    {
-        path: '/login',
-        name: 'login',
-        component: Login
-    },
-    {
-        path: '/register',
-        name: 'register',
-        component: Register
-    },
-    {
-        path: '/contact-us',
-        name: 'contact-us',
-        component: ContactUs
-    },
-    {
-        path: '/pricing',
-        name: 'price',
-        component: Price
-    },
-    {
-        path: '/about-us',
-        name: 'about-us',
-        component: AboutUs
-    },
-    {
-        path: '/privacy-policy',
-        name: 'privacy-policy',
-        component: PrivacyPolicy
-    },
-    {
-        path: '/image-generator',
-        name: 'generate',
-        component: Generate
-    },
-    {
-        path: '/tools/chat',
-        name: 'chat',
-        component: Chat
-    },
-    {
-        path: '/tools/nft',
-        name: 'nft',
-        component: Nft
-    },
-    {
-        path: '/tools/history',
-        name: 'history',
-        component: History
-    },
-    {
-        path: '/tools/rewriter',
-        name: 'rewriter',
-        component: Rewriter
-    },
-    {
-        path: '/tools/article-writing',
-        name: 'article-writing',
-        component: ArticleWriting
-    },
-    {
-        path: '/tools/answers',
-        name: 'answers',
-        component: Answers
-    },
-    {
-        path: '/tools/improve-text',
-        name: 'improve-text',
-        component: ImproveText
-    },
-    {
-        path: '/tools/summarize',
-        name: 'summarize',
-        component: Summarize
-    },
-    {
-        path: '/tools/long-from-writer',
-        name: 'long-from-writer',
-        component: LongFromWriter
-    },
-    {
-        path: '/tools/media-text-content',
-        name: 'media-text-content',
-        component: MediaTextContent
-    },
-    {
-        path: '/tools/biography-writer',
-        name: 'biography-writer',
-        component: BiographyWriter
+        children: [{
+            path: '/',
+            name: 'home',
+            component: Home
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: Login
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: Register
+        },
+        {
+            path: '/contact-us',
+            name: 'contact-us',
+            component: ContactUs
+        },
+        {
+            path: '/pricing',
+            name: 'price',
+            component: Price
+        },
+        {
+            path: '/about-us',
+            name: 'about-us',
+            component: AboutUs
+        },
+        {
+            path: '/privacy-policy',
+            name: 'privacy-policy',
+            component: PrivacyPolicy
+        },
+        {
+            path: '/image-generator',
+            name: 'ImageGenerator',
+            component: Generate
+        },
+        {
+            path: '/tools/chat',
+            name: 'Chat',
+            component: Chat
+        },
+        {
+            path: '/tools/nft',
+            name: 'Nft',
+            component: Nft
+        },
+        {
+            path: '/tools/history',
+            name: 'history',
+            component: History
+        },
+        {
+            path: '/tools/rewriter',
+            name: 'Rewriter',
+            component: Rewriter
+        },
+        {
+            path: '/tools/article-writing',
+            name: 'Article',
+            component: ArticleWriting
+        },
+        {
+            path: '/tools/answers',
+            name: 'Answers',
+            component: Answers
+        },
+        {
+            path: '/tools/improve-text',
+            name: 'Improve',
+            component: ImproveText
+        },
+        {
+            path: '/tools/summarize',
+            name: 'Summarize',
+            component: Summarize
+        },
+        {
+            path: '/tools/long-from-writer',
+            name: 'Writer',
+            component: LongFromWriter
+        },
+        {
+            path: '/tools/media-text-content',
+            name: 'Content',
+            component: MediaTextContent
+        },
+        {
+            path: '/tools/biography-writer',
+            name: 'Biography',
+            component: BiographyWriter
+        }
+        ]
     }
-];
+]
 
 const router = createRouter({
     history: createWebHistory(),
