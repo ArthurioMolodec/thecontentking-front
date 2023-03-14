@@ -35,17 +35,35 @@
               </div>
               <div class="v-col-12 v-col-md-6">
                 <div class="justify-lg-space-evenly v-row">
-                  <img src="../assets/images/ai-tools1.png" height="200" class="v-col-md-6 v-col-12" />
-                  <img src="../assets/images/ai-tools2.png" height="200" class="v-col-md-6 v-col-12" />
-                  <img src="../assets/images/ai-tools3.png" height="200" class="v-col-md-6 v-col-12" />
-                  <img src="../assets/images/ai-tools4.png" height="200" class="v-col-md-6 v-col-12" />
+                  <img
+                    v-webp:src="require('@/assets/images/webp/ai-tools1.webp')"
+                    :src="require('@/assets/images/ai-tools1.png')" 
+                    height="200" class="v-col-md-6 v-col-12" alt=""/>
+
+                    <img
+                    v-webp:src="require('@/assets/images/webp/ai-tools2.webp')"
+                    :src="require('@/assets/images/ai-tools2.png')" 
+                    height="200" class="v-col-md-6 v-col-12" alt=""/>
+
+                    <img
+                    v-webp:src="require('@/assets/images/webp/ai-tools3.webp')"
+                    :src="require('@/assets/images/ai-tools3.png')" 
+                    height="200" class="v-col-md-6 v-col-12" alt=""/>
+
+                    <img
+                    v-webp:src="require('@/assets/images/webp/ai-tools4.webp')"
+                    :src="require('@/assets/images/ai-tools4.png')" 
+                    height="200" class="v-col-md-6 v-col-12" alt=""/>
                 </div>
               </div>
             </div>
             <div class="align-center v-row mt-12">
               <div class="v-col-12 v-col-md-6">
                 <div class="justify-lg-space-evenly v-row">
-                  <img src="../assets/images/ai-chat-bot.png" height="418" class="w-100 mb-4"/>
+                  <img
+                    v-webp:src="require('@/assets/images/webp/ai-chat-bot.webp')"
+                    :src="require('@/assets/images/ai-chat-bot.png')" 
+                    height="418" class="w-100 mb-4" alt=""/>
                 </div>
               </div>
               <div class="v-col-12 v-col-md-6 text-end">
@@ -115,14 +133,20 @@
                 </div>
                 <div class="v-col-12 v-col-md-6">
                   <div class="justify-lg-space-evenly v-row">
-                    <img src="../assets/images/longfromwriter.png"  class="w-100 mb-4"/>
+                    <img
+                    v-webp:src="require('@/assets/images/webp/longfromwriter.webp')"
+                    :src="require('@/assets/images/longfromwriter.png')" 
+                    class="w-100 mb-4" alt=""/>
                   </div>
                 </div>
               </div>
               <div class="align-center v-row mt-12">
                 <div class="v-col-12 v-col-md-6">
                   <div class="justify-lg-space-evenly v-row">
-                    <img src="../assets/images/longfromwriter.png"  class="w-100 mb-4"/>
+                    <img
+                    v-webp:src="require('@/assets/images/webp/longfromwriter.webp')"
+                    :src="require('@/assets/images/longfromwriter.png')" 
+                    class="w-100 mb-4" alt=""/>
                   </div>
                 </div>
                 <div class="v-col-12 v-col-md-6 text-end">
@@ -152,14 +176,20 @@
                 </div>
                 <div class="v-col-12 v-col-md-6">
                   <div class="justify-lg-space-evenly v-row">
-                    <img src="../assets/images/articlewriter.png"  class="w-100 mb-4"/>
+                    <img
+                    v-webp:src="require('@/assets/images/webp/articlewriter.webp')"
+                    :src="require('@/assets/images/articlewriter.png')" 
+                    class="w-100 mb-4" alt=""/>
                   </div>
                 </div>
               </div>
               <div class="align-center v-row mt-12">
                 <div class="v-col-12 v-col-md-6">
                   <div class="justify-lg-space-evenly v-row">
-                    <img src="../assets/images/biography.png"  class="w-100 mb-4"/>
+                    <img
+                    v-webp:src="require('@/assets/images/webp/biography.webp')"
+                    :src="require('@/assets/images/biography.png')" 
+                    class="w-100 mb-4" alt=""/>
                   </div>
                 </div>
                 <div class="v-col-12 v-col-md-6 text-end">
@@ -189,14 +219,20 @@
                 </div>
                 <div class="v-col-12 v-col-md-6">
                   <div class="justify-lg-space-evenly v-row">
-                    <img src="../assets/images/rewriter.png"  class="w-100 mb-4"/>
+                    <img
+                    v-webp:src="require('@/assets/images/webp/rewriter.webp')"
+                    :src="require('@/assets/images/rewriter.png')" 
+                    class="w-100 mb-4" alt=""/>
                   </div>
                 </div>
               </div>
               <div class="align-center v-row mt-12">
                 <div class="v-col-12 v-col-md-6">
                   <div class="justify-lg-space-evenly v-row">
-                    <img src="../assets/images/improved.png"  class="w-100 mb-4"/>
+                    <img
+                    v-webp:src="require('@/assets/images/webp/improved.webp')"
+                    :src="require('@/assets/images/improved.png')" 
+                    class="w-100 mb-4" alt=""/>
                   </div>
                 </div>
                 <div class="v-col-12 v-col-md-6 text-end">
@@ -227,14 +263,20 @@
                 </div>
                 <div class="v-col-12 v-col-md-6">
                   <div class="justify-lg-space-evenly v-row">
-                    <img src="../assets/images/answers.png"  class="w-100 mb-4"/>
+                    <img
+                    v-webp:src="require('@/assets/images/webp/answers.webp')"
+                    :src="require('@/assets/images/answers.png')" 
+                    class="w-100 mb-4" alt=""/>
                   </div>
                 </div>
               </div>
               <div class="align-center v-row mt-12">
                 <div class="v-col-12 v-col-md-6">
                   <div class="justify-lg-space-evenly v-row">
-                    <img src="../assets/images/nftMinter.png"  class="w-100 mb-4"/>
+                    <img
+                    v-webp:src="require('@/assets/images/webp/nftMinter.webp')"
+                    :src="require('@/assets/images/nftMinter.png')" 
+                    class="w-100 mb-4" alt=""/>
                   </div>
                 </div>
                 <div class="v-col-12 v-col-md-6">
