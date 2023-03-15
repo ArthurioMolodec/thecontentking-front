@@ -140,7 +140,6 @@ export default {
 	computed: {
 		limits() {
 			const limits = store.getters.getAccountLimit('ai-images') || {};
-			console.log(limits);
 			this.left_count = limits.leftCount ?? null;
 			return limits;
 		}
@@ -155,8 +154,6 @@ export default {
 					image_types: this.form.type,
 				}
 			}).then(result => {
-				console.log(result);
-
 				this.left_count = result.data.left_count;
 				this.$refs.submit.classList.remove('preloader');
 

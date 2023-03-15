@@ -15,7 +15,7 @@
 								<div class="field field-line">
 									<div class="text">Personality</div>
 									<div class="row">
-										<input type="text" ref="topic" required placeholder="Stephen hawking">
+										<input type="text" v-model="topic" required placeholder="Stephen hawking">
 										<button type="submit" ref="submit" class="btn">Generate</button>
 									</div>
 								</div>
@@ -63,7 +63,8 @@
 			return {
 				form: {
 					text: ''
-				}
+				},
+				topic: ''
 			}
 		},
 		methods: {
@@ -73,8 +74,10 @@
 				let headers = {'Content-Type': 'application/json'}
 
 				let data = {
-					topic: this.$refs.topic.value
+					topic: this.topic
 				}
+
+				console.log(data);
 				
 				try {
 				    axios.post(url, data, { headers: headers })

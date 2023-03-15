@@ -15,7 +15,7 @@
 								<div class="field field-line">
 									<div class="text">Questions</div>
 									<div class="row">
-										<input type="text" required ref="question" placeholder="Birds">
+										<input type="text" required v-model="question" placeholder="Birds">
 										<button type="submit" ref="submit" class="btn">Generate</button>
 									</div>
 								</div>
@@ -63,7 +63,8 @@
 			return {
 				form: {
 					text: ''
-				}
+				},
+				question: '',
 			}
 		},
 		methods: {
@@ -73,7 +74,7 @@
 				let headers = {'Content-Type': 'application/json'}
 
 				let data = {
-					question: this.$refs.question.value
+					question: this.question
 				}
 				
 				try {

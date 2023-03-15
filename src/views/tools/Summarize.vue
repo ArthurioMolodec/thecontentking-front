@@ -15,7 +15,7 @@
 								<div>
 									<label class="field mt-9">
 										<div class="text">Copied Article</div>
-										<textarea ref="para" required></textarea>
+										<textarea v-model="para" required></textarea>
 									</label>
 
 									<input type="submit" ref="submit" class="btn" value="Summarize">
@@ -60,7 +60,8 @@
 			return {
 				form: {
 					text: ''
-				}
+				},
+				para: ''
 			}
 		},
 		methods: {
@@ -70,13 +71,12 @@
 				let headers = {'Content-Type': 'application/json'}
 
 				let data = {
-					para: this.$refs.para.value
+					para: this.para
 				}
 				
 				try {
 				    axios({ url: url, data: data, method: "POST", headers: headers })
 				    .then(result => {
-				    	console.log(result);
 				    	this.form.text = result.data.content;
 				    	this.$refs.submit.classList.remove('preloader');
 				    });

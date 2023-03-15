@@ -15,12 +15,12 @@
 								<form ref="form" class="mt-7 form-generate" @submit.prevent>
 									<label class="field field-select">
 										<div class="text">Topic</div>
-										<textarea ref="description" required></textarea>
+										<textarea v-model="description" required></textarea>
 									</label>
 
 									<label class="field field-select">
 										<div class="text">Use Case</div>
-										<select ref="type">
+										<select v-model="type">
 											<option
 												v-for="(option, index) in form.usecase" 
 												:key="index"
@@ -32,7 +32,7 @@
 
 									<label class="field field-select">
 										<div class="text">Language</div>
-										<select ref="language">
+										<select v-model="language">
 											<option
 												v-for="(option, index) in form.language" 
 												:key="index"
@@ -44,7 +44,7 @@
 
 									<label class="field field-select">
 										<div class="text">Tone of voice</div>
-										<select ref="toneOfVoice">
+										<select v-model="toneOfVoice">
 											<option 
 												v-for="(option, index) in form.tonevoice"
 												:key="index"
@@ -56,7 +56,7 @@
 
 									<label class="field field-select">
 										<div class="text">Keywords</div>
-										<textarea ref="keywords"></textarea>
+										<textarea v-model="keywords"></textarea>
 									</label>
 
 									<button type="submit" ref="submit" class="btn" @click="sendForm(true)">Generate</button>
@@ -300,7 +300,12 @@
 					],
 					keywords: '',
 					text: ''
-				}
+				},
+				description: '',
+				keywords: '',
+				language: 'English',
+				toneOfVoice: 'default',
+				type: 'intro',
 			}
 		},
 		methods: {
@@ -312,17 +317,20 @@
 				let headers = {'Content-Type': 'application/json'}
 
 				let data = {
-					description: this.$refs.description.value,
-					keywords: this.$refs.keywords.value,
-					language: this.$refs.language.value,
-					toneOfVoice: this.$refs.toneOfVoice.value,
-					type: this.$refs.type.value,
+					description: this.description,
+					keywords: this.keywords,
+					language: this.language,
+					toneOfVoice: this.toneOfVoice,
+					type: this.type,
 					variants: "1"
 				}
+
+				console.log(data);
 				
 				try {
 				    axios({ url: url, data: data, method: "POST", headers: headers })
 				    .then(result => {
+				    	console.log(result.data);
 				    	this.form.text = result.data.content;
 				    	if (flag) this.$refs.submit.classList.remove('preloader');
 						else this.$refs.regenerate.classList.remove('preloader');

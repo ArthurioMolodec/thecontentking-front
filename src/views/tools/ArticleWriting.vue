@@ -15,12 +15,12 @@
 								<div class="form-head">
 									<label class="field">
 										<div class="text">Topic</div>
-										<input type="text" required ref="topic" placeholder="Birds">
+										<input type="text" required v-model="topic" placeholder="Birds">
 									</label>
 
 									<label class="field field-select">
 										<div class="text">Language</div>
-										<select ref="language">
+										<select v-model="language">
 											<option
 												v-for="(option, index) in form.language" 
 												:key="index"
@@ -32,7 +32,7 @@
 
 									<label class="field field-select">
 										<div class="text">Tone of voice</div>
-										<select ref="toneOfVoice">
+										<select v-model="toneOfVoice">
 											<option
 												v-for="(option, index) in form.toneOfVoice" 
 												:key="index"
@@ -109,7 +109,10 @@
 						'Inspirational'
 					],
 					text: ''
-				}
+				},
+				topic: '',
+				language: 'English',
+				toneOfVoice: 'Default',
 			}
 		},
 		methods: {
@@ -119,10 +122,12 @@
 				let headers = {'Content-Type': 'application/json'}
 
 				let data = {
-					language: this.$refs.language.value,
-					toneOfVoice: this.$refs.toneOfVoice.value,
-					topic: this.$refs.topic.value,
+					topic: this.topic,
+					language: this.language,
+					toneOfVoice: this.toneOfVoice,
 				}
+
+				console.log(data);
 				
 				try {
 				    axios({ url: url, data: data, method: "POST", headers: headers })

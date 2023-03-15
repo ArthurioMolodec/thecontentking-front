@@ -37,7 +37,9 @@
     .general-input .v-input__control  {
         background-color: #242424;
         border-radius: 12px;
-        padding-left: 20px;
+    }
+    .general-input .v-input__control input {
+        padding: 0 20px;
     }
 
     .general-input input {
