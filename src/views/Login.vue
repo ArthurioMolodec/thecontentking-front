@@ -11,10 +11,10 @@
               <Input v-model="form.email" label="Email" type="email" class="input-placeholder" :rules="emailRules"/>
               <Input v-model="form.password" label="Password" type="password" class="input-placeholder" :rules="passwordRules"/>
               <Button name="Login" type="submit" />
-              <router-link to="/login" class="have-account">
-                Already have an account?
+              <router-link :to="{ name: 'register' }" class="have-account">
+                Don't have an account yet?
               </router-link>
-              <SignUpUsing />
+              <!-- <SignUpUsing /> -->
             </v-form>
           </div>
         </v-container>
@@ -68,7 +68,19 @@
                     if (!result) return;
 
                     this.$router.push({name: 'generate'});
-                  });
+                  }).catch(error => {
+                    switch (error) {
+                      case 'INVALID_PASSWORD':
+                        this.$toast.error('Password is incorrect');
+                        break;
+                      case 'EMAIL_NOT_FOUND':
+                        this.$toast.error('Account is not found');
+                        break;
+                      default:
+                        this.$toast.error(error);
+                        break;
+                    }
+                  })
               }
             }
         }

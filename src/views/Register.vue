@@ -16,7 +16,7 @@
               <router-link to="/login" class="have-account">
                 Already have an account?
               </router-link>
-              <SignUpUsing />
+              <!-- <SignUpUsing /> -->
             </v-form>
           </div>
         </v-container>
@@ -86,6 +86,12 @@
                     if (!result) return;
 
                     this.$router.push({name: 'login'});
+                  }).catch(error => {
+                    switch (error) {
+                      default:
+                        this.$toast.error(error);
+                        break;
+                    }
                   });
               }
             }

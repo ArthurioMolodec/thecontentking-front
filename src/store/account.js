@@ -24,7 +24,7 @@ export const account = {
         login(context, { email, password }) {
             return axios({ url: 'https://api.thecontentking.app/authapi', data: { email, pass: password, action: 'login' }, method: "POST" }).then(result => {
                 if (!result.data || !result.data.status) {
-                    return;
+                    return Promise.reject(result.data.errors);
                 }
 
                 storage.setToken(result.data.result.id_token);
@@ -59,9 +59,9 @@ export const account = {
             });
         },
         registration(context, { email, password, pass_confirmation, first_name, last_name }) {
-            return axios({ url: 'authapi', data: { email, pass: password, pass_confirmation, first_name, last_name, action: 'registration' }, method: "POST" }).then(result => {
+            return axios({ url: 'https://api.thecontentking.app/authapi', data: { email, pass: password, pass_confirmation, first_name, last_name, action: 'registration' }, method: "POST" }).then(result => {
                 if (!result.data || !result.data.status) {
-                    return;
+                    return Promise.reject(result.data.errors);
                 }
 
                 return true;
