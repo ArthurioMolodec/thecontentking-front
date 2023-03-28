@@ -22,6 +22,10 @@ const vuetify = createVuetify({
 const app = createApp(App);
 
 app.config.globalProperties.API_URL = process.env.VUE_APP_API_PATH;
+app.config.globalProperties.CONTRACTS = {
+    'BEP20': process.env.VUE_APP_NFT_MINTER_BEP20,
+    'TRC20': process.env.VUE_APP_NFT_MINTER_TRC20,
+};
 app.use(ToastPlugin);
 
 window.addEventListener('message', (message) => {
