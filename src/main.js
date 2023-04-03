@@ -26,6 +26,7 @@ app.config.globalProperties.CONTRACTS = {
     'BEP20': process.env.VUE_APP_NFT_MINTER_BEP20,
     'TRC20': process.env.VUE_APP_NFT_MINTER_TRC20,
 };
+app.config.globalProperties.TITLE = process.env.VUE_APP_TITLE
 app.use(ToastPlugin);
 
 window.addEventListener('message', (message) => {
