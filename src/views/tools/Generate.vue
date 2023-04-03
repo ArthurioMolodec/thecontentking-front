@@ -148,7 +148,7 @@ export default {
 		async sendForm() {
 			this.$refs.submit.classList.add('preloader');
 
-			axios.get('https://api.thecontentking.app/imagegeneratorapi', {
+			axios.get(this.API_URL + '/imagegeneratorapi', {
 				params: {
 					prompt: this.form.prompt,
 					image_types: this.form.type,

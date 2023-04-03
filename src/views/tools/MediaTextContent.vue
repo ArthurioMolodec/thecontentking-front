@@ -314,7 +314,7 @@
 				if (flag) this.$refs.submit.classList.add('preloader');
 				else this.$refs.regenerate.classList.add('preloader');
 				
-				const url = 'https://api.thecontentking.app/contentapi';
+				const url = this.API_URL + '/contentapi';
 				let headers = {'Content-Type': 'application/json'}
 
 				let data = {

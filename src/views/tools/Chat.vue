@@ -71,7 +71,7 @@
 				this.$refs.submit.classList.add('preloader');
 
 				try {
-					axios.get('https://api.thecontentking.app/apichat', {
+					axios.get(this.API_URL + '/apichat', {
 						params: {
 							prompt: this.form.text
 						}

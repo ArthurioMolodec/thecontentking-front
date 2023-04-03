@@ -67,7 +67,7 @@
 		methods: {
 			async sendForm() {
 				this.$refs.submit.classList.add('preloader');
-				const url = 'https://api.thecontentking.app/summarizeapi';
+				const url = this.API_URL + '/summarizeapi';
 				let headers = {'Content-Type': 'application/json'}
 
 				let data = {

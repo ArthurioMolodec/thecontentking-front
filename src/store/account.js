@@ -22,7 +22,7 @@ export const account = {
     },
     actions: {
         login(context, { email, password }) {
-            return axios({ url: 'https://api.thecontentking.app/authapi', data: { email, pass: password, action: 'login' }, method: "POST" }).then(result => {
+            return axios({ url: process.env.VUE_APP_API_PATH + '/authapi', data: { email, pass: password, action: 'login' }, method: "POST" }).then(result => {
                 if (!result.data || !result.data.status) {
                     return Promise.reject(result.data.errors);
                 }
@@ -59,7 +59,7 @@ export const account = {
             });
         },
         registration(context, { email, password, pass_confirmation, first_name, last_name }) {
-            return axios({ url: 'https://api.thecontentking.app/authapi', data: { email, pass: password, pass_confirmation, first_name, last_name, action: 'registration' }, method: "POST" }).then(result => {
+            return axios({ url: process.env.VUE_APP_API_PATH + '/authapi', data: { email, pass: password, pass_confirmation, first_name, last_name, action: 'registration' }, method: "POST" }).then(result => {
                 if (!result.data || !result.data.status) {
                     return Promise.reject(result.data.errors);
                 }
