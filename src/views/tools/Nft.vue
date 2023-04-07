@@ -17,7 +17,7 @@
 										<div class="text">Blockchain</div>
 										<select v-model="network">
 											<option value="BEP20">BEP-20</option>
-											<option value="TRC20">TRC-20</option>
+											<!-- <option value="TRC20">TRC-20</option> -->
 										</select>
 									</label>
 
