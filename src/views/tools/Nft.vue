@@ -16,7 +16,7 @@
 									<label class="field field-select">
 										<div class="text">Blockchain</div>
 										<select v-model="network">
-											<option selected value="BEP20">BEP-20</option>
+											<option value="BEP20">BEP-20</option>
 											<!-- <option value="TRC20">TRC-20</option> -->
 										</select>
 									</label>
@@ -120,7 +120,7 @@ export default {
 
 	data() {
 		return {
-			network: 'TRC20',
+			network: 'BEP20',
 			lastTokenLink: null,
 			generatedNfts: [],
 			fileErrors: []
