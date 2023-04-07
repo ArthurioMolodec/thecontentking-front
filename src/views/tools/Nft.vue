@@ -38,7 +38,7 @@
 										</template>
 									</MintNFT>
 
-									<label class="field mt-9">
+									<label v-if="lastTokenLink" class="field mt-9">
 										<div class="text">NFT URL</div>
 										<input type="text" placeholder="" readonly :value="lastTokenLink">
 									</label>
@@ -64,26 +64,30 @@
 									</div>
 
 									<p style="color: red">
-										<p v-for="error in fileErrors">{{ error }}</p>
+									<p v-for="error in fileErrors">{{ error }}</p>
 									</p>
 								</label>
 
-								<h3 class="title box mt-11">Result</h3>
+								<template v-if="generatedNfts.length">
+									<h3 class="title box mt-11">Result</h3>
 
-								<div class="row mt-10">
-									<div class="item" v-for="result in generatedNfts">
-										<div class="image">
-											<img :src="result.image_link" alt="">
-										</div>
-										<div class="group">
-											<a :href="result.image_link" target="_blank" class="link">Upscale</a>
-											<!-- <a href="#" class="link">Variations</a> -->
-											<a :href="result.image_link" class="download" download="proposed_file_name">
-												<img src="@/assets/icons/download.svg" alt="">
-											</a>
+									<div class="row mt-10">
+										<div class="item" v-for="result in generatedNfts">
+											<div class="image">
+												<img :src="result.image_link" alt="">
+											</div>
+											<div class="group">
+												<a :href="result.image_link" target="_blank" class="link">Upscale</a>
+												<!-- <a href="#" class="link">Variations</a> -->
+												<a :href="result.image_link" class="download" download="proposed_file_name">
+													<img src="@/assets/icons/download.svg" alt="">
+												</a>
+											</div>
 										</div>
 									</div>
-								</div>
+
+								</template>
+
 							</div>
 						</div>
 					</div>
@@ -166,7 +170,7 @@ export default {
 					window.postMessage({ type: "Toast", data: { type: 'error', text: text, action } })
 					return;
 				}
-			}    
+			}
 
 			const { tokenId } = await minter();
 			const formData = new FormData();
