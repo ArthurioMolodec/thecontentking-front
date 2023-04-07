@@ -38,15 +38,18 @@
 										</template>
 									</MintNFT>
 
-									<label v-if="lastTokenLink" class="field mt-9">
-										<div class="text">NFT URL</div>
-										<input type="text" placeholder="" readonly :value="lastTokenLink">
-									</label>
+									<div class="mt-9">
+										<label v-if="lastTokenLink" class="field mt-9">
+											<div class="text">NFT URL</div>
+											<input type="text" placeholder="" readonly :value="lastTokenLink">
+										</label>
 
-									<label class="field">
-										<div class="text">NFT Contract</div>
-										<input type="text" placeholder="" readonly :value="contractAddress">
-									</label>
+										<label class="field">
+											<div class="text">NFT Contract</div>
+											<input type="text" placeholder="" readonly :value="contractAddress">
+										</label>
+
+									</div>
 								</v-form>
 							</div>
 
