@@ -67,8 +67,9 @@
                   .then(result => {
                     if (!result) return;
 
-                    this.$router.push({name: 'generate'});
+                    this.$router.push({name: 'ImageGenerator'});
                   }).catch(error => {
+                    console.error(error);
                     switch (error) {
                       case 'INVALID_PASSWORD':
                         this.$toast.error('Password is incorrect');

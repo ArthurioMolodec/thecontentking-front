@@ -16,7 +16,6 @@
 									<label class="field field-select">
 										<div class="text">Blockchain</div>
 										<select v-model="network">
-											<option value="ERC20">ERC-20</option>
 											<option value="BEP20">BEP-20</option>
 											<option value="TRC20">TRC-20</option>
 										</select>
@@ -54,7 +53,7 @@
 							<div class="image-results">
 								<label class="field field-file">
 									<div class="text">File Upload</div>
-									<input type="file" ref="imageFile">
+									<input type="file" ref="imageFile" @change="() => validateFile()">
 									<div class="file">
 										<div class="button">
 											<img src="@/assets/icons/ic-download.svg" alt="">
@@ -63,32 +62,23 @@
 										<div class="name">Images only.<br> Video’s, 3D models, and files<br> coming soon.
 										</div>
 									</div>
+
+									<p style="color: red">
+										<p v-for="error in fileErrors">{{ error }}</p>
+									</p>
 								</label>
 
 								<h3 class="title box mt-11">Result</h3>
 
 								<div class="row mt-10">
-									<div class="item">
+									<div class="item" v-for="result in generatedNfts">
 										<div class="image">
-											<img src="@/assets/images/image-1.jpeg" alt="">
+											<img :src="result.image_link" alt="">
 										</div>
 										<div class="group">
-											<a href="#" class="link">Upscale</a>
-											<a href="#" class="link">Variations</a>
-											<a href="#" class="download">
-												<img src="@/assets/icons/download.svg" alt="">
-											</a>
-										</div>
-									</div>
-
-									<div class="item">
-										<div class="image">
-											<img src="@/assets/images/image-2.jpeg" alt="">
-										</div>
-										<div class="group">
-											<a href="#" class="link">Upscale</a>
-											<a href="#" class="link">Variations</a>
-											<a href="#" class="download">
+											<a :href="result.image_link" target="_blank" class="link">Upscale</a>
+											<!-- <a href="#" class="link">Variations</a> -->
+											<a :href="result.image_link" class="download" download="proposed_file_name">
 												<img src="@/assets/icons/download.svg" alt="">
 											</a>
 										</div>
@@ -111,6 +101,7 @@ import Footer from '@/components/Footer';
 import Sidebar from '@/components/Sidebar';
 import MintNFT from '@/components/crypto/MintNFT.vue';
 import axios from 'axios';
+import store from '@/store';
 
 export default {
 	components: {
@@ -124,6 +115,8 @@ export default {
 		return {
 			network: 'TRC20',
 			lastTokenLink: null,
+			generatedNfts: [],
+			fileErrors: []
 			// contractAddress: 'Loading...',
 		};
 	},
@@ -136,7 +129,45 @@ export default {
 	},
 
 	methods: {
+		validateFile() {
+			this.fileErrors = [];
+
+			if (!this.$refs.imageFile?.files?.[0]) {
+				this.fileErrors.push('Image file is required');
+				return false;
+			}
+
+			const file = this.$refs.imageFile?.files?.[0];
+
+			const memo = file.type?.split?.('/')?.[0];
+			if (memo !== 'image') {
+				this.fileErrors.push('File must be image only');
+				return false;
+			}
+
+			if (file.size > 5 * 1024 * 1024) {
+				this.fileErrors.push('File must be less than 5 mb');
+				return false;
+			}
+
+			return true;
+		},
 		async mintNft(minter) {
+			if (!this.validateFile()) {
+				return;
+			}
+
+			const limits = store.getters.getAccountLimit(this.$route.name + 'Api');
+			if (limits) {
+				let text = `${limits.leftCount} of ${limits.totalCount} left`;
+				if (limits.leftCount === 0) {
+					text += '<br/><b>Upgrade Account</b>';
+					const action = 'price';
+					window.postMessage({ type: "Toast", data: { type: 'error', text: text, action } })
+					return;
+				}
+			}    
+
 			const { tokenId } = await minter();
 			const formData = new FormData();
 
@@ -145,7 +176,7 @@ export default {
 
 			const tokenNet = this.network;
 
-			axios.post('http://localhost/createnftapi', {
+			axios.post(this.API_URL + '/createnftapi', {
 				file: this.$refs.imageFile.files[0],
 				token_id: tokenId,
 				network: tokenNet,
@@ -156,6 +187,9 @@ export default {
 			}).then(result => {
 				if (result && result?.data?.status) {
 					this.lastTokenLink = this.API_URL + '/nftmetadata/' + tokenNet + '/' + tokenId;
+					this.generatedNfts.push({
+						image_link: result?.data?.image_link
+					})
 				}
 			});
 
