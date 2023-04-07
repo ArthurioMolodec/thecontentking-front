@@ -41,6 +41,10 @@ const GetTransactionInfoById = async (txid, TronWeb) =>
         .then((r) => (r.receipt.result === "SUCCESS" ? r.contractResult[0] : null))
         .catch(() => null);
 
+const networkNames = {
+    'BEP20': 'Binance Smart Chain', 
+};
+
 import VueMetamask from 'vue-metamask';
 export default {
     props: {
@@ -53,6 +57,11 @@ export default {
         return {
             web3: null,
             metaMaskAddress: null,
+        }
+    },
+    computed: {
+        networkName() {
+            return networkNames[this.network];
         }
     },
     components: {
@@ -114,18 +123,30 @@ export default {
             await this.$refs.metamask.init();
 
             const contract = require("./abi/TokenERC721.json");
-            const nftContract = new this.web3.eth.Contract(contract.abi, this.CONTRACTS[this.network]);
+            let mintingPrice = 0;
+            let nftContract = null;
+            try {
+                nftContract = new this.web3.eth.Contract(contract.abi, this.CONTRACTS[this.network]);
+                mintingPrice = await nftContract.methods.mintingPrice().call();
+            } catch (ex) {
+                this.$toast.error('Please make sure you\'ve Signed in Metamask. And the NETWORK is "' + this.networkName + '"');
+                return;
+            }
 
-            const mintingPrice = await nftContract.methods.mintingPrice().call();
+            try {
+                const mintResult = await nftContract.methods.mint().send({
+                    value: mintingPrice,
+                    from: this.metaMaskAddress,
+                });
 
-            const mintResult = await nftContract.methods.mint().send({
-                value: mintingPrice,
-                from: this.metaMaskAddress,
-            });
-
-            if (mintResult.status !== true) {
-                console.error({ mintResult });
-                throw new Error('mintResult status is not true')
+                if (mintResult.status !== true) {
+                    console.error({ mintResult });
+                    throw new Error('mintResult status is not true')
+                }
+            } catch (ex) {
+                console.error(ex);
+                this.$toast.error('Transaction was failed. Network: "' + this.networkName + '"');
+                return;
             }
 
             const tokenId = mintResult.events.Mint.returnValues[0];

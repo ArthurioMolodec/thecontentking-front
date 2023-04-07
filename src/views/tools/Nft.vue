@@ -161,6 +161,7 @@ export default {
 		},
 		async mintNft(minter) {
 			if (!this.validateFile()) {
+				this.$toast.error(this.fileErrors.join(', '));
 				return;
 			}
 
