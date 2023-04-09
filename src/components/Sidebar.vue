@@ -10,6 +10,12 @@
 				</router-link>
 			</li>
 			<li>
+				<router-link active-class="active" to="/image-generator/advanced-mode">
+					<img src="@/assets/icons/picture.svg" alt="">
+					<span>Advanced Mode</span>
+				</router-link>
+			</li>
+			<li>
 				<router-link active-class="active" to="/tools/chat">
 					<img src="@/assets/icons/chat.svg" alt="">
 					<span>Chat</span>

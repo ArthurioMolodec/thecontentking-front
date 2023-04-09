@@ -5,6 +5,7 @@ import Price from './views/Price.vue'
 import Register from './views/Register.vue'
 import ContactUs from './views/ContactUs.vue'
 import Generate from './views/tools/Generate.vue'
+import AdvancedMode from './views/tools/AdvancedMode.vue'
 import Chat from './views/tools/Chat.vue'
 import Nft from './views/tools/Nft.vue'
 import History from './views/tools/History.vue'
@@ -61,6 +62,11 @@ const routes = [
             path: '/image-generator',
             name: 'ImageGenerator',
             component: Generate
+        },
+        {
+            path: '/image-generator/advanced-mode',
+            name: 'AdvancedMode',
+            component: AdvancedMode
         },
         {
             path: '/tools/chat',
