@@ -1,5 +1,5 @@
 <template>
-  <div class="ma-auto text-center v-col-7">
+  <div class="ma-auto text-center v-col-12 v-col-sm-7">
     <h2 class="subscribe-title mb-5">Subscribe for mailing list</h2>
     <p class="text-white mb-7">
       Subscribing to a mailing list is a way of opting-in to receive regular emails from an organization or company.

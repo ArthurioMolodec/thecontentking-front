@@ -333,6 +333,11 @@ export default {
   background-image: url('../assets/home-bg.svg');
   background-position-x: right !important;
 }
+
+@media (max-width: 750px) {
+  .bg-image {background: #000;}
+}
+
 .border-primary {
   border-color: #D1A658 !important;
 }
