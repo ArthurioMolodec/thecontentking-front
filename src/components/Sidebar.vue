@@ -12,7 +12,7 @@
 			<li>
 				<router-link active-class="active" to="/image-generator/advanced-mode">
 					<img src="@/assets/icons/picture.svg" alt="">
-					<span>Advanced Mode</span>
+					<span>Image Generator Advanced</span>
 				</router-link>
 			</li>
 			<li>
