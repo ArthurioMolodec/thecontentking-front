@@ -148,7 +148,7 @@ export default {
 		async sendForm() {
 			this.$refs.submit.classList.add('preloader');
 
-			axios.get(this.API_URL + '/imagegeneratorapi', {
+			axios.get(this.API_URL + '/advancedimagegeneratorapi', {
 				params: {
 					prompt: this.form.prompt,
 					image_types: this.form.type,

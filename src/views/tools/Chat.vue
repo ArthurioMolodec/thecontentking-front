@@ -1,27 +1,27 @@
 <template>
 	<div class="full-content">
 		<div class="bg-image">
-			<Header/>
+			<Header />
 
 			<div class="content bg">
 				<v-container>
 					<div class="tools offset-top">
-						<Sidebar/>
+						<Sidebar />
 
 						<section class="wrap">
 							<h3 class="title box mb-3">Chat</h3>
 
 							<div class="faq-results mt-8" v-if="questions.length">
-								<ul>								
-									<li v-for="(question, index) in questions" 
-										:key="index"
-										:class="question.type">
-										<div class="icon" >
+								<ul>
+									<li v-for="(question, index) in questions" :key="index" :class="question.type">
+										<div class="icon">
 											<img src="@/assets/icons/user.svg" alt="" v-if="question.type == 'question'">
 											<img src="@/assets/icons/crown.svg" alt="" v-else>
 										</div>
-										
-										<div class="text"><p>{{ question.text }}</p></div>
+
+										<div class="text">
+											<p>{{ question.text }}</p>
+										</div>
 									</li>
 								</ul>
 							</div>
@@ -31,123 +31,144 @@
 								<input type="submit" class="btn" value="Generate" ref="submit">
 							</v-form>
 						</section>
+
+						<div class="w-button">
+							<a href="https://wa.me/48508241566" target="_blank"><img style=" max-width: 200px; max-height: 80px; width: auto; height: auto;" src="@/assets/images/button-to-watsup.png"></a>
+						</div>
 					</div>
 				</v-container>
 			</div>
 
-			<Footer/>
+			<Footer />
 		</div>
 	</div>
 </template>
 
 <script>
-	import Header from '@/components/Header';
-	import Footer from '@/components/Footer';
-	import Sidebar from '@/components/Sidebar';
-	import axios from 'axios';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Sidebar from '@/components/Sidebar';
+import axios from 'axios';
 
-	export default {
-		components: {
-			Header,
-			Footer,
-			Sidebar
-		},
-		data() {
-			return {
-				form: {
-					text: null,
-				},
-				questions: []
+export default {
+	components: {
+		Header,
+		Footer,
+		Sidebar
+	},
+	data() {
+		return {
+			form: {
+				text: null,
+			},
+			questions: []
+		}
+	},
+	methods: {
+		async sendForm() {
+			let question = {
+				type: 'question',
+				text: this.form.text
 			}
-		},
-		methods: {
-			async sendForm() {
-				let question = {
-					type: 'question',
-					text: this.form.text
-				}
 
-				this.questions.push(question);
-				this.$refs.submit.classList.add('preloader');
+			this.questions.push(question);
+			this.$refs.submit.classList.add('preloader');
 
-				try {
-					axios.get(this.API_URL + '/apichat', {
-						params: {
-							prompt: this.form.text
-						}
-					}).then(result => {
-						let question = {
-							type: 'answer',
-							text: result.data.answer
-						}
+			try {
+				axios.get(this.API_URL + '/apichat', {
+					params: {
+						prompt: this.form.text
+					}
+				}).then(result => {
+					let question = {
+						type: 'answer',
+						text: result.data.answer
+					}
 
-						this.questions.push(question);
-						this.form.text = '';
-						this.$refs.submit.classList.remove('preloader');
-					});
-				} catch (error) {
-					console.log(error);
-				}
+					this.questions.push(question);
+					this.form.text = '';
+					this.$refs.submit.classList.remove('preloader');
+				});
+			} catch (error) {
+				console.log(error);
 			}
 		}
 	}
+}
 </script>
 
 <style lang="scss" scoped>
-	.faq-results {
-		border: 1px solid #D1A658;
-		border-radius: 12px;
-		font-size: 16px;
-		color: #FFFFFF;
+.faq-results {
+	border: 1px solid #D1A658;
+	border-radius: 12px;
+	font-size: 16px;
+	color: #FFFFFF;
 
-		ul {
-			padding: 35px 0;
+	ul {
+		padding: 35px 0;
 
-			li {
-				display: flex;
-				align-items: flex-start;
-				padding: 10px 20px;
+		li {
+			display: flex;
+			align-items: flex-start;
+			padding: 10px 20px;
 
-				.icon {
-					min-width: 55px;
-					line-height: 0;
+			.icon {
+				min-width: 55px;
+				line-height: 0;
+			}
+
+			&:nth-child(odd) {
+				background: #2F2F2F;
+
+				.text {
+					padding-top: 5px;
 				}
+			}
 
-				&:nth-child(odd) {
-					background: #2F2F2F;
-					.text {padding-top: 5px;}
-				}
-
-				&:nth-child(even) {
-					padding-top: 20px;
-					padding-bottom: 20px;
-				}
+			&:nth-child(even) {
+				padding-top: 20px;
+				padding-bottom: 20px;
 			}
 		}
 	}
+}
 
-	.faq-generate {
-		border: 1px solid #D1A658;
-		border-radius: 12px;
-		padding: 5px;
-		margin-top: 17px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+.faq-generate {
+	border: 1px solid #D1A658;
+	border-radius: 12px;
+	padding: 5px;
+	margin-top: 17px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
-		input[type="text"] {
-			min-height: 40px;
-			padding: 0 30px;
-			outline: none;
-			width: 100%;
+	input[type="text"] {
+		min-height: 40px;
+		padding: 0 30px;
+		outline: none;
+		width: 100%;
+		color: rgba(255, 255, 255, 0.5);
+
+		&::placeholder {
 			color: rgba(255, 255, 255, 0.5);
-			&::placeholder {color: rgba(255, 255, 255, 0.5);}
 		}
-
-		.btn {min-width: 110px;}
 	}
 
-	@media (max-width: 768px) {
-		.wrap {margin-top: 50px;}
+	.btn {
+		min-width: 110px;
 	}
-</style>
+}
+
+@media (max-width: 768px) {
+	.wrap {
+		margin-top: 50px;
+	}
+}
+
+.w-button {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+
+	z-index: 10;
+}</style>
