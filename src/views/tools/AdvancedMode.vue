@@ -41,17 +41,22 @@
 							<div class="image-results" v-if="generate">
 								<h3 class="title box mb-3">Image Generator</h3>
 
-								<div class="row mt-10" v-for="generatedImage, index in generatedImages.reverse()" :key="index">
-									<div class="item">
-										<div class="image">
-											<img :src="generatedImage.src" alt="">
-										</div>
-										<div class="group">
-											<a href="#" class="link">Upscale</a>
-											<a href="#" class="link">Variations</a>
-											<a href="#" class="download">
-												<img src="@/assets/icons/download.svg" alt="">
-											</a>
+								<div v-for="generatedImage, index in generatedImages.reverse()" :key="index">
+									<div v-if="generatedImage.status === 'generating' || generatedImage.status === 'completed'"
+										class="row mt-10">
+										<div v-for="(imagePart, index) in generatedImage.imageParts" :key="index"
+											class="item">
+											<div class="image">
+												<img :src="imagePart[0]" alt="">
+											</div>
+											<div class="group">
+												<a v-if="generatedImage.status === 'completed'" @click.prevent="loadUpscaled(generatedImage.id, imagePart[1])" class="link">Upscale</a>
+												<!-- <a href="#" class="link">Variations</a> -->
+												<a @click.prevent="openImageInNewTab(imagePart[0])" target="_blank"
+													class="download">
+													<img src="@/assets/icons/download.svg" alt="">
+												</a>
+											</div>
 										</div>
 									</div>
 
@@ -122,6 +127,7 @@ export default {
 		return {
 			generatedImages: [],
 			left_count: null,
+			imagesGeneration: {},
 			select: [
 				'Logo',
 				'Flyers',
@@ -139,12 +145,161 @@ export default {
 	},
 	computed: {
 		limits() {
-			const limits = store.getters.getAccountLimit('ai-images') || {};
+			const limits = store.getters.getAccountLimit(this.$route.name + 'Api') || {};
 			this.left_count = limits.leftCount ?? null;
 			return limits;
 		}
 	},
 	methods: {
+		openImageInNewTab(src) {
+			var image = new Image();
+			image.src = src;
+
+			var w = window.open("");
+			w.document.write(image.outerHTML);
+		},
+		async startUpscale(id, part_id) {
+			if (this.imagesGeneration[id].partsUpscaling?.[part_id]?._image) {
+				this.openImageInNewTab(this.imagesGeneration[id].partsUpscaling?.[part_id]?._image);
+				return;
+			}
+
+			const current_status = this.imagesGeneration[id].partsUpscaling?.[part_id]?.status || 'new';
+			if (current_status !== 'errored' && current_status !== 'new') {
+				return;
+			}
+
+			if (current_status === 'new') {
+				this.imagesGeneration[id].partsUpscaling[part_id] = {
+					status: 'created',
+					interval: null,
+					id: null,
+					isInProcessing: false,
+				}
+
+				await axios.get(this.API_URL + '/advancedimagegeneratorapiresult', {
+					params: {
+						action: 'upscale',
+						id: id,
+						part_id: part_id,
+					}
+				})
+				.then(result => {
+					if (!result?.data?.id) {
+						console.error(result);
+						return;
+					}
+					this.imagesGeneration[id].partsUpscaling[part_id].id = result?.data?.id;
+				});
+
+				if (!this.imagesGeneration[id].partsUpscaling[part_id].id) {
+					this.imagesGeneration[id].partsUpscaling[part_id].status = 'new';
+					alert('Some error occured! Please try again later.');
+					return;
+				}
+
+				this.imagesGeneration[id].partsUpscaling[part_id].interval = setInterval(() => {
+					this.loadUpscaled(id, part_id);
+				}, 1000);
+
+			}
+
+		},
+		async loadUpscaled(id, part_id) {
+			if (!this.imagesGeneration[id].partsUpscaling?.[part_id]) {
+				await this.startUpscale(id, part_id);
+				return;
+			}
+
+			if (this.imagesGeneration[id].partsUpscaling[part_id].image) {
+				this.openImageInNewTab(this.imagesGeneration[id].partsUpscaling[part_id].image);
+				clearInterval(this.imagesGeneration[id].partsUpscaling[part_id].interval);
+				return;
+			}
+
+			if (this.imagesGeneration[id].partsUpscaling[part_id].isInProcessing) {
+				return;
+			}
+			this.imagesGeneration[id].partsUpscaling[part_id].isInProcessing = true;
+
+			const part_external_id = this.imagesGeneration[id].partsUpscaling[part_id].id;
+
+			await axios.get(this.API_URL + '/advancedimagegeneratorapiresult', {
+				params: {
+					action: 'get-upscale',
+					id: part_external_id,
+				}
+			})
+			.then(result => {
+				if (result?.data?.status !== 'success') {
+					return;
+				}
+
+				if (result?.data?.data?.is_waiting) {
+					return;
+				}
+
+				if (!result?.data?.data?.result) {
+					this.imagesGeneration[id].partsUpscaling[part_id].status = 'errored';
+					clearInterval(this.imagesGeneration[id].partsUpscaling[part_id].interval);
+					return;
+				}
+
+				this.imagesGeneration[id].partsUpscaling[part_id].image = result?.data?.data?.result;
+				this.imagesGeneration[id].partsUpscaling[part_id]._image = result?.data?.data?.result;
+			}).catch(error => {
+				console.error(error);
+			});
+
+			this.imagesGeneration[id].partsUpscaling[part_id].isInProcessing = false;
+		},
+		async checkImage(id) {
+			if (this.imagesGeneration[id].isInProcessing) {
+				return;
+			}
+			this.imagesGeneration[id].isInProcessing = true;
+
+			await axios.get(this.API_URL + '/advancedimagegeneratorapiresult', {
+				params: {
+					id: id,
+				}
+			})
+			.then(result => {
+				if (result?.data?.status !== 'success') {
+					return;
+				}
+
+				if (!result?.data?.data?.result?.length) {
+					if (!result?.data?.data?.is_waiting) {
+						this.imagesGeneration[id].status = 'errored';
+						clearInterval(this.imagesGeneration[id].interval);
+						this.$refs.submit.classList.remove('preloader');
+					}
+					return;
+				}
+
+				const parts = result?.data?.data?.result;
+
+				const [[_percent, images]] = parts.slice(-1) || [0, []];
+				const percent = +_percent.replace('%', '');
+
+				if (images?.length) {
+					this.imagesGeneration[id].imageParts = images.map((r, index) => [r, index + 1]);
+					this.imagesGeneration[id].imagePercentGenerated = percent;
+					this.imagesGeneration[id].status = 'generating';
+				}
+
+				if (percent >= 90 && !result?.data?.data?.is_waiting || !result?.data?.data?.is_waiting) {
+					this.imagesGeneration[id].status = 'completed';
+					clearInterval(this.imagesGeneration[id].interval);
+					this.$refs.submit.classList.remove('preloader');
+				}
+			}).catch(error => {
+				console.error(error);
+			})
+
+			this.imagesGeneration[id].isInProcessing = false;
+		},
 		async sendForm() {
 			this.$refs.submit.classList.add('preloader');
 
@@ -153,20 +308,31 @@ export default {
 					prompt: this.form.prompt,
 					image_types: this.form.type,
 				}
-			}).then(result => {
-				this.left_count = result.data.left_count;
-				this.$refs.submit.classList.remove('preloader');
-
-				if (result.data.status) {
-					Object.values(result.data.result).forEach(imageBase64 => {
-						this.generatedImages.push({
-							src: `data:image/png;base64,${imageBase64}`,
-						})
-					});
-
-					this.generate = true;
+			})
+			.then(result => {
+				if (!result?.data?.status) {
+					this.left_count = result.data.left_count;
 					return;
 				}
+
+				const image = {
+					id: result.data.id,
+					imageParts: [],
+					status: 'created',
+					isInProcessing: false,
+					imagePercentGenerated: 0,
+
+					partsUpscaling: {},
+				};
+
+				this.imagesGeneration[image.id] = image;
+				this.generatedImages.push(image);
+
+				image['interval'] = setInterval(() => {
+					this.checkImage(image.id);
+				}, 1000);
+
+				this.generate = true;
 			});
 		}
 	}
@@ -258,4 +424,5 @@ export default {
 			grid-template-columns: 1fr;
 		}
 	}
-}</style>
+}
+</style>

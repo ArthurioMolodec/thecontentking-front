@@ -139,7 +139,7 @@ export default {
 	},
 	computed: {
 		limits() {
-			const limits = store.getters.getAccountLimit('ai-images') || {};
+			const limits = store.getters.getAccountLimit(this.$route.name + 'Api') || {};
 			this.left_count = limits.leftCount ?? null;
 			return limits;
 		}

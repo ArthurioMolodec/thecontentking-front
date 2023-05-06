@@ -66,7 +66,7 @@ const routes = [
         {
             path: '/image-generator/advanced-mode',
             name: 'ImageGeneratorAdvancedMode',
-            component: Generate
+            component: AdvancedMode
         },
         {
             path: '/tools/chat',
