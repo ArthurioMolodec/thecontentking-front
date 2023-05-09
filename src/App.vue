@@ -56,4 +56,10 @@
 ::v-deep .v-application__wrap {
   position: unset;
 }
+
+.item {
+    img, a {
+        cursor: pointer;
+    }
+}
 </style>
