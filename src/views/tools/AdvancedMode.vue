@@ -47,7 +47,8 @@
 										<div v-for="(imagePart, index) in generatedImage.imageParts" :key="index"
 											class="item">
 											<div class="image">
-												<img :src="imagePart[0]" alt="">
+												<img v-if="generatedImage.status === 'completed'" @click.prevent="loadUpscaled(generatedImage.id, imagePart[1])" :src="imagePart[0]" alt="">
+												<img v-else :src="imagePart[0]" alt="">
 											</div>
 											<div class="group">
 												<a v-if="generatedImage.status === 'completed'" @click.prevent="loadUpscaled(generatedImage.id, imagePart[1])" class="link">Upscale</a>
