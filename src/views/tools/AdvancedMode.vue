@@ -39,7 +39,7 @@
 							</div>
 
 							<div class="image-results" v-if="generate">
-								<h3 class="title box mb-3">Image Generator</h3>
+								<h3 class="title box mb-3">Images:</h3>
 
 								<div v-for="generatedImage, index in generatedImages.reverse()" :key="index">
 									<div v-if="generatedImage.status === 'generating' || generatedImage.status === 'completed'"
