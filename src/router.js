@@ -6,6 +6,7 @@ import Register from './views/Register.vue'
 import ContactUs from './views/ContactUs.vue'
 import Generate from './views/tools/Generate.vue'
 import AdvancedMode from './views/tools/AdvancedMode.vue'
+import AdvancedMode2 from './views/tools/AdvancedMode2.vue'
 import Chat from './views/tools/Chat.vue'
 import Nft from './views/tools/Nft.vue'
 import History from './views/tools/History.vue'
@@ -67,6 +68,11 @@ const routes = [
             path: '/image-generator/advanced-mode',
             name: 'ImageGeneratorAdvancedMode',
             component: AdvancedMode
+        },
+        {
+            path: '/image-generator/advanced-mode2',
+            name: 'ImageGeneratorAdvancedMode2',
+            component: AdvancedMode2
         },
         {
             path: '/tools/chat',
