@@ -30,7 +30,7 @@
         created() {
             this.processQueryToast();
             store.dispatch('updateLimits');
-            this.limitsTimer = setInterval(() => store.dispatch('updateLimits'), 5000);
+            this.limitsTimer = setInterval(() => store.dispatch('updateLimits'), 20000);
         },
         computed: {
             isLoggedIn() {
