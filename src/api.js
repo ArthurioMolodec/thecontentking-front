@@ -53,6 +53,8 @@ function onFullfilled(response) {
         }
     }
     if (!NotTools.includes(response.config.url.split('?')[0])) {
+        console.log(response.config.url);
+        console.log(response.config.url.split('?')[0]);
         store.dispatch('apiRequestDone', { route: router.currentRoute.value });
     }
     return response;
