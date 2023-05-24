@@ -118,5 +118,9 @@
 				.btn {min-width: inherit;}
 			}
 		}
+
+		@media (max-width: 750px) {
+			textarea {min-height: 200px;}
+		}
 	}
 </style>

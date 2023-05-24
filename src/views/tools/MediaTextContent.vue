@@ -418,6 +418,8 @@
 			.form-foot {
 				grid-template-columns: 1fr;
 			}
+
+			textarea {min-height: 200px;}
 		}
 	}
 </style>

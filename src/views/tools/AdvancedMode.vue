@@ -365,6 +365,12 @@ export default {
 	textarea {
 		min-height: 390px;
 	}
+
+	@media (max-width: 768px) {
+		textarea {
+			min-height: 200px;
+		}
+	}
 }
 
 .image-results {
