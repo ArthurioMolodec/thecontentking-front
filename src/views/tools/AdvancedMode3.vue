@@ -324,7 +324,7 @@ export default {
 					})
 					return store.dispatch('emitSocketMessage', {
 						"data": [
-							"task(6089q3g9ggoaafh)",
+							"task(l8lxlntq2pwhkyz)",
 							0,
 							this.form.prompt,
 							"bad_prompt_version2-neg,badhandv4,(worst quality, low quality:1.3),(inaccurate limb:1.2),(fewer legs),(fewer arms),(extra legs),(extra arms),(cross eyes),bad_pictures,(bad anatomy),(skin blemishes),",
