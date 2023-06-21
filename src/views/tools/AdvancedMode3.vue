@@ -195,7 +195,7 @@ export default {
 				() => {
 					return store.dispatch('emitSocketMessage', {
 						"data": [
-							"epicrealism_pureEvolution.safetensors [62e2993f1d]"
+							"converted_ckpts/epicrealism_pureEvolution/unet/diffusion_pytorch_model.safetensors [a8b4c28cde]"
 						],
 						"event_data": null,
 						"fn_index": 666,
@@ -325,10 +325,10 @@ export default {
 					})
 					return store.dispatch('emitSocketMessage', {
 						data: [
-							"task(l8lxlntq2pwhkyz)",
+							"task(cqpi895gcyxsfiv)",
 							0,
 							this.form.prompt,
-							"",
+							"bad_prompt_version2-neg,badhandv4,(worst quality, low quality:1.3),(inaccurate limb:1.2),(fewer legs),(fewer arms),(extra legs),(extra arms),(cross eyes),bad_pictures,(bad anatomy),(skin blemishes),",
 							[],
 							this.form.type === 'qr_code' ? this.qrCode : null,
 							null,
