@@ -51,7 +51,7 @@
 										class="row mt-10">
 										<div v-for="(imagePart, index) in generatedImage.imageParts" :key="index"
 											class="item">
-											<div class="image">
+											<div class="image" @click.prevent="openImageInNewTab(imagePart[0])">
 												<img :src="imagePart[0]" alt="">
 											</div>
 											<div class="group">
