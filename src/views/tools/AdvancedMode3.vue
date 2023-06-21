@@ -150,12 +150,19 @@ export default {
 			}))
 		},
 		async sendForm() {
+			this.form.prompt = (this.form.prompt || '').trim();
+			this.form.url = (this.form.url || '').trim();
+
 			if (!this.form.prompt) {
 				return this.$toast.error('Prompt is required!');
 			}
 
 			if (this.form.type === 'qr_code' && !this.form.url) {
 				return this.$toast.error('Url is required!');
+			}
+
+			if (this.form.prompt.length > 75) {
+				return this.$toast.error('Prompt must have less than 75 chars!');
 			}
 
 			this.sessionHash = (+new Date()).toString();
