@@ -51,7 +51,7 @@
 										class="row mt-10">
 										<div v-for="(imagePart, index) in generatedImage.imageParts" :key="index"
 											class="item">
-											<div class="image" @click.prevent="openImageInNewTab(imagePart[0])">
+											<div class="image" style="cursor: pointer;" @click.prevent="openImageInNewTab(imagePart[0])">
 												<img :src="imagePart[0]" alt="">
 											</div>
 											<div class="group">
@@ -194,7 +194,7 @@ export default {
 				() => {
 					return store.dispatch('emitSocketMessage', {
 						"data": [
-							"seekyou_momo/seekyou_momo.safetensors"
+							"epicrealism_pureEvolution.safetensors [62e2993f1d]"
 						],
 						"event_data": null,
 						"fn_index": 666,
