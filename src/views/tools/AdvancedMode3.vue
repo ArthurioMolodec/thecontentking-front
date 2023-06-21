@@ -261,7 +261,7 @@ export default {
 				await this.sendTask(
 					() => {
 						return store.dispatch('emitSocketMessage', {
-							"fn_index": 425,
+							"fn_index": 421,
 							"session_hash": this.sessionHash
 						})
 					},
@@ -293,7 +293,7 @@ export default {
 								"Balanced"
 							],
 							"event_data": null,
-							"fn_index": 425,
+							"fn_index": 421,
 							"session_hash": this.sessionHash
 						})
 					}
@@ -324,7 +324,7 @@ export default {
 					})
 					return store.dispatch('emitSocketMessage', {
 						"data": [
-							"task(dn3u7383mwvat0t)",
+							"task(6089q3g9ggoaafh)",
 							0,
 							this.form.prompt,
 							"bad_prompt_version2-neg,badhandv4,(worst quality, low quality:1.3),(inaccurate limb:1.2),(fewer legs),(fewer arms),(extra legs),(extra arms),(cross eyes),bad_pictures,(bad anatomy),(skin blemishes),",
