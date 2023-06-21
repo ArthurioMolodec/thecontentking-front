@@ -312,7 +312,7 @@ export default {
 						if (message.msg === 'process_completed') {
 							const finImage = message?.output?.data?.[0]?.[0]?.name;
 							if (finImage) {
-								const url = `http://generate.kaizencloud.net:1111/file=${finImage}`;
+								const url = `https://generate.kaizencloud.net/file=${finImage}`;
 								this.imagesGeneration.imageParts = [[url]];
 								this.imagesGeneration.status = 'completed';
 
