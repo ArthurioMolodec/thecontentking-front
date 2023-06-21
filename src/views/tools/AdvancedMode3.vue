@@ -51,7 +51,8 @@
 										class="row mt-10">
 										<div v-for="(imagePart, index) in generatedImage.imageParts" :key="index"
 											class="item">
-											<div class="image" style="cursor: pointer;" @click.prevent="openImageInNewTab(imagePart[0])">
+											<div class="image" style="cursor: pointer;"
+												@click.prevent="openImageInNewTab(imagePart[0])">
 												<img :src="imagePart[0]" alt="">
 											</div>
 											<div class="group">
@@ -323,11 +324,11 @@ export default {
 						}
 					})
 					return store.dispatch('emitSocketMessage', {
-						"data": [
+						data: [
 							"task(l8lxlntq2pwhkyz)",
 							0,
 							this.form.prompt,
-							"bad_prompt_version2-neg,badhandv4,(worst quality, low quality:1.3),(inaccurate limb:1.2),(fewer legs),(fewer arms),(extra legs),(extra arms),(cross eyes),bad_pictures,(bad anatomy),(skin blemishes),",
+							"",
 							[],
 							this.form.type === 'qr_code' ? this.qrCode : null,
 							null,
@@ -365,7 +366,9 @@ export default {
 							"",
 							"",
 							"",
-							[],
+							[
+								// "Clip skip: 1"
+							],
 							"None",
 							"",
 							false,
@@ -491,11 +494,11 @@ export default {
 							2048,
 							2048,
 							2,
-							[],
-							"",
-							"",
+							[
+							],
 							""
 						],
+
 						"event_data": null,
 						"fn_index": 525,
 						"session_hash": this.sessionHash
