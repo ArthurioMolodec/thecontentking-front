@@ -187,7 +187,7 @@ export default {
 			await this.sendTask(
 				() => {
 					return store.dispatch('emitSocketMessage', {
-						"fn_index": 1114,
+						"fn_index": 666,
 						"session_hash": this.sessionHash
 					})
 				},
@@ -197,7 +197,7 @@ export default {
 							"seekyou_momo/seekyou_momo.safetensors"
 						],
 						"event_data": null,
-						"fn_index": 1114,
+						"fn_index": 666,
 						"session_hash": this.sessionHash
 					});
 				}
@@ -220,7 +220,7 @@ export default {
 				await this.sendTask(
 					() => {
 						return store.dispatch('emitSocketMessage', {
-							"fn_index": 429,
+							"fn_index": 382,
 							"session_hash": this.sessionHash
 						})
 					},
@@ -252,7 +252,7 @@ export default {
 								"Balanced"
 							],
 							"event_data": null,
-							"fn_index": 429,
+							"fn_index": 382,
 							"session_hash": this.sessionHash
 						});
 					}
@@ -261,7 +261,7 @@ export default {
 				await this.sendTask(
 					() => {
 						return store.dispatch('emitSocketMessage', {
-							"fn_index": 468,
+							"fn_index": 425,
 							"session_hash": this.sessionHash
 						})
 					},
@@ -293,17 +293,17 @@ export default {
 								"Balanced"
 							],
 							"event_data": null,
-							"fn_index": 468,
+							"fn_index": 425,
 							"session_hash": this.sessionHash
 						})
 					}
 				);
 			}
 
-			await this.sendTask(
+			this.sendTask(
 				() => {
 					return store.dispatch('emitSocketMessage', {
-						"fn_index": 567,
+						"fn_index": 525,
 						"session_hash": this.sessionHash
 					})
 				},
@@ -324,7 +324,7 @@ export default {
 					})
 					return store.dispatch('emitSocketMessage', {
 						"data": [
-							"task(e6uql44nukik7d4)",
+							"task(6q9ivvvb9j8o744)",
 							0,
 							this.form.prompt,
 							"bad_prompt_version2-neg,badhandv4,(worst quality, low quality:1.3),(inaccurate limb:1.2),(fewer legs),(fewer arms),(extra legs),(extra arms),(cross eyes),bad_pictures,(bad anatomy),(skin blemishes),",
@@ -514,7 +514,7 @@ export default {
 							""
 						],
 						"event_data": null,
-						"fn_index": 567,
+						"fn_index": 525,
 						"session_hash": this.sessionHash
 					})
 				}
