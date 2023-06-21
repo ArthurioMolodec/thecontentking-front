@@ -12,6 +12,8 @@ import * as directives from 'vuetify/directives'
 
 import ToastPlugin from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-bootstrap.css';
+import VueNativeSock from "vue-native-websocket-vue3";
+import store from './store';
 
 
 const vuetify = createVuetify({
