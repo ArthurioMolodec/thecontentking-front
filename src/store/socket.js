@@ -25,7 +25,7 @@ export const socket = {
         },
         connectSocket(context) {
             return new Promise((r) => {
-                const socket = new WebSocket('ws://generate.kaizencloud.net:1111/queue/join');
+                const socket = new WebSocket('wss://api.thecontentking.app/websocket/queue/join');
                 socket.onmessage = (message) => {
                     context.commit('SOCKET_ONMESSAGE', message);
                 }
