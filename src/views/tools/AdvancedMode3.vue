@@ -15,7 +15,7 @@
 								<label class="field field-select">
 									<div class="text">Mode</div>
 									<select v-model="form.type">
-										<option value="image">Simple image</option>
+										<option value="image">Image (512x512)</option>
 										<option value="qr_code">QR Code</option>
 									</select>
 								</label>
