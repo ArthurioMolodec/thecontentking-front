@@ -237,7 +237,7 @@ export default {
 								true,
 								"inpaint_global_harmonious",
 								"controlnet11Models_depth [4b72d323]",
-								1,
+								0.35,
 								{
 									"image": this.qrCode,
 									"mask": this.qrCodeMask
