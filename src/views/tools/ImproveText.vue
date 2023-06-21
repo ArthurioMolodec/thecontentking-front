@@ -112,5 +112,9 @@
 			textarea {min-height: 250px;}
 			.btn {width: 100%;}
 		}
+
+		@media (max-width: 750px) {
+			textarea {min-height: 200px;}
+		}
 	}
 </style>
