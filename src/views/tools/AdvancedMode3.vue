@@ -133,20 +133,23 @@ export default {
 			var w = window.open("");
 			w.document.write(image.outerHTML);
 		},
-		sendTask(initMessage, afterSendData) {
+		async sendTask(initMessage, afterSendData) {
 			return new Promise((async r => {
 				store.commit('SOCKET_SET_MESSAGE_LISTENER', (message) => {
+					if (message.msg === 'send_hash') {
+						initMessage();
+					}
+
 					if (message.msg === 'send_data') {
-						store.commit('SOCKET_SET_MESSAGE_LISTENER', (message) => {
-							if (message.msg === 'process_completed') {
-								r();
-							}
-						});
 						afterSendData();
 					}
-				})
+
+					if (message.msg === 'process_completed') {
+						r();
+					}
+				});
+
 				await store.dispatch('connectSocket')
-				await initMessage();
 			}))
 		},
 		async sendForm() {
