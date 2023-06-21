@@ -109,7 +109,7 @@ export default {
 			form: {
 				type: 'image',
 				prompt: null,
-				url: null,
+				url: 'https://',
 				qr_code_strength: 70,
 			},
 			generate: false
