@@ -235,20 +235,20 @@ export default {
 								false,
 								null,
 								true,
-								"inpaint_global_harmonious",
-								"controlnet11Models_depth [4b72d323]",
-								0.35,
+								"tile_resample", // "inpaint_global_harmonious",
+								"controlnet11Models_tileE [e47b23a8]",
+								1.35,
 								{
 									"image": this.qrCode,
 									"mask": this.qrCodeMask
 								},
-								"Crop and Resize",
+								"Just Resize",
 								false,
 								-1,
 								-1,
 								-1,
-								0,
-								1,
+								0.21,
+								0.88,
 								false,
 								"Balanced"
 							],
@@ -259,46 +259,46 @@ export default {
 					}
 				);
 
-				await this.sendTask(
-					() => {
-						return store.dispatch('emitSocketMessage', {
-							"fn_index": 421,
-							"session_hash": this.sessionHash
-						})
-					},
-					() => {
-						return store.dispatch('emitSocketMessage', {
-							"data": [
-								null,
-								null,
-								null,
-								false,
-								false,
-								null,
-								true,
-								"inpaint_global_harmonious",
-								"controlnet11Models_depth [4b72d323]",
-								0.5,
-								{
-									"image": this.qrCode,
-									"mask": this.qrCodeMask
-								},
-								"Crop and Resize",
-								false,
-								-1,
-								-1,
-								-1,
-								0.35,
-								+(this.form.qr_code_strength / 100).toFixed(2),
-								false,
-								"Balanced"
-							],
-							"event_data": null,
-							"fn_index": 421,
-							"session_hash": this.sessionHash
-						})
-					}
-				);
+				// await this.sendTask(
+				// 	() => {
+				// 		return store.dispatch('emitSocketMessage', {
+				// 			"fn_index": 421,
+				// 			"session_hash": this.sessionHash
+				// 		})
+				// 	},
+				// 	() => {
+				// 		return store.dispatch('emitSocketMessage', {
+				// 			"data": [
+				// 				null,
+				// 				null,
+				// 				null,
+				// 				false,
+				// 				false,
+				// 				null,
+				// 				true,
+				// 				"inpaint_global_harmonious",
+				// 				"controlnet11Models_depth [4b72d323]",
+				// 				0.5,
+				// 				{
+				// 					"image": this.qrCode,
+				// 					"mask": this.qrCodeMask
+				// 				},
+				// 				"Crop and Resize",
+				// 				false,
+				// 				-1,
+				// 				-1,
+				// 				-1,
+				// 				0.35,
+				// 				+(this.form.qr_code_strength / 100).toFixed(2),
+				// 				false,
+				// 				"Balanced"
+				// 			],
+				// 			"event_data": null,
+				// 			"fn_index": 421,
+				// 			"session_hash": this.sessionHash
+				// 		})
+				// 	}
+				// );
 			}
 
 			this.sendTask(
@@ -337,7 +337,7 @@ export default {
 							null,
 							null,
 							null,
-							20,
+							15,
 							"DPM++ 2M Karras",
 							4,
 							0,
@@ -348,7 +348,7 @@ export default {
 							1,
 							7,
 							1.5,
-							Math.min(0.85 * ((100 - this.form.qr_code_strength / 2) / 65), 1),
+							Math.min(0.95 * ((100 - this.form.qr_code_strength / 2) / 65), 1),
 							-1,
 							-1,
 							0,
