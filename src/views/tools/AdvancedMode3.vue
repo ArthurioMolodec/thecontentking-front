@@ -34,7 +34,7 @@
 										<div class="text">Model</div>
 										<select v-model="form.model">
 											<option value="converted_ckpts/epicrealism_pureEvolution/unet/diffusion_pytorch_model.safetensors [a8b4c28cde]">Realistic (EpicRealism New Evolution)</option>
-											<option value="cyberrealistic_v31.safetensors">Animated (CyberRealistic)</option>
+											<option value="revAnimated_v122.safetensors [4199bcdd14]">Animated (CyberRealistic)</option>
 										</select>
 									</label>
 
@@ -120,7 +120,7 @@ export default {
 				prompt: null,
 				url: 'https://',
 				qr_code_strength: 70,
-				model: "converted_ckpts/epicrealism_pureEvolution/unet/diffusion_pytorch_model.safetensors [a8b4c28cde]",
+				model: "revAnimated_v122.safetensors [4199bcdd14]",
 			},
 			generate: false
 		}
