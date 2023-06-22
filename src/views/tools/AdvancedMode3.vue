@@ -246,7 +246,7 @@ export default {
 								true,
 								"tile_resample", // "inpaint_global_harmonious",
 								"controlnet11Models_tileE [e47b23a8]",
-								1.39,
+								1.35,
 								{
 									"image": this.qrCode,
 									"mask": this.qrCodeMask
