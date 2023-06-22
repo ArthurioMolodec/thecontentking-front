@@ -26,8 +26,16 @@
 									<label class="field field-select" v-if="form.type === 'qr_code'">
 										<div class="text">QR code strength</div>
 										<p style="color:white;">{{ form.qr_code_strength }}</p>
-										<Vue3Slider v-model="form.qr_code_strength" alwaysShowHandle="1" color="#FB278D"
+										<Vue3Slider :handleScale="3" v-model="form.qr_code_strength" alwaysShowHandle="1" color="#FB278D"
 											track-color="#FEFEFE" />
+									</label>
+
+									<label class="field field-select" v-if="form.type === 'qr_code'">
+										<div class="text">Model</div>
+										<select v-model="form.model">
+											<option value="converted_ckpts/epicrealism_pureEvolution/unet/diffusion_pytorch_model.safetensors [a8b4c28cde]">Realistic (EpicRealism New Evolution)</option>
+											<option value="cyberrealistic_v31.safetensors">Animated (CyberRealistic)</option>
+										</select>
 									</label>
 
 									<label class="field mt-9" v-if="form.type === 'qr_code'">
@@ -112,6 +120,7 @@ export default {
 				prompt: null,
 				url: 'https://',
 				qr_code_strength: 70,
+				model: "converted_ckpts/epicrealism_pureEvolution/unet/diffusion_pytorch_model.safetensors [a8b4c28cde]",
 			},
 			generate: false
 		}
@@ -195,7 +204,7 @@ export default {
 				() => {
 					return store.dispatch('emitSocketMessage', {
 						"data": [
-							"converted_ckpts/epicrealism_pureEvolution/unet/diffusion_pytorch_model.safetensors [a8b4c28cde]"
+							this.form.model,
 						],
 						"event_data": null,
 						"fn_index": 666,
@@ -237,7 +246,7 @@ export default {
 								true,
 								"tile_resample", // "inpaint_global_harmonious",
 								"controlnet11Models_tileE [e47b23a8]",
-								1.35,
+								1.39,
 								{
 									"image": this.qrCode,
 									"mask": this.qrCodeMask
