@@ -543,7 +543,7 @@ export default {
 	}
 
 	textarea {
-		min-height: 390px;
+		min-height: 150px;
 	}
 }
 
