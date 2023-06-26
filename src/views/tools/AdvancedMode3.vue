@@ -22,14 +22,6 @@
 
 								<v-form action="#" method="GET" class="mt-7 form-generate" ref="form"
 									@submit.prevent="sendForm">
-
-									<label class="field field-select" v-if="form.type === 'qr_code'">
-										<div class="text">QR code strength</div>
-										<p style="color:white;">{{ form.qr_code_strength }}</p>
-										<Vue3Slider :handleScale="3" v-model="form.qr_code_strength" alwaysShowHandle="1"
-											color="#FB278D" track-color="#FEFEFE" />
-									</label>
-
 									<label class="field field-select" v-if="form.type === 'qr_code'">
 										<div class="text">Model</div>
 										<select v-model="form.model">
@@ -49,6 +41,12 @@
 										<div class="text">What should AI draw?</div>
 										<textarea placeholder="Bird, colorful, realistic, high detailed"
 											v-model="form.prompt"></textarea>
+									</label>
+									<label class="field field-select" v-if="form.type === 'qr_code'">
+										<div class="text">QR code strength</div>
+										<p style="color:white;">{{ form.qr_code_strength }}</p>
+										<Vue3Slider :handleScale="3" v-model="form.qr_code_strength" alwaysShowHandle="1"
+											color="#FB278D" track-color="#FEFEFE" />
 									</label>
 									<input type="submit" class="btn" :class="{ preloader: generate }" value="Generate"
 										ref="submit">
@@ -352,14 +350,14 @@ export default {
 							if (finImage) {
 								const url = `https://generate.kaizencloud.net/file=${finImage}`;
 
-								const isReadable = this.form.type === 'qr_code' && this.auto_recreate_cycles <= 1 ? await this.checkIsQrCodeReadable(url) : null;
+								const isReadable = this.form.type === 'qr_code' && this.auto_recreate_cycles <= 0 ? await this.checkIsQrCodeReadable(url) : null;
 
 								if (isReadable === false) {
-									if (this.form.qr_code_strength >= 78) {
+									if (this.form.qr_code_strength >= 76) {
 										this.qr_code_strength_auto_dir = -1;
 										this.auto_recreate_cycles += 1
 									}
-									if (this.form.qr_code_strength <= 67) {
+									if (this.form.qr_code_strength <= 68) {
 										this.qr_code_strength_auto_dir = 1;
 									}
 									this.form.qr_code_strength += (this.qr_code_strength_auto_dir) * 1;
