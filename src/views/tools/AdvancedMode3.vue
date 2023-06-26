@@ -352,7 +352,7 @@ export default {
 							if (finImage) {
 								const url = `https://generate.kaizencloud.net/file=${finImage}`;
 
-								const isReadable = this.form.type === 'qr_code' && this.auto_recreate_cycles <= 2 ? await this.checkIsQrCodeReadable(url) : null;
+								const isReadable = this.form.type === 'qr_code' && this.auto_recreate_cycles <= 1 ? await this.checkIsQrCodeReadable(url) : null;
 
 								if (isReadable === false) {
 									if (this.form.qr_code_strength >= 83) {
