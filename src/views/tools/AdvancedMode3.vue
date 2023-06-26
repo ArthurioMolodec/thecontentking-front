@@ -94,6 +94,7 @@ import axios from 'axios';
 import store from '@/store';
 import * as qrcode from 'qrcode';
 import Vue3Slider from "vue3-slider"
+import { urlencoded } from 'express';
 
 export default {
 	components: {
@@ -125,7 +126,8 @@ export default {
 				qr_code_strength: 70,
 				model: "revAnimated_v122.safetensors [4199bcdd14]",
 			},
-			generate: false
+			generate: false,
+			qr_code_strength_auto_dir: 1,
 		}
 	},
 	computed: {
@@ -145,6 +147,26 @@ export default {
 
 			var w = window.open("");
 			w.document.write(image.outerHTML);
+		},
+		async checkIsQrCodeReadable(imageUrl) {
+			const url = `http://api.qrserver.com/v1/read-qr-code/?fileurl=${encodeURIComponent(imageUrl)}`;
+
+			const response = await axios.get(url);
+
+			const result = response.data?.[0]?.symbol?.[0]?.error;
+
+			if (result === null) {
+				return true;
+			}
+
+			if (result === undefined) {
+				return null;
+			}
+
+			return false;
+		},
+		async sendGeneration() {
+			
 		},
 		async sendTask(initMessage, afterSendData) {
 			return new Promise((async r => {
@@ -321,11 +343,28 @@ export default {
 					})
 				},
 				() => {
-					store.commit('SOCKET_SET_MESSAGE_LISTENER', (message) => {
+					store.commit('SOCKET_SET_MESSAGE_LISTENER', async (message) => {
 						if (message.msg === 'process_completed') {
 							const finImage = message?.output?.data?.[0]?.[0]?.name;
 							if (finImage) {
 								const url = `https://generate.kaizencloud.net/file=${finImage}`;
+
+								const isReadable = await this.checkIsQrCodeReadable(url);
+
+								if (isReadable === false) {
+									if (this.form.qr_code_strength >= 83) {
+										this.qr_code_strength_auto_dir = -1;
+									}
+									if (this.form.qr_code_strength <= 65) {
+										this.qr_code_strength_auto_dir = 1;
+									}
+									this.form.qr_code_strength += (this.qr_code_strength_auto_dir) * 1;
+
+									this.generate = false;
+
+									return await this.sendForm();
+								}
+
 								this.imagesGeneration.imageParts = [[url]];
 								this.imagesGeneration.status = 'completed';
 
@@ -516,7 +555,8 @@ export default {
 				}
 			);
 		}
-	}
+	},
+
 }
 </script>
 

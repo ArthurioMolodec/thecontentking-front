@@ -27,12 +27,15 @@ export const socket = {
             return new Promise((r) => {
                 const socket = new WebSocket('wss://generate.kaizencloud.net/queue/join');
                 socket.onmessage = (message) => {
-                    context.commit('SOCKET_ONMESSAGE', message);
+                    context.dispatch('SOCKET_ONMESSAGE', message).then().catch(ex => { console.error(ex) });
                 }
                 context.commit('SOCKET_UPDATE', socket);
                 
                 socket.onopen = r;
             })
+        },
+        async SOCKET_ONMESSAGE(context, message) {
+            return await context.getters.getMessageListener(JSON.parse(message.data));
         },
     },
     mutations: {
@@ -41,9 +44,6 @@ export const socket = {
         },
         SOCKET_UPDATE(state, socket) {
             state.socket = socket;
-        },
-        SOCKET_ONMESSAGE(state, message) {
-            state.messageListener(JSON.parse(message.data));
         },
     },
     modules: {}
