@@ -122,7 +122,7 @@ export default {
 				type: 'image',
 				prompt: null,
 				url: 'https://',
-				qr_code_strength: 70,
+				qr_code_strength: 72,
 				model: "revAnimated_v122.safetensors [4199bcdd14]",
 			},
 			generate: false,
@@ -355,11 +355,11 @@ export default {
 								const isReadable = this.form.type === 'qr_code' && this.auto_recreate_cycles <= 1 ? await this.checkIsQrCodeReadable(url) : null;
 
 								if (isReadable === false) {
-									if (this.form.qr_code_strength >= 83) {
+									if (this.form.qr_code_strength >= 78) {
 										this.qr_code_strength_auto_dir = -1;
 										this.auto_recreate_cycles += 1
 									}
-									if (this.form.qr_code_strength <= 65) {
+									if (this.form.qr_code_strength <= 67) {
 										this.qr_code_strength_auto_dir = 1;
 									}
 									this.form.qr_code_strength += (this.qr_code_strength_auto_dir) * 1;
