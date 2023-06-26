@@ -26,7 +26,7 @@ export const storage = {
 export const isLoggedIn = () => storage.isLoggedIn();
 export const logOut = () => { storage.removeToken(); abort.abort(); };
 
-const NotTools = ['login', 'registration', 'account-info-api', 'advancedimagegeneratorapiresult'];
+const NotTools = ['login', 'registration', 'account-info-api', 'advancedimagegeneratorapiresult', 'read-qr-code'];
 
 function onFullfilled(response) {
     const authorization = response.data.token;
