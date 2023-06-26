@@ -94,7 +94,6 @@ import axios from 'axios';
 import store from '@/store';
 import * as qrcode from 'qrcode';
 import Vue3Slider from "vue3-slider"
-import { urlencoded } from 'express';
 
 export default {
 	components: {
