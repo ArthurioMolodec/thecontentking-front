@@ -351,7 +351,7 @@ export default {
 							if (finImage) {
 								const url = `https://generate.kaizencloud.net/file=${finImage}`;
 
-								const isReadable = await this.checkIsQrCodeReadable(url);
+								const isReadable = this.form.type === 'qr_code' ? await this.checkIsQrCodeReadable(url) : null;
 
 								if (isReadable === false) {
 									if (this.form.qr_code_strength >= 83) {
