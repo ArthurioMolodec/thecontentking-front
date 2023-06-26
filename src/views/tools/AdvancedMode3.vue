@@ -127,6 +127,7 @@ export default {
 			},
 			generate: false,
 			qr_code_strength_auto_dir: 1,
+			auto_recreate_cycles: 0,
 		}
 	},
 	computed: {
@@ -351,11 +352,12 @@ export default {
 							if (finImage) {
 								const url = `https://generate.kaizencloud.net/file=${finImage}`;
 
-								const isReadable = this.form.type === 'qr_code' ? await this.checkIsQrCodeReadable(url) : null;
+								const isReadable = this.form.type === 'qr_code' && this.auto_recreate_cycles <= 2 ? await this.checkIsQrCodeReadable(url) : null;
 
 								if (isReadable === false) {
 									if (this.form.qr_code_strength >= 83) {
 										this.qr_code_strength_auto_dir = -1;
+										this.auto_recreate_cycles += 1
 									}
 									if (this.form.qr_code_strength <= 65) {
 										this.qr_code_strength_auto_dir = 1;
@@ -366,6 +368,8 @@ export default {
 
 									return await this.sendForm();
 								}
+
+								this.auto_recreate_cycles = 0;
 
 								this.imagesGeneration.imageParts = [[url]];
 								this.imagesGeneration.status = 'completed';
