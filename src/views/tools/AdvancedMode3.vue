@@ -148,9 +148,12 @@ export default {
 			w.document.write(image.outerHTML);
 		},
 		async checkIsQrCodeReadable(imageUrl) {
-			const url = `https://api.qrserver.com/v1/read-qr-code/?fileurl=${encodeURIComponent(imageUrl)}`;
+			const response = await axios.get(this.API_URL + '/read-qr-code', {
+				params: {
+					fileurl: imageUrl,
+				}
+			})
 
-			const response = await axios.get(url);
 
 			const result = response.data?.[0]?.symbol?.[0]?.error;
 
