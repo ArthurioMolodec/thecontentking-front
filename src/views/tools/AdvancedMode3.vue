@@ -140,11 +140,12 @@ export default {
 	},
 	methods: {
 		openImageInNewTab(src) {
-			var image = new Image();
-			image.src = src;
+			window.open(src);
+			// var image = new Image();
+			// image.src = src;
 
-			var w = window.open("");
-			w.document.write(image.outerHTML);
+			// var w = window.open("");
+			// w.document.write(image.outerHTML);
 		},
 		async checkIsQrCodeReadable(imageUrl) {
 			const response = await axios.get(this.API_URL + '/read-qr-code', {
