@@ -48,8 +48,8 @@
 										<Vue3Slider :handleScale="3" v-model="form.qr_code_strength" alwaysShowHandle="1"
 											color="#FB278D" track-color="#FEFEFE" />
 									</label>
-									<input type="submit" class="btn" :class="{ preloader: generate }" value="Generate"
-										ref="submit">
+									<input type="submit" class="btn" :class="{ preloader: generate }"
+										:value="isGeneratedImages ? 'Regenerate' : 'Generate'" ref="submit">
 								</v-form>
 							</div>
 
@@ -126,9 +126,13 @@ export default {
 			generate: false,
 			qr_code_strength_auto_dir: 1,
 			auto_recreate_cycles: 0,
+			isGeneratedImages: false,
 		}
 	},
 	computed: {
+		typeOfImage() {
+			return this.form.type;
+		},
 		limits() {
 			const limits = store.getters.getAccountLimit(this.$route.name + 'Api') || {};
 			this.left_count = limits.leftCount ?? null;
@@ -331,6 +335,8 @@ export default {
 									this.imagesGeneration.status = 'completed';
 
 									this.generatedImages = [...this.generatedImages];
+
+									this.isGeneratedImages = true;
 								}
 
 								this.generate = false;
@@ -535,6 +541,8 @@ export default {
 									this.imagesGeneration.status = 'completed';
 
 									this.generatedImages = [...this.generatedImages];
+
+									this.isGeneratedImages = true;
 								}
 
 								this.generate = false;
@@ -654,6 +662,11 @@ export default {
 			}
 		}
 	},
+	watch: {
+		typeOfImage() {
+			this.isGeneratedImages = false;
+		}
+	}
 
 }
 </script>
