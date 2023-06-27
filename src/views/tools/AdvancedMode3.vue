@@ -167,7 +167,7 @@ export default {
 			return false;
 		},
 		async sendGeneration() {
-			
+
 		},
 		async sendTask(initMessage, afterSendData) {
 			return new Promise((async r => {
@@ -293,271 +293,364 @@ export default {
 						});
 					}
 				);
+				this.sendTask(
+					() => {
+						return store.dispatch('emitSocketMessage', {
+							"fn_index": 525,
+							"session_hash": this.sessionHash
+						})
+					},
+					() => {
+						store.commit('SOCKET_SET_MESSAGE_LISTENER', async (message) => {
+							if (message.msg === 'process_completed') {
+								const finImage = message?.output?.data?.[0]?.[0]?.name;
+								if (finImage) {
+									const url = `https://generate.kaizencloud.net/file=${finImage}`;
 
-				// await this.sendTask(
-				// 	() => {
-				// 		return store.dispatch('emitSocketMessage', {
-				// 			"fn_index": 421,
-				// 			"session_hash": this.sessionHash
-				// 		})
-				// 	},
-				// 	() => {
-				// 		return store.dispatch('emitSocketMessage', {
-				// 			"data": [
-				// 				null,
-				// 				null,
-				// 				null,
-				// 				false,
-				// 				false,
-				// 				null,
-				// 				true,
-				// 				"inpaint_global_harmonious",
-				// 				"controlnet11Models_depth [4b72d323]",
-				// 				0.5,
-				// 				{
-				// 					"image": this.qrCode,
-				// 					"mask": this.qrCodeMask
-				// 				},
-				// 				"Crop and Resize",
-				// 				false,
-				// 				-1,
-				// 				-1,
-				// 				-1,
-				// 				0.35,
-				// 				+(this.form.qr_code_strength / 100).toFixed(2),
-				// 				false,
-				// 				"Balanced"
-				// 			],
-				// 			"event_data": null,
-				// 			"fn_index": 421,
-				// 			"session_hash": this.sessionHash
-				// 		})
-				// 	}
-				// );
-			}
+									const isReadable = this.form.type === 'qr_code' && this.auto_recreate_cycles <= 0 ? await this.checkIsQrCodeReadable(url) : null;
 
-			this.sendTask(
-				() => {
-					return store.dispatch('emitSocketMessage', {
-						"fn_index": 525,
-						"session_hash": this.sessionHash
-					})
-				},
-				() => {
-					store.commit('SOCKET_SET_MESSAGE_LISTENER', async (message) => {
-						if (message.msg === 'process_completed') {
-							const finImage = message?.output?.data?.[0]?.[0]?.name;
-							if (finImage) {
-								const url = `https://generate.kaizencloud.net/file=${finImage}`;
+									if (isReadable === false) {
+										if (this.form.qr_code_strength >= 76) {
+											this.qr_code_strength_auto_dir = -1;
+											this.auto_recreate_cycles += 1
+										}
+										if (this.form.qr_code_strength <= 68) {
+											this.qr_code_strength_auto_dir = 1;
+										}
+										this.form.qr_code_strength += (this.qr_code_strength_auto_dir) * 1;
 
-								const isReadable = this.form.type === 'qr_code' && this.auto_recreate_cycles <= 0 ? await this.checkIsQrCodeReadable(url) : null;
+										this.generate = false;
 
-								if (isReadable === false) {
-									if (this.form.qr_code_strength >= 76) {
-										this.qr_code_strength_auto_dir = -1;
-										this.auto_recreate_cycles += 1
+										return await this.sendForm();
 									}
-									if (this.form.qr_code_strength <= 68) {
-										this.qr_code_strength_auto_dir = 1;
-									}
-									this.form.qr_code_strength += (this.qr_code_strength_auto_dir) * 1;
 
-									this.generate = false;
+									this.auto_recreate_cycles = 0;
 
-									return await this.sendForm();
+									this.imagesGeneration.imageParts = [[url]];
+									this.imagesGeneration.status = 'completed';
+
+									this.generatedImages = [...this.generatedImages];
 								}
 
-								this.auto_recreate_cycles = 0;
-
-								this.imagesGeneration.imageParts = [[url]];
-								this.imagesGeneration.status = 'completed';
-
-								this.generatedImages = [...this.generatedImages];
+								this.generate = false;
 							}
+						})
+						return store.dispatch('emitSocketMessage', {
+							data: [
+								"task(rzqz7m1sgzwhdg9)",
+								0,
+								this.form.prompt,
+								"bad_prompt_version2-neg,badhandv4,(worst quality, low quality:1.3),(inaccurate limb:1.2),(fewer legs),(fewer arms),(extra legs),(extra arms),(cross eyes),bad_pictures,(bad anatomy),(skin blemishes),",
+								[],
+								this.form.type === 'qr_code' ? this.qrCode : null,
+								null,
+								null,
+								null,
+								null,
+								null,
+								null,
+								20,
+								"DPM++ 2M Karras",
+								4,
+								0,
+								"original",
+								false,
+								false,
+								1,
+								1,
+								7,
+								1.5,
+								0.95,
+								-1,
+								-1,
+								0,
+								0,
+								0,
+								false,
+								null,
+								512,
+								512,
+								1,
+								"Just resize",
+								"Whole picture",
+								32,
+								"Inpaint masked",
+								"",
+								"",
+								"",
+								[],
+								"None",
+								"",
+								false,
+								"",
+								0,
+								"Send to Canvas Editor",
+								null,
+								null,
+								null,
+								false,
+								"",
+								0.5,
+								true,
+								false,
+								"",
+								"Lerp",
+								false,
+								"<ul>\n<li><code>CFG Scale</code> should be 2 or lower.</li>\n</ul>\n",
+								true,
+								true,
+								"",
+								"",
+								true,
+								50,
+								true,
+								1,
+								0,
+								false,
+								4,
+								0.5,
+								"Linear",
+								"None",
+								"<p style=\"margin-bottom:0.75em\">Recommended settings: Sampling Steps: 80-100, Sampler: Euler a, Denoising strength: 0.8</p>",
+								128,
+								8,
+								[
+									"left",
+									"right",
+									"up",
+									"down"
+								],
+								1,
+								0.05,
+								128,
+								4,
+								"fill",
+								[
+									"left",
+									"right",
+									"up",
+									"down"
+								],
+								false,
+								false,
+								"positive",
+								"comma",
+								0,
+								false,
+								false,
+								"",
+								"<p style=\"margin-bottom:0.75em\">Will upscale the image by the selected scale factor; use width and height sliders to set tile size</p>",
+								64,
+								"None",
+								2,
+								"Seed",
+								"",
+								[],
+								"Nothing",
+								"",
+								[],
+								"Nothing",
+								"",
+								[],
+								true,
+								false,
+								false,
+								false,
+								0,
+								5,
+								"all",
+								"all",
+								"all",
+								"",
+								"",
+								"",
+								"1",
+								"none",
+								false,
+								"",
+								"",
+								"comma",
+								"",
+								true,
+								"",
+								"",
+								"",
+								0,
+								null,
+								null,
+								false,
+								null,
+								null,
+								false,
+								null,
+								null,
+								false,
+								50,
+								"<p style=\"margin-bottom:0.75em\">Will upscale the image depending on the selected target size type</p>",
+								512,
+								0,
+								8,
+								32,
+								64,
+								0.35,
+								32,
+								"None",
+								true,
+								"Linear",
+								false,
+								8,
+								"None",
+								"From img2img2 settings",
+								2048,
+								2048,
+								2,
+								[],
+								"",
+								"",
+								""
+							],
+							"event_data": null,
+							"fn_index": 525,
+							"session_hash": this.sessionHash
+						})
+					}
+				);
+			} else {
+				this.sendTask(
+					() => {
+						return store.dispatch('emitSocketMessage', {
+							"fn_index": 266,
+							"session_hash": this.sessionHash
+						})
+					},
+					() => {
+						store.commit('SOCKET_SET_MESSAGE_LISTENER', async (message) => {
+							if (message.msg === 'process_completed') {
+								const finImage = message?.output?.data?.[0]?.[0]?.name;
+								if (finImage) {
+									const url = `https://generate.kaizencloud.net/file=${finImage}`;
 
-							this.generate = false;
-						}
-					})
-					return store.dispatch('emitSocketMessage', {
-						data: [
-							"task(rzqz7m1sgzwhdg9)",
-							0,
-							this.form.prompt,
-							"bad_prompt_version2-neg,badhandv4,(worst quality, low quality:1.3),(inaccurate limb:1.2),(fewer legs),(fewer arms),(extra legs),(extra arms),(cross eyes),bad_pictures,(bad anatomy),(skin blemishes),",
-							[],
-							this.form.type === 'qr_code' ? this.qrCode : null,
-							null,
-							null,
-							null,
-							null,
-							null,
-							null,
-							20,
-							"DPM++ 2M Karras",
-							4,
-							0,
-							"original",
-							false,
-							false,
-							1,
-							1,
-							7,
-							1.5,
-							0.95,
-							-1,
-							-1,
-							0,
-							0,
-							0,
-							false,
-							null,
-							512,
-							512,
-							1,
-							"Just resize",
-							"Whole picture",
-							32,
-							"Inpaint masked",
-							"",
-							"",
-							"",
-							[],
-							"None",
-							"",
-							false,
-							"",
-							0,
-							"Send to Canvas Editor",
-							null,
-							null,
-							null,
-							false,
-							"",
-							0.5,
-							true,
-							false,
-							"",
-							"Lerp",
-							false,
-							"<ul>\n<li><code>CFG Scale</code> should be 2 or lower.</li>\n</ul>\n",
-							true,
-							true,
-							"",
-							"",
-							true,
-							50,
-							true,
-							1,
-							0,
-							false,
-							4,
-							0.5,
-							"Linear",
-							"None",
-							"<p style=\"margin-bottom:0.75em\">Recommended settings: Sampling Steps: 80-100, Sampler: Euler a, Denoising strength: 0.8</p>",
-							128,
-							8,
-							[
-								"left",
-								"right",
-								"up",
-								"down"
+									this.imagesGeneration.imageParts = [[url]];
+									this.imagesGeneration.status = 'completed';
+
+									this.generatedImages = [...this.generatedImages];
+								}
+
+								this.generate = false;
+							}
+						})
+						return store.dispatch('emitSocketMessage', {
+							data: [
+								"task(9zvu7ii7uvuhw3u)",
+								this.form.prompt,
+								"bad_prompt_version2-neg,badhandv4,(worst quality, low quality:1.3),(inaccurate limb:1.2),(fewer legs),(fewer arms),(extra legs),(extra arms),(cross eyes),bad_pictures,(bad anatomy),(skin blemishes),",
+								[],
+								20,
+								"DPM++ 2M Karras",
+								false,
+								false,
+								1,
+								1,
+								7,
+								-1,
+								-1,
+								0,
+								0,
+								0,
+								false,
+								512,
+								512,
+								false,
+								0.7,
+								2,
+								"Latent",
+								0,
+								0,
+								0,
+								"Use same sampler",
+								"",
+								"",
+								[],
+								"None",
+								"",
+								false,
+								"",
+								0,
+								"Send to Canvas Editor",
+								null,
+								null,
+								null,
+								false,
+								"",
+								0.5,
+								true,
+								false,
+								"",
+								"Lerp",
+								false,
+								false,
+								false,
+								"positive",
+								"comma",
+								0,
+								false,
+								false,
+								"",
+								"Seed",
+								"",
+								[],
+								"Nothing",
+								"",
+								[],
+								"Nothing",
+								"",
+								[],
+								true,
+								false,
+								false,
+								false,
+								0,
+								5,
+								"all",
+								"all",
+								"all",
+								"",
+								"",
+								"",
+								"1",
+								"none",
+								false,
+								"",
+								"",
+								"comma",
+								"",
+								true,
+								"",
+								"",
+								"",
+								0,
+								null,
+								null,
+								false,
+								null,
+								null,
+								false,
+								null,
+								null,
+								false,
+								50,
+								[],
+								"",
+								"",
+								""
 							],
-							1,
-							0.05,
-							128,
-							4,
-							"fill",
-							[
-								"left",
-								"right",
-								"up",
-								"down"
-							],
-							false,
-							false,
-							"positive",
-							"comma",
-							0,
-							false,
-							false,
-							"",
-							"<p style=\"margin-bottom:0.75em\">Will upscale the image by the selected scale factor; use width and height sliders to set tile size</p>",
-							64,
-							"None",
-							2,
-							"Seed",
-							"",
-							[],
-							"Nothing",
-							"",
-							[],
-							"Nothing",
-							"",
-							[],
-							true,
-							false,
-							false,
-							false,
-							0,
-							5,
-							"all",
-							"all",
-							"all",
-							"",
-							"",
-							"",
-							"1",
-							"none",
-							false,
-							"",
-							"",
-							"comma",
-							"",
-							true,
-							"",
-							"",
-							"",
-							0,
-							null,
-							null,
-							false,
-							null,
-							null,
-							false,
-							null,
-							null,
-							false,
-							50,
-							"<p style=\"margin-bottom:0.75em\">Will upscale the image depending on the selected target size type</p>",
-							512,
-							0,
-							8,
-							32,
-							64,
-							0.35,
-							32,
-							"None",
-							true,
-							"Linear",
-							false,
-							8,
-							"None",
-							"From img2img2 settings",
-							2048,
-							2048,
-							2,
-							[],
-							"",
-							"",
-							""
-						],
-						"event_data": null,
-						"fn_index": 525,
-						"session_hash": this.sessionHash
-					})
-				}
-			);
+							"event_data": null,
+							"fn_index": 266,
+							"session_hash": this.sessionHash
+						})
+					}
+				);
+			}
 		}
 	},
 
@@ -649,4 +742,5 @@ export default {
 			grid-template-columns: 1fr;
 		}
 	}
-}</style>
+}
+</style>
