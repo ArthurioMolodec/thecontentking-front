@@ -95,9 +95,11 @@
 					artistic modification and complexity of the design, we cannot guarantee that the QR code will scan
 					accurately on all devices or scanning applications.
 				</p>
-				<p>Please note that the QR code’s aesthetic elements are the primary focus and its scanning functionality is
+				<p>Please note that the QR code’s aesthetic elements are the primary focus and its scanning
+					functionality is
 					secondary. Therefore, the purchase or use of these QR code art pieces should be primarily for their
-					artistic value rather than their potential as functional QR codes. We assume no responsibility for any
+					artistic value rather than their potential as functional QR codes. We assume no responsibility for
+					any
 					inconvenience or problems arising from scanning issues.
 				</p>
 				<button @click="showDisclaimer = false" class="btn">OK</button>
@@ -784,12 +786,14 @@ export default {
 }
 
 .disclaimer-modal {
-	top: 10%;
+	top: 20%;
 	position: fixed;
 	width: 100%;
+	max-height: 90%;
+	height: 100vh;
 
 	.modal-content {
-		display: block;
+		position: relative;
 		margin-left: auto;
 		margin-right: auto;
 		min-width: 350px;
@@ -804,11 +808,14 @@ export default {
 
 		white-space: pre-wrap;
 
-		max-width: 80%;
+		max-width: 90%;
+		max-height: 70%;
 
 		p {
 			margin-bottom: 20px;
 		}
+
+		overflow: auto;
 
 		button {
 			display: block;
