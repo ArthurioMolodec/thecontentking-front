@@ -51,6 +51,9 @@
 									<input type="submit" class="btn" :class="{ preloader: generate }"
 										:value="isGeneratedImages ? 'Regenerate' : 'Generate'" ref="submit">
 								</v-form>
+
+								<button style="color: white; display: block; margin-left: auto; margin-top: 30px;"
+									@click="showDisclaimer = true">Disclaimer</button>
 							</div>
 
 							<div class="image-results" v-if="generatedImages.length">
@@ -81,6 +84,26 @@
 
 			<Footer />
 		</div>
+
+
+		<div class="disclaimer-modal" v-if="showDisclaimer">
+			<div class="modal-content">
+				<p><b>Disclaimer:</b></p>
+
+				<p>The QR code generative art offered is intended primarily as a unique and creative form of expression.
+					While every effort has been made to maintain the functional integrity of the QR code, due to the
+					artistic modification and complexity of the design, we cannot guarantee that the QR code will scan
+					accurately on all devices or scanning applications.
+				</p>
+				<p>Please note that the QR code’s aesthetic elements are the primary focus and its scanning functionality is
+					secondary. Therefore, the purchase or use of these QR code art pieces should be primarily for their
+					artistic value rather than their potential as functional QR codes. We assume no responsibility for any
+					inconvenience or problems arising from scanning issues.
+				</p>
+				<button @click="showDisclaimer = false" class="btn">OK</button>
+			</div>
+		</div>
+
 	</div>
 </template>
 
@@ -102,6 +125,7 @@ export default {
 	},
 	data() {
 		return {
+			showDisclaimer: false,
 			generatedImages: [],
 			left_count: null,
 			imagesGeneration: {},
@@ -754,6 +778,43 @@ export default {
 	@media (max-width: 768px) {
 		.row {
 			grid-template-columns: 1fr;
+		}
+	}
+
+}
+
+.disclaimer-modal {
+	top: 20%;
+	position: fixed;
+	width: 100%;
+
+	.modal-content {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		min-width: 350px;
+		width: fit-content;
+
+		text-align: left;
+
+		background-color: white;
+		padding: 20px;
+
+		border-radius: 20px;
+
+		white-space: pre-wrap;
+
+		max-width: 80%;
+
+		p {
+			margin-bottom: 20px;
+		}
+
+		button {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 50%;
 		}
 	}
 }
