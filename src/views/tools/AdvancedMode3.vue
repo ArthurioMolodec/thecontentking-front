@@ -784,7 +784,7 @@ export default {
 }
 
 .disclaimer-modal {
-	top: 20%;
+	top: 10%;
 	position: fixed;
 	width: 100%;
 
