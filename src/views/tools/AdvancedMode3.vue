@@ -342,7 +342,7 @@ export default {
 
 									const isReadable = this.form.type === 'qr_code' && this.auto_recreate_cycles <= 0 ? await this.checkIsQrCodeReadable(url) : null;
 
-									if (false && isReadable === false) {
+									if (isReadable === false) {
 										if (this.form.qr_code_strength >= 76) {
 											this.qr_code_strength_auto_dir = -1;
 											this.auto_recreate_cycles += 1
