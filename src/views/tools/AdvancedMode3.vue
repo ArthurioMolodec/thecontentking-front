@@ -254,7 +254,7 @@ export default {
 			await this.sendTask(
 				() => {
 					return store.dispatch('emitSocketMessage', {
-						"fn_index": 666,
+						"fn_index": 612,
 						"session_hash": this.sessionHash
 					})
 				},
@@ -264,7 +264,7 @@ export default {
 							this.form.model,
 						],
 						"event_data": null,
-						"fn_index": 666,
+						"fn_index": 612,
 						"session_hash": this.sessionHash
 					});
 				}
@@ -287,13 +287,13 @@ export default {
 				await this.sendTask(
 					() => {
 						return store.dispatch('emitSocketMessage', {
-							"fn_index": 382,
+							"fn_index": 448,
 							"session_hash": this.sessionHash
 						})
 					},
 					() => {
 						return store.dispatch('emitSocketMessage', {
-							"data": [
+							data: [
 								null,
 								null,
 								null,
@@ -301,17 +301,18 @@ export default {
 								false,
 								null,
 								true,
-								"tile_resample", // "inpaint_global_harmonious",
+								"tile_resample",
 								"controlnet11Models_tileE [e47b23a8]",
 								Math.max(0, Math.min(1.35 * (this.form.qr_code_strength / 70), 2)),
 								{
 									"image": this.qrCode,
 									"mask": this.qrCodeMask
+
 								},
-								"Just Resize",
+								"Crop and Resize",
 								false,
 								-1,
-								-1,
+								1,
 								-1,
 								0.21,
 								0.88,
@@ -319,7 +320,7 @@ export default {
 								"Balanced"
 							],
 							"event_data": null,
-							"fn_index": 382,
+							"fn_index": 448,
 							"session_hash": this.sessionHash
 						});
 					}
@@ -327,20 +328,21 @@ export default {
 				this.sendTask(
 					() => {
 						return store.dispatch('emitSocketMessage', {
-							"fn_index": 525,
+							"fn_index": 595,
 							"session_hash": this.sessionHash
 						})
 					},
 					() => {
 						store.commit('SOCKET_SET_MESSAGE_LISTENER', async (message) => {
 							if (message.msg === 'process_completed') {
+								console.log(message);
 								const finImage = message?.output?.data?.[0]?.[0]?.name;
 								if (finImage) {
 									const url = `https://generate.kaizencloud.net/file=${finImage}`;
 
 									const isReadable = this.form.type === 'qr_code' && this.auto_recreate_cycles <= 0 ? await this.checkIsQrCodeReadable(url) : null;
 
-									if (isReadable === false) {
+									if (false && isReadable === false) {
 										if (this.form.qr_code_strength >= 76) {
 											this.qr_code_strength_auto_dir = -1;
 											this.auto_recreate_cycles += 1
@@ -370,180 +372,154 @@ export default {
 						})
 						return store.dispatch('emitSocketMessage', {
 							data: [
-								"task(rzqz7m1sgzwhdg9)",
-								0,
-								this.form.prompt,
+    "task(q397u0qaiyn0hz2)",
+    0,
+	this.form.prompt,
 								"bad_prompt_version2-neg,badhandv4,(worst quality, low quality:1.3),(inaccurate limb:1.2),(fewer legs),(fewer arms),(extra legs),(extra arms),(cross eyes),bad_pictures,(bad anatomy),(skin blemishes),",
-								[],
-								this.form.type === 'qr_code' ? this.qrCode : null,
-								null,
-								null,
-								null,
-								null,
-								null,
-								null,
-								20,
-								"DPM++ 2M Karras",
-								4,
-								0,
-								"original",
-								false,
-								false,
-								1,
-								1,
-								7,
-								1.5,
-								0.95,
-								-1,
-								-1,
-								0,
-								0,
-								0,
-								false,
-								null,
-								512,
-								512,
-								1,
-								"Just resize",
-								"Whole picture",
-								32,
-								"Inpaint masked",
-								"",
-								"",
-								"",
-								[],
-								"None",
-								"",
-								false,
-								"",
-								0,
-								"Send to Canvas Editor",
-								null,
-								null,
-								null,
-								false,
-								"",
-								0.5,
-								true,
-								false,
-								"",
-								"Lerp",
-								false,
-								"<ul>\n<li><code>CFG Scale</code> should be 2 or lower.</li>\n</ul>\n",
-								true,
-								true,
-								"",
-								"",
-								true,
-								50,
-								true,
-								1,
-								0,
-								false,
-								4,
-								0.5,
-								"Linear",
-								"None",
-								"<p style=\"margin-bottom:0.75em\">Recommended settings: Sampling Steps: 80-100, Sampler: Euler a, Denoising strength: 0.8</p>",
-								128,
-								8,
-								[
-									"left",
-									"right",
-									"up",
-									"down"
-								],
-								1,
-								0.05,
-								128,
-								4,
-								"fill",
-								[
-									"left",
-									"right",
-									"up",
-									"down"
-								],
-								false,
-								false,
-								"positive",
-								"comma",
-								0,
-								false,
-								false,
-								"",
-								"<p style=\"margin-bottom:0.75em\">Will upscale the image by the selected scale factor; use width and height sliders to set tile size</p>",
-								64,
-								"None",
-								2,
-								"Seed",
-								"",
-								[],
-								"Nothing",
-								"",
-								[],
-								"Nothing",
-								"",
-								[],
-								true,
-								false,
-								false,
-								false,
-								0,
-								5,
-								"all",
-								"all",
-								"all",
-								"",
-								"",
-								"",
-								"1",
-								"none",
-								false,
-								"",
-								"",
-								"comma",
-								"",
-								true,
-								"",
-								"",
-								"",
-								0,
-								null,
-								null,
-								false,
-								null,
-								null,
-								false,
-								null,
-								null,
-								false,
-								50,
-								"<p style=\"margin-bottom:0.75em\">Will upscale the image depending on the selected target size type</p>",
-								512,
-								0,
-								8,
-								32,
-								64,
-								0.35,
-								32,
-								"None",
-								true,
-								"Linear",
-								false,
-								8,
-								"None",
-								"From img2img2 settings",
-								2048,
-								2048,
-								2,
-								[],
-								"",
-								"",
-								""
-							],
+    [],
+	this.form.type === 'qr_code' ? this.qrCode : null,
+	null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    20,
+    "DPM++ 2M Karras",
+    4,
+    0,
+    "original",
+    false,
+    false,
+    1,
+    1,
+    7,
+    1.5,
+    0.75,
+    -1,
+    -1,
+    0,
+    0,
+    0,
+    false,
+    null,
+    512,
+    512,
+    1,
+    "Just resize",
+    "Whole picture",
+    32,
+    "Inpaint masked",
+    "",
+    "",
+    "",
+    [],
+    "None",
+    null,
+    null,
+    null,
+    false,
+    false,
+    "0",
+    null,
+    [],
+    "0",
+    false,
+    [],
+    [],
+    false,
+    "0",
+    "2",
+    false,
+    false,
+    "0",
+    null,
+    [],
+    -2,
+    false,
+    [],
+    false,
+    "0",
+    null,
+    null,
+    "<ul>\n<li><code>CFG Scale</code> should be 2 or lower.</li>\n</ul>\n",
+    true,
+    true,
+    "",
+    "",
+    true,
+    50,
+    true,
+    1,
+    0,
+    false,
+    4,
+    0.5,
+    "Linear",
+    "None",
+    "<p style=\"margin-bottom:0.75em\">Recommended settings: Sampling Steps: 80-100, Sampler: Euler a, Denoising strength: 0.8</p>",
+    128,
+    8,
+    [
+        "left",
+        "right",
+        "up",
+        "down"
+    ],
+    1,
+    0.05,
+    128,
+    4,
+    "fill",
+    [
+        "left",
+        "right",
+        "up",
+        "down"
+    ],
+    false,
+    false,
+    "positive",
+    "comma",
+    0,
+    false,
+    false,
+    "",
+    "<p style=\"margin-bottom:0.75em\">Will upscale the image by the selected scale factor; use width and height sliders to set tile size</p>",
+    64,
+    "None",
+    2,
+    "Seed",
+    "",
+    [],
+    "Nothing",
+    "",
+    [],
+    "Nothing",
+    "",
+    [],
+    true,
+    false,
+    false,
+    false,
+    0,
+    null,
+    null,
+    false,
+    null,
+    null,
+    false,
+    null,
+    null,
+    false,
+    50,
+    [],
+    "",
+    "",
+    ""
+],
 							"event_data": null,
-							"fn_index": 525,
+							"fn_index": 595,
 							"session_hash": this.sessionHash
 						})
 					}
@@ -552,7 +528,7 @@ export default {
 				this.sendTask(
 					() => {
 						return store.dispatch('emitSocketMessage', {
-							"fn_index": 266,
+							"fn_index": 360,
 							"session_hash": this.sessionHash
 						})
 					},
@@ -576,7 +552,7 @@ export default {
 						})
 						return store.dispatch('emitSocketMessage', {
 							data: [
-								"task(9zvu7ii7uvuhw3u)",
+								"task(xqpv2l7jxd4yjpu)",
 								this.form.prompt,
 								"bad_prompt_version2-neg,badhandv4,(worst quality, low quality:1.3),(inaccurate limb:1.2),(fewer legs),(fewer arms),(extra legs),(extra arms),(cross eyes),bad_pictures,(bad anatomy),(skin blemishes),",
 								[],
@@ -607,22 +583,33 @@ export default {
 								"",
 								[],
 								"None",
-								"",
-								false,
-								"",
-								0,
-								"Send to Canvas Editor",
 								null,
 								null,
 								null,
 								false,
-								"",
-								0.5,
-								true,
 								false,
-								"",
-								"Lerp",
+								"0",
+								null,
+								[],
+								"0",
 								false,
+								[],
+								[],
+								false,
+								"0",
+								"2",
+								false,
+								false,
+								"0",
+								null,
+								[],
+								-2,
+								false,
+								[],
+								false,
+								"0",
+								null,
+								null,
 								false,
 								false,
 								"positive",
@@ -645,25 +632,6 @@ export default {
 								false,
 								false,
 								0,
-								5,
-								"all",
-								"all",
-								"all",
-								"",
-								"",
-								"",
-								"1",
-								"none",
-								false,
-								"",
-								"",
-								"comma",
-								"",
-								true,
-								"",
-								"",
-								"",
-								0,
 								null,
 								null,
 								false,
@@ -674,13 +642,12 @@ export default {
 								null,
 								false,
 								50,
-								[],
-								"",
-								"",
+								[
+								],
 								""
 							],
 							"event_data": null,
-							"fn_index": 266,
+							"fn_index": 360,
 							"session_hash": this.sessionHash
 						})
 					}
@@ -786,22 +753,26 @@ export default {
 }
 
 ::-webkit-scrollbar {
-    -webkit-appearance: none;
+	-webkit-appearance: none;
 }
+
 ::-webkit-scrollbar:vertical {
-    width: 12px;
+	width: 12px;
 }
+
 ::-webkit-scrollbar:horizontal {
-    height: 12px;
+	height: 12px;
 }
+
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, .5);
-    border-radius: 8px;
-    border: 2px solid #ffffff;
+	background-color: rgba(0, 0, 0, .5);
+	border-radius: 8px;
+	border: 2px solid #ffffff;
 }
+
 ::-webkit-scrollbar-track {
-    border-radius: 8px;
-    background-color: #ffffff;
+	border-radius: 8px;
+	background-color: #ffffff;
 }
 
 .disclaimer-modal {
