@@ -3,12 +3,12 @@
 		<h3 class="title box mb-3">Tools</h3>
 
 		<ul>
-			<li>
+			<!-- <li>
 				<router-link active-class="active" to="/image-generator">
 					<img src="@/assets/icons/picture.svg" alt="">
 					<span>Image Generator</span>
 				</router-link>
-			</li>
+			</li> -->
 			<li>
 				<router-link active-class="active" to="/image-generator/advanced-mode">
 					<img src="@/assets/icons/picture.svg" alt="">

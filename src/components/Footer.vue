@@ -36,7 +36,7 @@
                 },
                 {
                     title: 'Tools',
-                    path: '/image-generator'
+                    path: '/image-generator/advanced-mode'
                 },
                 {
                     title: 'Privacy Policy',

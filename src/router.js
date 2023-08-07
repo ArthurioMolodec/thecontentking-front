@@ -59,11 +59,11 @@ const routes = [
             name: 'privacy-policy',
             component: PrivacyPolicy
         },
-        {
-            path: '/image-generator',
-            name: 'ImageGenerator',
-            component: Generate
-        },
+        // {
+        //     path: '/image-generator',
+        //     name: 'ImageGenerator',
+        //     component: Generate
+        // },
         {
             path: '/image-generator/advanced-mode',
             name: 'ImageGeneratorAdvancedMode',

@@ -52,7 +52,7 @@ export default {
       store,
       tab: null,
       items: [
-        { title: 'Tools', path: '/image-generator' },
+        { title: 'Tools', path: '/image-generator/advanced-mode' },
         { title: 'About us', path: '/about-us' },
         { title: 'Contact us', path: '/contact-us' },
         { title: 'Pricing', path: '/pricing' },

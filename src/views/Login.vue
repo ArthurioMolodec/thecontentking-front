@@ -67,7 +67,7 @@
                   .then(result => {
                     if (!result) return;
 
-                    this.$router.push({name: 'ImageGenerator'});
+                    this.$router.push({name: 'ImageGeneratorAdvancedMode'});
                   }).catch(error => {
                     console.error(error);
                     switch (error) {
