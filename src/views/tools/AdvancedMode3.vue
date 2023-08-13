@@ -254,7 +254,7 @@ export default {
 			await this.sendTask(
 				() => {
 					return store.dispatch('emitSocketMessage', {
-						"fn_index": 612,
+						"fn_index": 863,
 						"session_hash": this.sessionHash
 					})
 				},
@@ -264,7 +264,7 @@ export default {
 							this.form.model,
 						],
 						"event_data": null,
-						"fn_index": 612,
+						"fn_index": 863,
 						"session_hash": this.sessionHash
 					});
 				}
@@ -287,7 +287,7 @@ export default {
 				await this.sendTask(
 					() => {
 						return store.dispatch('emitSocketMessage', {
-							"fn_index": 448,
+							"fn_index": 456,
 							"session_hash": this.sessionHash
 						})
 					},
@@ -320,7 +320,7 @@ export default {
 								"Balanced"
 							],
 							"event_data": null,
-							"fn_index": 448,
+							"fn_index": 456,
 							"session_hash": this.sessionHash
 						});
 					}
@@ -328,7 +328,7 @@ export default {
 				this.sendTask(
 					() => {
 						return store.dispatch('emitSocketMessage', {
-							"fn_index": 595,
+							"fn_index": 603,
 							"session_hash": this.sessionHash
 						})
 					},
@@ -337,189 +337,195 @@ export default {
 							if (message.msg === 'process_completed') {
 								console.log(message);
 								const finImage = message?.output?.data?.[0]?.[0]?.name;
-								if (finImage) {
-									const url = `https://generate.kaizencloud.net/file=${finImage}`;
-
-									const isReadable = this.form.type === 'qr_code' && this.auto_recreate_cycles <= 0 ? await this.checkIsQrCodeReadable(url) : null;
-
-									if (isReadable === false) {
-										if (this.form.qr_code_strength >= 76) {
-											this.qr_code_strength_auto_dir = -1;
-											this.auto_recreate_cycles += 1
-										}
-										if (this.form.qr_code_strength <= 68) {
-											this.qr_code_strength_auto_dir = 1;
-										}
-										this.form.qr_code_strength += (this.qr_code_strength_auto_dir) * 1;
-
-										this.generate = false;
-
-										return await this.sendForm();
-									}
-
-									this.auto_recreate_cycles = 0;
-
-									this.imagesGeneration.imageParts = [[url]];
-									this.imagesGeneration.status = 'completed';
-
-									this.generatedImages = [...this.generatedImages];
-
-									this.isGeneratedImages = true;
+								if (!finImage && this.auto_recreate_cycles <= 0) {
+									this.generate = false;
+									return await this.sendForm();
 								}
 
-								this.generate = false;
+								if (!finImage) {
+									this.$toast.error('Error occured, please, try again in a few minutes');
+									this.generate = false;
+
+								}
+								const url = `https://generate.kaizencloud.net/file=${finImage}`;
+
+								const isReadable = this.form.type === 'qr_code' && this.auto_recreate_cycles <= 0 ? await this.checkIsQrCodeReadable(url) : null;
+
+								if (isReadable === false) {
+									if (this.form.qr_code_strength >= 76) {
+										this.qr_code_strength_auto_dir = -1;
+										this.auto_recreate_cycles += 1
+									}
+									if (this.form.qr_code_strength <= 68) {
+										this.qr_code_strength_auto_dir = 1;
+									}
+									this.form.qr_code_strength += (this.qr_code_strength_auto_dir) * 1;
+
+									this.generate = false;
+
+									return await this.sendForm();
+								}
+
+								this.auto_recreate_cycles = 0;
+
+								this.imagesGeneration.imageParts = [[url]];
+								this.imagesGeneration.status = 'completed';
+
+								this.generatedImages = [...this.generatedImages];
+
+								this.isGeneratedImages = true;
 							}
 						})
 						return store.dispatch('emitSocketMessage', {
 							data: [
-    "task(q397u0qaiyn0hz2)",
-    0,
-	this.form.prompt,
+								"task(q397u0qaiyn0hz2)",
+								0,
+								this.form.prompt,
 								"bad_prompt_version2-neg,badhandv4,(worst quality, low quality:1.3),(inaccurate limb:1.2),(fewer legs),(fewer arms),(extra legs),(extra arms),(cross eyes),bad_pictures,(bad anatomy),(skin blemishes),",
-    [],
-	this.form.type === 'qr_code' ? this.qrCode : null,
-	null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    20,
-    "DPM++ 2M Karras",
-    4,
-    0,
-    "original",
-    false,
-    false,
-    1,
-    1,
-    7,
-    1.5,
-    0.75,
-    -1,
-    -1,
-    0,
-    0,
-    0,
-    false,
-    null,
-    512,
-    512,
-    1,
-    "Just resize",
-    "Whole picture",
-    32,
-    "Inpaint masked",
-    "",
-    "",
-    "",
-    [],
-    "None",
-    null,
-    null,
-    null,
-    false,
-    false,
-    "0",
-    null,
-    [],
-    "0",
-    false,
-    [],
-    [],
-    false,
-    "0",
-    "2",
-    false,
-    false,
-    "0",
-    null,
-    [],
-    -2,
-    false,
-    [],
-    false,
-    "0",
-    null,
-    null,
-    "<ul>\n<li><code>CFG Scale</code> should be 2 or lower.</li>\n</ul>\n",
-    true,
-    true,
-    "",
-    "",
-    true,
-    50,
-    true,
-    1,
-    0,
-    false,
-    4,
-    0.5,
-    "Linear",
-    "None",
-    "<p style=\"margin-bottom:0.75em\">Recommended settings: Sampling Steps: 80-100, Sampler: Euler a, Denoising strength: 0.8</p>",
-    128,
-    8,
-    [
-        "left",
-        "right",
-        "up",
-        "down"
-    ],
-    1,
-    0.05,
-    128,
-    4,
-    "fill",
-    [
-        "left",
-        "right",
-        "up",
-        "down"
-    ],
-    false,
-    false,
-    "positive",
-    "comma",
-    0,
-    false,
-    false,
-    "",
-    "<p style=\"margin-bottom:0.75em\">Will upscale the image by the selected scale factor; use width and height sliders to set tile size</p>",
-    64,
-    "None",
-    2,
-    "Seed",
-    "",
-    [],
-    "Nothing",
-    "",
-    [],
-    "Nothing",
-    "",
-    [],
-    true,
-    false,
-    false,
-    false,
-    0,
-    null,
-    null,
-    false,
-    null,
-    null,
-    false,
-    null,
-    null,
-    false,
-    50,
-    [],
-    "",
-    "",
-    ""
-],
+								[],
+								this.form.type === 'qr_code' ? this.qrCode : null,
+								null,
+								null,
+								null,
+								null,
+								null,
+								null,
+								20,
+								"DPM++ 2M Karras",
+								4,
+								0,
+								"original",
+								false,
+								false,
+								1,
+								1,
+								7,
+								1.5,
+								0.75,
+								-1,
+								-1,
+								0,
+								0,
+								0,
+								false,
+								null,
+								512,
+								512,
+								1,
+								"Just resize",
+								"Whole picture",
+								32,
+								"Inpaint masked",
+								"",
+								"",
+								"",
+								[],
+								"None",
+								null,
+								null,
+								null,
+								false,
+								false,
+								"0",
+								null,
+								[],
+								"0",
+								false,
+								[],
+								[],
+								false,
+								"0",
+								"2",
+								false,
+								false,
+								"0",
+								null,
+								[],
+								-2,
+								false,
+								[],
+								false,
+								"0",
+								null,
+								null,
+								"<ul>\n<li><code>CFG Scale</code> should be 2 or lower.</li>\n</ul>\n",
+								true,
+								true,
+								"",
+								"",
+								true,
+								50,
+								true,
+								1,
+								0,
+								false,
+								4,
+								0.5,
+								"Linear",
+								"None",
+								"<p style=\"margin-bottom:0.75em\">Recommended settings: Sampling Steps: 80-100, Sampler: Euler a, Denoising strength: 0.8</p>",
+								128,
+								8,
+								[
+									"left",
+									"right",
+									"up",
+									"down"
+								],
+								1,
+								0.05,
+								128,
+								4,
+								"fill",
+								[
+									"left",
+									"right",
+									"up",
+									"down"
+								],
+								false,
+								false,
+								"positive",
+								"comma",
+								0,
+								false,
+								false,
+								"",
+								"<p style=\"margin-bottom:0.75em\">Will upscale the image by the selected scale factor; use width and height sliders to set tile size</p>",
+								64,
+								"None",
+								2,
+								"Seed",
+								"",
+								[],
+								"Nothing",
+								"",
+								[],
+								"Nothing",
+								"",
+								[],
+								true,
+								false,
+								false,
+								false,
+								0,
+								null,
+								null,
+								false,
+								null,
+								null,
+								false,
+								null,
+								null,
+								false,
+								50,
+								[],
+								"",
+								"",
+								""
+							],
 							"event_data": null,
-							"fn_index": 595,
+							"fn_index": 603,
 							"session_hash": this.sessionHash
 						})
 					}
