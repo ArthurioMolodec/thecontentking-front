@@ -374,6 +374,7 @@ export default {
 								this.generatedImages = [...this.generatedImages];
 
 								this.isGeneratedImages = true;
+								this.generate = false;
 							}
 						})
 						return store.dispatch('emitSocketMessage', {
