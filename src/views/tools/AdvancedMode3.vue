@@ -146,7 +146,7 @@ export default {
 				type: 'image',
 				prompt: null,
 				url: 'https://',
-				qr_code_strength: 72,
+				qr_code_strength: 75,
 				model: "revAnimated_v122.safetensors [4199bcdd14]",
 			},
 			generate: false,
