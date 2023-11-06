@@ -254,7 +254,7 @@ export default {
 			await this.sendTask(
 				() => {
 					return store.dispatch('emitSocketMessage', {
-						"fn_index": 863,
+						"fn_index": 858,
 						"session_hash": this.sessionHash
 					})
 				},
@@ -264,7 +264,7 @@ export default {
 							this.form.model,
 						],
 						"event_data": null,
-						"fn_index": 863,
+						"fn_index": 858,
 						"session_hash": this.sessionHash
 					});
 				}
@@ -287,7 +287,7 @@ export default {
 				await this.sendTask(
 					() => {
 						return store.dispatch('emitSocketMessage', {
-							"fn_index": 456,
+							"fn_index": 129,
 							"session_hash": this.sessionHash
 						})
 					},
@@ -302,12 +302,11 @@ export default {
 								null,
 								true,
 								"tile_resample",
-								"controlnet11Models_tileE [e47b23a8]",
+								"controlnetQRPatternQR_v2Sd15 [2d8d5750]",
 								Math.max(0, Math.min(1.35 * (this.form.qr_code_strength / 70), 2)),
 								{
 									"image": this.qrCode,
 									"mask": this.qrCodeMask
-
 								},
 								"Crop and Resize",
 								false,
@@ -320,7 +319,7 @@ export default {
 								"Balanced"
 							],
 							"event_data": null,
-							"fn_index": 456,
+							"fn_index": 129,
 							"session_hash": this.sessionHash
 						});
 					}
@@ -328,7 +327,7 @@ export default {
 				this.sendTask(
 					() => {
 						return store.dispatch('emitSocketMessage', {
-							"fn_index": 603,
+							"fn_index": 707,
 							"session_hash": this.sessionHash
 						})
 					},
@@ -379,7 +378,7 @@ export default {
 						})
 						return store.dispatch('emitSocketMessage', {
 							data: [
-								"task(q397u0qaiyn0hz2)",
+								"task(29jmjk3hj6fy2hb)",
 								0,
 								this.form.prompt,
 								"bad_prompt_version2-neg,badhandv4,(worst quality, low quality:1.3),(inaccurate limb:1.2),(fewer legs),(fewer arms),(extra legs),(extra arms),(cross eyes),bad_pictures,(bad anatomy),(skin blemishes),",
@@ -396,24 +395,16 @@ export default {
 								4,
 								0,
 								"original",
-								false,
-								false,
 								1,
 								1,
 								7,
 								1.5,
 								0.75,
-								-1,
-								-1,
-								0,
-								0,
-								0,
-								false,
 								null,
 								512,
 								512,
 								1,
-								"Just resize",
+								"Crop and resize",
 								"Whole picture",
 								32,
 								"Inpaint masked",
@@ -421,35 +412,23 @@ export default {
 								"",
 								"",
 								[],
+								false,
+								[],
+								"",
 								"None",
+								false,
+								"",
+								0.8,
+								-1,
+								false,
+								-1,
+								0,
+								0,
+								0,
 								null,
 								null,
 								null,
-								false,
-								false,
-								"0",
-								null,
-								[],
-								"0",
-								false,
-								[],
-								[],
-								false,
-								"0",
-								"2",
-								false,
-								false,
-								"0",
-								null,
-								[],
-								-2,
-								false,
-								[],
-								false,
-								"0",
-								null,
-								null,
-								"<ul>\n<li><code>CFG Scale</code> should be 2 or lower.</li>\n</ul>\n",
+								"* `CFG Scale` should be 2 or lower.",
 								true,
 								true,
 								"",
@@ -510,6 +489,7 @@ export default {
 								false,
 								false,
 								0,
+								false,
 								null,
 								null,
 								false,
@@ -520,13 +500,12 @@ export default {
 								null,
 								false,
 								50,
-								[],
-								"",
-								"",
+								[
+								],
 								""
 							],
 							"event_data": null,
-							"fn_index": 603,
+							"fn_index": 707,
 							"session_hash": this.sessionHash
 						})
 					}
@@ -535,7 +514,7 @@ export default {
 				this.sendTask(
 					() => {
 						return store.dispatch('emitSocketMessage', {
-							"fn_index": 360,
+							"fn_index": 329,
 							"session_hash": this.sessionHash
 						})
 					},
@@ -559,23 +538,15 @@ export default {
 						})
 						return store.dispatch('emitSocketMessage', {
 							data: [
-								"task(xqpv2l7jxd4yjpu)",
+								"task(1fytm3dy2rqjuoj)",
 								this.form.prompt,
 								"bad_prompt_version2-neg,badhandv4,(worst quality, low quality:1.3),(inaccurate limb:1.2),(fewer legs),(fewer arms),(extra legs),(extra arms),(cross eyes),bad_pictures,(bad anatomy),(skin blemishes),",
 								[],
 								20,
 								"DPM++ 2M Karras",
-								false,
-								false,
 								1,
 								1,
 								7,
-								-1,
-								-1,
-								0,
-								0,
-								0,
-								false,
 								512,
 								512,
 								false,
@@ -585,36 +556,22 @@ export default {
 								0,
 								0,
 								0,
+								"Use same checkpoint",
 								"Use same sampler",
 								"",
 								"",
 								[],
 								"None",
+								false,
+								"",
+								0.8,
+								-1,
+								false,
+								-1,
+								0,
+								0,
+								0,
 								null,
-								null,
-								null,
-								false,
-								false,
-								"0",
-								null,
-								[],
-								"0",
-								false,
-								[],
-								[],
-								false,
-								"0",
-								"2",
-								false,
-								false,
-								"0",
-								null,
-								[],
-								-2,
-								false,
-								[],
-								false,
-								"0",
 								null,
 								null,
 								false,
@@ -639,6 +596,7 @@ export default {
 								false,
 								false,
 								0,
+								false,
 								null,
 								null,
 								false,
@@ -651,10 +609,10 @@ export default {
 								50,
 								[
 								],
-								""
+								">"
 							],
 							"event_data": null,
-							"fn_index": 360,
+							"fn_index": 329,
 							"session_hash": this.sessionHash
 						})
 					}
