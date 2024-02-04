@@ -10,7 +10,7 @@
 
 						<div class="pt-8 grid">
 							<div class="image-generate">
-								<h3 class="title box mb-3">Long From Writer</h3>
+								<h3 class="title box mb-3">Long form Writer</h3>
 
 								<form ref="form" class="mt-7 form-generate" @submit.prevent>
 									<label class="field field-select">

@@ -121,7 +121,7 @@
             <div v-if="showMore">
               <div class="align-center v-row mt-12">
                 <div class="v-col-12 v-col-md-6">
-                  <h3 class="mb-6 section-title">Long from Writer</h3>
+                  <h3 class="mb-6 section-title">Long form Writer</h3>
                   <p class="text-white">
                     AI Content Creation tools are software applications that use artificial intelligence
                     algorithms to generate written or multimedia content automatically. These tools
@@ -129,7 +129,7 @@
                     a variety of purposes such as creating articles, blog posts, product descriptions,
                     social media updates, and more.
                   </p>
-                  <router-link to="/tools/long-form-writer" rounded="xl" text v-text="'Long From Writer'" class="get-started"></router-link>
+                  <router-link to="/tools/long-form-writer" rounded="xl" text v-text="'Long form Writer'" class="get-started"></router-link>
                 </div>
                 <div class="v-col-12 v-col-md-6">
                   <div class="justify-lg-space-evenly v-row">

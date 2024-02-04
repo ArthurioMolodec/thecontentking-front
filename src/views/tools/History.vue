@@ -43,7 +43,7 @@
 								<div class="item">
 									<div class="left">
 										<img src="@/assets/icons/pen.svg" alt="">
-										<span>Long from writer</span>
+										<span>Long form writer</span>
 									</div>
 
 									<div class="cont">
