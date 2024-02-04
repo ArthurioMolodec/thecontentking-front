@@ -22,7 +22,7 @@
 				</router-link>
 			</li>
 			<li>
-				<router-link active-class="active" to="/tools/long-from-writer">
+				<router-link active-class="active" to="/tools/long-form-writer">
 					<img src="@/assets/icons/pen.svg" alt="">
 					<span>Long from writer</span>
 				</router-link>

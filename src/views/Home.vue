@@ -129,7 +129,7 @@
                     a variety of purposes such as creating articles, blog posts, product descriptions,
                     social media updates, and more.
                   </p>
-                  <router-link to="/tools/long-from-writer" rounded="xl" text v-text="'Long From Writer'" class="get-started"></router-link>
+                  <router-link to="/tools/long-form-writer" rounded="xl" text v-text="'Long From Writer'" class="get-started"></router-link>
                 </div>
                 <div class="v-col-12 v-col-md-6">
                   <div class="justify-lg-space-evenly v-row">

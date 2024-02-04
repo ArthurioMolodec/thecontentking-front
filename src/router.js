@@ -115,7 +115,7 @@ const routes = [
             component: Summarize
         },
         {
-            path: '/tools/long-from-writer',
+            path: '/tools/long-form-writer',
             name: 'Writer',
             component: LongFromWriter
         },
